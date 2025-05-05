@@ -1,6 +1,6 @@
 ---
 import "../styles/globals.css";
-import "../components/Navbar.astro";
+import Navbar from "../components/Navbar.astro";  // Import the Navbar component
 ---
 
 <!DOCTYPE html>
@@ -11,22 +11,16 @@ import "../components/Navbar.astro";
   </head>
   <body>
     <header class="header">
-  <div class="header-container">
-    <div class="header-top">
-      <h1 class="site-title">jaywalkin</h1>
-      <nav class="navbar">
-        <a href="/articles">Articles</a>
-        <a href="/interests">Interests</a>
-        <a href="https://github.com/jayneel-p" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/jayneelaparikh" target="_blank">LinkedIn</a>
-      </nav>
-    </div>
-    <h4 class="subheader">a haphazard walk through my interests</h4>
-  </div>
-</header>
+      <div class="header-top">
+        <div class="title-wrapper">
+          <h1 class="site-title">jaywalkin</h1>
+        </div>
+        <Navbar /> <!-- This is where the Navbar component will render the navigation links -->
+      </div>
+      <h2 class="subheader">walking through thoughts, code, and wonder.</h2>
+    </header>
     <main>
-      <slot />
+      <slot /> <!-- This is for nested content from pages or components -->
     </main>
   </body>
 </html>
-

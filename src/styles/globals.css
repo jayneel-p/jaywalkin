@@ -35,27 +35,38 @@ main {
   font-size: 1.1rem;
 }
 
-.header {
-  background-color: #F0E6C8;
-  padding: 2rem 1rem;
-  border-bottom: 2px solid #F0BB3D;
-  text-align: center;  /* Center both title and subheader horizontally */
+.header-top {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 4rem; /* adjust as needed */
+}
+
+.title-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .site-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #C4502A;
-  margin: 0;
+  font-family: 'Go Mono', monospace;
+  text-align: center;
 }
 
-.subheader {
-  font-size: 1.25rem;
-  color: #7F9F8F;
-  font-style: italic;
-  margin-top: 0.5rem;
+.navbar ul {
+  list-style-type: none; /* Removes bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* This makes the list items appear in a row */
+}
+
+.navbar li {
+  margin-right: 1rem; /* Optional: space out the links */
 }
 .navbar a {
-  margin-left: 1rem;
   color: #8A4495;
   text-decoration: none;
   font-weight: bold;
@@ -65,7 +76,6 @@ main {
 .navbar a:hover {
   text-decoration: underline;
 }
-
 .subheader {
   text-align: center;
   margin-top: 1rem;
@@ -74,3 +84,4 @@ main {
   font-style: italic;
   font-family: 'Go Mono', monospace;
 }
+
