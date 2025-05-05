@@ -1,4 +1,3 @@
-
 /* Global theme variables */
 :root {
   --bg-color: #ECDFC1;
@@ -89,3 +88,15 @@ main {
   font-family: 'Go Mono', monospace;
 }
 
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header-top {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .navbar ul {
+    flex-direction: column; /* Stack navbar items vertically */
+    align-items: flex-start; /* Align navbar items to the start */
+  }
+}
