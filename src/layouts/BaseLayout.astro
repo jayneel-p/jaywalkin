@@ -7,20 +7,20 @@ import Navbar from "../components/Navbar.astro";  // Import the Navbar component
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>jaywalkin</title>
+    <title>jaywalkin'</title>
   </head>
   <body>
     <header class="header">
       <div class="header-top">
         <div class="title-wrapper">
-          <h1 class="site-title">jaywalkin</h1>
+          <a href="/" class="site-title">jaywalkin'</a> <!-- Wrap title in a link -->
         </div>
-        <Navbar /> <!-- This is where the Navbar component will render the navigation links -->
+        <Navbar />
       </div>
-      <h2 class="subheader">who even reads blogs anymore?</h2>
+      <h2 class="subheader">Would it save you a lot of time if I just gave up and went mad now?</h2>
     </header>
     <main>
-      <slot /> <!-- This is for nested content from pages or components -->
+      <slot />
     </main>
   </body>
 </html>
