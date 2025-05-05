@@ -27,12 +27,10 @@ body {
   padding: 2rem;
 }
 
-p{
-  text-indent:50px;
+p {
+  text-indent: 50px;
 }
 
-
-/* Optional: style section content */
 main {
   max-width: 800px;
   margin: 0 auto;
@@ -44,7 +42,7 @@ main {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 4rem; /* adjust as needed */
+  height: 4rem;
 }
 
 .title-wrapper {
@@ -55,23 +53,24 @@ main {
 
 .site-title {
   font-size: 2.5rem;
-  color: #C4502A;
+  color: var(--accent-red);
   font-family: 'Go Mono', monospace;
   text-align: center;
 }
 
 .navbar ul {
-  list-style-type: none; /* Removes bullet points */
+  list-style-type: none;
   padding: 0;
   margin: 0;
-  display: flex; /* This makes the list items appear in a row */
+  display: flex;
 }
 
 .navbar li {
-  margin-right: 1rem; /* Optional: space out the links */
+  margin-right: 1rem;
 }
+
 .navbar a {
-  color: #8A4495;
+  color: var(--highlight-purple);
   text-decoration: none;
   font-weight: bold;
   font-family: 'Go Mono', monospace;
@@ -80,32 +79,41 @@ main {
 .navbar a:hover {
   text-decoration: underline;
 }
+
 .subheader {
   text-align: center;
   margin-top: 1rem;
   font-size: 1.25rem;
-  color: #7F9F8F;
+  color: var(--highlight-blue);
   font-family: 'Go Mono', monospace;
 }
 
 /* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
-  .header-top {
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align items to the start */
+@media (max-width: 1100px) {
+  body {
+    padding: 1rem;
   }
 
-  .navbar ul {
-    flex-direction: column; /* Stack navbar items vertically */
-    align-items: flex-start; /* Align navbar items to the start */
+  .header-top {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
   }
-}
-@media (max-width: 768px) {
+
   .title-wrapper {
     position: static;
     transform: none;
     margin-bottom: 1rem;
     text-align: center;
     width: 100%;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar li {
+    margin-bottom: 0.5rem;
   }
 }
