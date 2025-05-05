@@ -1,0 +1,76 @@
+
+/* Global theme variables */
+:root {
+  --bg-color: #ECDFC1;
+  --text-dark: #333;
+  --accent-yellow: #F0BB3D;
+  --accent-red: #C4502A;
+  --accent-green: #697F3F;
+  --highlight-purple: #8A4495;
+  --highlight-pink: #C85B8A;
+  --highlight-salmon: #F8A479;
+  --highlight-dandelion: #FBD773;
+  --highlight-blue: #7F9F8F;
+  --highlight-olive: #657665;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Go Mono', monospace;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+/* Optional: style section content */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.header {
+  background-color: #F0E6C8;
+  padding: 2rem 1rem;
+  border-bottom: 2px solid #F0BB3D;
+  text-align: center;  /* Center both title and subheader horizontally */
+}
+
+.site-title {
+  font-size: 3rem;
+  color: #C4502A;
+  margin: 0;
+}
+
+.subheader {
+  font-size: 1.25rem;
+  color: #7F9F8F;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+.navbar a {
+  margin-left: 1rem;
+  color: #8A4495;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Go Mono', monospace;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #7F9F8F;
+  font-style: italic;
+  font-family: 'Go Mono', monospace;
+}

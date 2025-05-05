@@ -1,0 +1,32 @@
+---
+import "../styles/globals.css";
+import "../components/Navbar.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jaywalkin</title>
+  </head>
+  <body>
+    <header class="header">
+  <div class="header-container">
+    <div class="header-top">
+      <h1 class="site-title">jaywalkin</h1>
+      <nav class="navbar">
+        <a href="/articles">Articles</a>
+        <a href="/interests">Interests</a>
+        <a href="https://github.com/jayneel-p" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/jayneelaparikh" target="_blank">LinkedIn</a>
+      </nav>
+    </div>
+    <h4 class="subheader">a haphazard walk through my interests</h4>
+  </div>
+</header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
