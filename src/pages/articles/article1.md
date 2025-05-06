@@ -61,7 +61,7 @@ of *intermediate regime*.
 
 
 <figure>
-<img src="images/statmech2.png" style="width:9cm;height:5cm" />
+<img src="/images/statmech2.png" style="width:9cm;height:5cm" />
 <figcaption>The figure shows a ray incident on a spherical object shown
 a) in three dimensions and b) in the plane of incidence. From Jones et
 al. 2015.</figcaption>
@@ -337,7 +337,7 @@ $$
 $$
 
 <figure>
-<img src="images/statmech5.png" style="width:6cm;height:6cm" />
+<img src="/images/statmech5.png" style="width:6cm;height:6cm" />
 <figcaption>a) Brownian motion inside an ellipsoidal volume due to <span
 class="math inline"><em>κ</em><sub><em>z</em></sub> &lt; <em>κ</em><sub><em>x</em></sub> = <em>κ</em><sub><em>y</em></sub></span>,
 b) and c) shows distribution function is Gaussian in <span
