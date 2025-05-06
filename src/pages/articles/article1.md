@@ -37,7 +37,7 @@ walk) opposes the optical force, creating an interplay and series of
 challenges which will be elaborated upon further in the paper.
 
 <figure>
-<img src="public/screenshot1.png" style="width:9cm;height:9cm" />
+<img src="/images/screenshot1.png"  style="width:9cm;height:9cm" />
 <figcaption>typical optical tweezer (OT) setups: a) single-beam OT, b)
 double-beam OT, c) holographic OT, d) time-sharing OT, e) speckle OT, f)
 counter-propogating-beam OT, g) optical strecher, h) interferometric OT.
@@ -61,7 +61,7 @@ of *intermediate regime*.
 
 
 <figure>
-<img src="../public/statmech2.png" style="width:9cm;height:5cm" />
+<img src="images/statmech2.png" style="width:9cm;height:5cm" />
 <figcaption>The figure shows a ray incident on a spherical object shown
 a) in three dimensions and b) in the plane of incidence. From Jones et
 al. 2015.</figcaption>
@@ -337,7 +337,7 @@ $$
 $$
 
 <figure>
-<img src="../public/statmech5.png" style="width:6cm;height:6cm" />
+<img src="images/statmech5.png" style="width:6cm;height:6cm" />
 <figcaption>a) Brownian motion inside an ellipsoidal volume due to <span
 class="math inline"><em>κ</em><sub><em>z</em></sub> &lt; <em>κ</em><sub><em>x</em></sub> = <em>κ</em><sub><em>y</em></sub></span>,
 b) and c) shows distribution function is Gaussian in <span
