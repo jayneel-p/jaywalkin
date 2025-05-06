@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar.astro";  // Import the Navbar component
     <meta charset="UTF-8" />
     <title>jaywalkin'</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
         onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] })"></script>
@@ -21,7 +22,7 @@ import Navbar from "../components/Navbar.astro";  // Import the Navbar component
         </div>
         <Navbar />
       </div>
-      <h2 class="subheader">"I feel as if I'm always on the verge of waking up." - <i> Pessoa </i> </h2>
+      <h2 class="subheader">put some pithy quote here</h2>
     </header>
     <main>
       <slot />

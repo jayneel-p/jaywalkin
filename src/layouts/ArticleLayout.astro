@@ -1,0 +1,51 @@
+---
+import "../styles/globals.css";
+import Navbar from "../components/Navbar.astro";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{Astro.props.title}</title>
+  <!-- KaTeX CSS only - the JS rendering will be handled by rehype-katex -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+  <style>
+    /* Add custom styling for equations */
+    .math-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.5em 0;
+    }
+    
+    /* Ensure aligned environments have proper spacing */
+    .katex-display {
+      margin: 1em 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-top">
+      <div class="title-wrapper">
+        <a href="/" class="site-title">jaywalkin'</a>
+      </div>
+      <Navbar />
+    </div>
+  </header>
+  <main class="article">
+    <article class="prose mx-auto p-4">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold mb-2">{Astro.props.title}</h1>
+        <p class="text-gray-500">{new Date(Astro.props.pubDate).toLocaleDateString()}</p>
+        {Astro.props.description && <p class="italic text-gray-600">{Astro.props.description}</p>}
+        {Astro.props.tags && (
+          <p class="mt-2 text-blue-600">
+            Tags: {Astro.props.tags.join(', ')}
+          </p>
+        )}
+      </header>
+      <slot />
+    </article>
+  </main>
+</body>
+</html>

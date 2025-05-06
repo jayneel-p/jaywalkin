@@ -1,0 +1,56 @@
+---
+// Figure.astro - Place in your components directory
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  width?: string;
+  height?: string;
+  class?: string;
+}
+
+const { src, alt, caption, width, height, class: className = "" } = Astro.props;
+---
+
+<figure class={`article-figure ${className}`}>
+  <img
+    src={src}
+    alt={alt}
+    style={`${width ? `width: ${width};` : ''} ${height ? `height: ${height};` : ''}`}
+    class="article-figure-img"
+  />
+  {caption && (
+    <figcaption class="article-figure-caption" set:html={caption}></figcaption>
+  )}
+</figure>
+
+<style>
+  /* Center the figure block itself via auto margins */
+  .article-figure {
+    margin: 2rem auto;
+    max-width: 100%;
+  }
+  
+  /* Ensure the image is centered within the figure */
+  .article-figure-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Center only the caption text */
+  .article-figure-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* Reset text alignment for elements following the figure to left-align */
+  .article-figure + * {
+    text-align: left;
+  }
+</style>

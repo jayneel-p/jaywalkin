@@ -1,0 +1,51 @@
+---
+// src/layouts/ArticleLayout.astro
+const { title, description, date, tags } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- MathJax v3 Configuration -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+
+    <!-- MathJax v3 Loader from CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+    <!-- Your other global styles / scripts -->
+  </head>
+  <body>
+    <article class="prose mx-auto p-4">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold mb-2">{title}</h1>
+        <p class="text-gray-500">
+          {new Date(date).toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </p>
+        {description && <p class="italic text-gray-600">{description}</p>}
+        {tags && <p class="mt-2 text-blue-600">Tags: {tags.join(', ')}</p>}
+      </header>
+
+      <!-- This is where your MDX content (with $$…$$) will go -->
+      <slot />
+
+    </article>
+  </body>
+</html>

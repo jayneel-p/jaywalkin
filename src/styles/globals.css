@@ -117,3 +117,88 @@ main {
     margin-bottom: 0.5rem;
   }
 }
+
+/* Alternative styling for bibliography without numbering */
+.bibliography-unnumbered {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.bibliography-unnumbered h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.bibliography-unnumbered ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.bibliography-unnumbered li {
+  margin-bottom: 0.8rem;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+/* Basic styling for standard HTML figures */
+figure {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* For figures that need to span across columns in a multi-column layout */
+.figure-wide {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+/* For figures that need to be smaller and centered */
+.figure-centered {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* For figures that contain diagrams or illustrations */
+.figure-diagram img {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+}
+
+/* For figures that need to be side-by-side on larger screens */
+@media (min-width: 768px) {
+  .figures-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .figures-container figure {
+    flex: 1 1 0;
+    margin: 0;
+  }
+}
+
+/* For figures containing LaTeX math in captions */
+figcaption .katex {
+  font-size: 0.9em;
+}
