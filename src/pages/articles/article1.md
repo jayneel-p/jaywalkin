@@ -1,5 +1,4 @@
 ---
-
 title: "Introduction to Optical Tweezers and Statistical Mechanics"
 description: "An exploration of Jupyter Notebooks and LaTeX."
 date: "2025-05-05"

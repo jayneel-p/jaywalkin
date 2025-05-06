@@ -32,15 +32,25 @@ import Navbar from "../components/Navbar.astro";
       <Navbar />
     </div>
   </header>
+   
   <main class="article">
     <article class="prose mx-auto p-4">
       <header class="mb-8">
         <h1 class="text-4xl font-bold mb-2">{Astro.props.title}</h1>
-        <p class="text-gray-500">{new Date(Astro.props.pubDate).toLocaleDateString()}</p>
-        {Astro.props.description && <p class="italic text-gray-600">{Astro.props.description}</p>}
-        {Astro.props.tags && (
+        <p class="text-gray-500">
+          {Astro.props.frontmatter && Astro.props.frontmatter.date
+            ? new Date(Astro.props.frontmatter.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })
+            : 'Date not available'}
+        </p>
+        
+
+          {Astro.props.frontmatter.tags && (
           <p class="mt-2 text-blue-600">
-            Tags: {Astro.props.tags.join(', ')}
+            Tags: {Astro.props.frontmatter.tags.join(', ')}
           </p>
         )}
       </header>
