@@ -61,7 +61,7 @@ const tagIndex = allTags.indexOf(tag);
 
 <BaseLayout>
   <section>
-    <h2 class="subheader">Articles tagged with "{formattedTag}"</h2>
+    <h2 class="tag-subheader">Articles tagged with "{formattedTag}"</h2>
     <ul class="article-list">
       {filteredPosts.map((post) => {
         const { title, description, date, tags = [] } = post.frontmatter;

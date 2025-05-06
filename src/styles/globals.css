@@ -84,7 +84,17 @@ main {
   text-align: center;
   margin-top: 0.1rem;
   font-size: 1.25rem;
-  color: var(--highlight-blue);
+  color: var(--accent-red);
+  font-family: 'Go Mono', monospace;
+}
+
+/* Styling for 'Articles tagged with [tag]' in */
+.tag-subheader {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.25rem;
+  color: var(--highlight-pink);
   font-family: 'Go Mono', monospace;
 }
 

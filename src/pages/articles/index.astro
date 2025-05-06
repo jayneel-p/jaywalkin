@@ -48,7 +48,7 @@ const allTags: string[] = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags
         const { title, description, date, tags = [] } = post.frontmatter;
         const firstTag = tags[0];
         const tagIndex = allTags.indexOf(firstTag);
-        const color = tagIndex >= 0 ? `var(${colorVars[tagIndex % colorVars.length]})` : 'var(--highlight-blue)';
+        const color = tagIndex >= 0 ? `var(${colorVars[tagIndex % colorVars.length]})` : 'var(--highlight-olive)';
 
         return (
           <li class="article-item">
