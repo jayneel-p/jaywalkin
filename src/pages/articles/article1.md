@@ -37,7 +37,7 @@ walk) opposes the optical force, creating an interplay and series of
 challenges which will be elaborated upon further in the paper.
 
 <figure>
-<img src="../public/screenshot1.png" style="width:9cm;height:9cm" />
+<img src="public/screenshot1.png" style="width:9cm;height:9cm" />
 <figcaption>typical optical tweezer (OT) setups: a) single-beam OT, b)
 double-beam OT, c) holographic OT, d) time-sharing OT, e) speckle OT, f)
 counter-propogating-beam OT, g) optical strecher, h) interferometric OT.
