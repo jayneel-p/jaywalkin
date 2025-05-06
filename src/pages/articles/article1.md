@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Optical Tweezers and Statistical Mechanics"
-description: "An exploration of Jupyter Notebooks and LaTeX."
+description: "An exploration of LaTeX and markdown, and there integration with my website. Mostly I am trying to explore how to convert Latex documents in to markdownfiles. I have been having some trouble with rendering figures and some instances of latex equations (i.e aligned environment)"
 date: "2025-05-05"
-tags: ["jupyter", "latex", "tutorial"]
+tags: ["physics","latex"]
 layout: ../../layouts/ArticleLayout.astro
 ---
 

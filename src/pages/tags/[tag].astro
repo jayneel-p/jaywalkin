@@ -13,10 +13,7 @@ interface Post {
   frontmatter: Frontmatter;
 }
 
-const allPosts: Post[] = Object.values(
-  import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true })
-);
-
+// Setup color variables
 const colorVars = [
   '--accent-yellow',
   '--accent-red',
@@ -29,27 +26,49 @@ const colorVars = [
   '--highlight-olive',
 ];
 
-// Get a consistent tag order to assign colors
-const allTags: string[] = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
+export async function getStaticPaths() {
+  // Get all posts with import.meta.glob as in your index.astro
+  const allPosts = Object.values(import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true }));
+  
+  // Get all unique tags from posts
+  const allTags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+  
+  // Return a path for each tag with all posts as props
+  return allTags.map(tag => ({
+    params: { tag },
+    props: { 
+      posts: allPosts,
+      allTags
+    }
+  }));
+}
+
+// Get the current tag from params
+const { tag } = Astro.params;
+
+// Get data passed as props
+const { posts, allTags } = Astro.props;
+
+// Filter posts by the current tag
+const filteredPosts = posts.filter(post => post.frontmatter.tags?.includes(tag));
+
+// Format tag for display
+const formattedTag = tag.charAt(0).toUpperCase() + tag.slice(1);
+
+// Get tag color index
+const tagIndex = allTags.indexOf(tag);
 ---
 
 <BaseLayout>
   <section>
-    <div class="tags-top">
-      {allTags.map((tag, i) => (
-        <a class="tag-inline" href={`/tags/${tag}`} style={`color: var(${colorVars[i % colorVars.length]});`}>
-          {tag}
-        </a>
-      ))}
-    </div>
-
+    <h2 class="subheader">Articles tagged with "{formattedTag}"</h2>
     <ul class="article-list">
-      {allPosts.map((post, i) => {
+      {filteredPosts.map((post) => {
         const { title, description, date, tags = [] } = post.frontmatter;
         const firstTag = tags[0];
-        const tagIndex = allTags.indexOf(firstTag);
-        const color = tagIndex >= 0 ? `var(${colorVars[tagIndex % colorVars.length]})` : 'var(--highlight-blue)';
-
+        const firstTagIndex = allTags.indexOf(firstTag);
+        const color = firstTagIndex >= 0 ? `var(${colorVars[firstTagIndex % colorVars.length]})` : 'var(--highlight-blue)';
+        
         return (
           <li class="article-item">
             <div class="article-header">
