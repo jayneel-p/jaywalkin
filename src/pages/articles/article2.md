@@ -2,7 +2,7 @@
 title: "Using Python for Physics Simulations: A Beginner's Guide"
 date: "2025-05-07"
 author: "Dr. Ana Martinez"
-tags: ["Python", "Physics", "Simulation", "Scientific Computing"]
+tags: ["python", "physics", "simulation", "Scientific Computing"]
 category: "Tutorial"
 featured_image: "/images/physics-simulation.jpg"
 description: "Learn how to leverage Python's scientific computing libraries to create physics simulations that visualize complex phenomena."

@@ -15,7 +15,8 @@ interface Post {
 
 const allPosts: Post[] = Object.values(
   import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true })
-);
+).sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+
 
 const colorVars = [
   '--accent-yellow',
