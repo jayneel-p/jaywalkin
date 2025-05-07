@@ -1,27 +1,28 @@
 ---
 import "../styles/globals.css";
 import Navbar from "../components/Navbar.astro";
+
+const { frontmatter, title, allTags = [] } = Astro.props;
+
+const colorVars = [
+  '--accent-yellow',
+  '--accent-red',
+  '--accent-green',
+  '--highlight-purple',
+  '--highlight-pink',
+  '--highlight-salmon',
+  '--highlight-dandelion',
+  '--highlight-blue',
+  '--highlight-olive',
+];
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>{Astro.props.title}</title>
-  <!-- KaTeX CSS only - the JS rendering will be handled by rehype-katex -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
-  <style>
-    /* Add custom styling for equations */
-    .math-display {
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding: 0.5em 0;
-    }
-    
-    /* Ensure aligned environments have proper spacing */
-    .katex-display {
-      margin: 1em 0;
-    }
-  </style>
+  <title>{title}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
 </head>
 <body>
   <header class="header">
@@ -32,29 +33,47 @@ import Navbar from "../components/Navbar.astro";
       <Navbar />
     </div>
   </header>
-   
+
   <main class="article">
     <article class="prose mx-auto p-4">
       <header class="mb-8">
-        <h1 class="text-4xl font-bold mb-2">{Astro.props.title}</h1>
+        <h1 class="text-4xl font-bold mb-2" style="color: var(--text-black);">
+          {frontmatter.title}
+        </h1>
         <p class="text-gray-500">
-          {Astro.props.frontmatter && Astro.props.frontmatter.date
-            ? new Date(Astro.props.frontmatter.date).toLocaleDateString('en-US', {
+          {frontmatter.date
+            ? new Date(frontmatter.date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
               })
             : 'Date not available'}
         </p>
-        
 
-          {Astro.props.frontmatter.tags && (
-          <p class="mt-2 text-blue-600">
-            Tags: {Astro.props.frontmatter.tags.join(', ')}
+        {frontmatter.tags && (
+          <p class="mt-2">
+            Tags:{" "}
+            {frontmatter.tags.map((tag: string, index: number) => {
+              const tagIndex = allTags.indexOf(tag);
+              const colorVar = tagIndex >= 0
+                ? colorVars[tagIndex % colorVars.length]
+                : '--highlight-olive';
+              return (
+                <span
+                  class="tag-highlight"
+                  style={`background-color: var(${colorVar})33; color: var(${colorVar});`}
+                >
+                  {tag}
+                </span>
+              );
+            })}
           </p>
         )}
       </header>
-      <slot />
+
+      <div class="article-content">
+        <slot />
+      </div>
     </article>
   </main>
 </body>

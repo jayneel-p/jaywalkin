@@ -3,16 +3,9 @@ title: "Introduction to Optical Tweezers and Statistical Mechanics"
 description: "An exploration of LaTeX and markdown, and there integration with my website. Mostly I am trying to explore how to convert Latex documents in to markdownfiles. I have been having some trouble with rendering figures and some instances of latex equations (i.e aligned environment)"
 date: "2025-05-05"
 tags: ["physics","latex"]
-layout: ../../layouts/ArticleLayout.astro
+layout: ../../layouts/ArticleLayoutTest.astro
 ---
-
-
-# "Introduction to Optical Tweezers and Statistical Mechanics"
-
-_this is a test article to see the compatibility of my website to latex, it was 
-originally written for my Stat Mech 2 course. The topic is on brownian motion 
-and its applicability to optical tweezers._
-___
+# Introduction
 
 Optical tweezers is a subject of direct consequence to the advent of the
 LASER, and now plays a seminal role in single particle physics in
@@ -42,6 +35,7 @@ double-beam OT, c) holographic OT, d) time-sharing OT, e) speckle OT, f)
 counter-propogating-beam OT, g) optical strecher, h) interferometric OT.
 From Pesce et al. 2020.</figcaption>
 </figure>
+
 # Principles of Optical Tweezers
 
 Historically, optical forces have been conceptualized through strong

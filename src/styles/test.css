@@ -51,6 +51,10 @@
   p {
     text-indent: 50px;
   }
+
+  .special {
+    text-indent: 30px;
+  }
   
   /* ===========================================
      HEADER & NAVIGATION
@@ -159,7 +163,7 @@
      ARTICLE CONTENT STYLES
      =========================================== */
   .article-content {
-    margin-top: 3rem;
+    margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.07);
   }
@@ -183,11 +187,11 @@
     margin-bottom: 1.5rem;
   }
   
-  /* ===========================================
-     TAG STYLES
-     =========================================== */
-  /* Inline tags and tag lists */
-  .tags-top {
+ /* ===========================================
+   TAG STYLES
+   =========================================== */
+/* Inline tags and tag lists */
+.tags-top {
     margin-bottom: 2rem;
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +202,13 @@
     font-weight: bold;
     font-size: 0.85rem;
     text-transform: uppercase;
-    color: var(--highlight-purple);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  
+  .tag-inline:hover {
+    opacity: 0.8;
+    text-decoration: underline;
   }
   
   .tag-list {
@@ -206,10 +216,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-  }
-  
-  .tag-list .tag-highlight {
-    margin-right: 0.5rem;
   }
   
   /* Tag page header */
@@ -223,7 +229,6 @@
     font-weight: 600;
     letter-spacing: 0.3px;
   }
-  
   /* ===========================================
      FIGURE & IMAGE STYLES
      =========================================== */
