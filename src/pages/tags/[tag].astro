@@ -66,7 +66,12 @@ const tagColor = tagIndex >= 0
         return (
           <li class="article-item mb-6">
             <div class="article-header">
-              <a href={post.url} class="article-link" style={`border-bottom: 3px solid ${tagColor};`}>
+                {/** Use first tag's color for underline, even on a different tag page */}
+                <a href={post.url} class="article-link" style={`border-bottom: 3px solid ${
+                 post.frontmatter.tags?.length
+                 ? `var(${colorVars[allTags.indexOf(post.frontmatter.tags[0]) % colorVars.length]})`
+                : 'var(--highlight-olive)'
+                };`}>
                 {title}
               </a>
               <span class="article-date ml-4">{date}</span>
