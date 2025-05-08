@@ -71,7 +71,7 @@
   
   .site-title {
     font-size: 2.5rem;
-    color: var(--title-brown);
+    color: var(--accent-red);
     font-family: 'Go Mono', monospace;
     text-align: center;
     letter-spacing: 0.5px;
@@ -344,3 +344,45 @@
       margin-bottom: 0.5rem;
     }
   }
+
+  /* ===========================================
+   Code Styling with Shiki Integration
+   =========================================== */
+
+/* Base code block styling */
+pre[class*="astro-code"],
+pre[class*="language-"],
+code[class*="language-"] {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Go Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  hyphens: none;
+  overflow-x: auto;
+    
+  /* Rounded corners */
+  border-radius: 8px;
+  
+  /* Padding and margin */
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  
+  /* Subtle shadow for depth */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Optional border */
+  border: 1px solid #383e4a;
+}
+
+/* Ensure inline code blocks match theme but with adjusted padding */
+:not(pre) > code[class*="language-"] {
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  white-space: normal;
+  
+}

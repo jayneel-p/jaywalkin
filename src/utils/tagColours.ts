@@ -10,8 +10,8 @@ export const colorVars = [
     '--highlight-blue',
     '--highlight-olive',
   ];
-  
-  export function getTagColor(tag: string, allTags: string[]): string {
+
+  export function getTagColour(tag: string, allTags: string[]): string {
     const index = allTags.indexOf(tag);
     const color = colorVars[index % colorVars.length] || '--highlight-olive';
     return `var(${color})`;

@@ -9,6 +9,7 @@ interface Frontmatter {
   tags?: string[];
 }
 
+
 interface Post {
   url: string;
   frontmatter: Frontmatter;
@@ -17,7 +18,7 @@ interface Post {
 // Import all posts to get consistent tag colors across pages
 const allPosts = Object.values(
   import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true })
-);
+).sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
 // Get a consistent tag order to assign colors - same logic as index.astro
 const allTags = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];

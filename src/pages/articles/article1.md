@@ -1,6 +1,6 @@
 ---
-title: "Introduction to Optical Tweezers and Statistical Mechanics"
-description: "An exploration of LaTeX and markdown, and there integration with my website. Mostly I am trying to explore how to convert Latex documents in to markdownfiles. I have been having some trouble with rendering figures and some instances of latex equations (i.e aligned environment)"
+title: "Introduction to Optical Tweezers and Statistical Mechanics (Test Article)"
+description: "An exploration of LaTeX and markdown, and there integration with my website. I am testing different ways to integrate LaTeX with markdown (i.e KaTex, MathJax,...) I have been having some trouble with rendering figures and some instances of latex equations (i.e aligned environment). Below is a formated article using KaTeX."
 date: "2025-05-05"
 tags: ["physics","latex"]
 layout: ../../layouts/ArticleLayoutTest.astro

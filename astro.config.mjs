@@ -3,21 +3,25 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkToc from 'remark-toc';
 import remarkCollapse from 'remark-collapse';
+import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 
+// Astro ships with a built-in Shiki integration
 export default defineConfig({
-  // other configs
   markdown: {
+    // Enable syntax highlighting for Python and other languages
+    shikiConfig: {
+      // Choose from Shiki's built-in themes. Find full list at: https://shiki.style/themes
+      theme: 'rose-pine-moon',
+      // Enable word wrap
+      wrap: true,
+      // Languages to be loaded
+      langs: ['python', 'javascript', 'typescript', 'bash', 'markdown','c', 'cpp', 'java', 'html', 'css'],
+    },
     remarkPlugins: [
-      remarkMath, // <- new plugin
+      remarkMath,
       remarkToc,
       [remarkCollapse, { test: "Table of contents" }],
     ],
-    rehypePlugins: [rehypeKatex], // <- new plugin
-    shikiConfig: {
-      // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
-      wrap: true,
-    },
+    rehypePlugins: [rehypeHeadingIds, rehypeKatex],
   },
-  // other configs
 });
