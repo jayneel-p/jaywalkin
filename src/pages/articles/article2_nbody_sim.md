@@ -10,7 +10,7 @@ layout: ../../layouts/ArticleLayoutTest.astro
 ---
 
 # Introduction
-The goal of this article is to explore how we can model N-body systems using numerical techniques. First we will begin by exploring the Jupiter-Galilean Moon system, where the mass of a 'central' body is much larger than mass of 'orbiting bodies' (i.e Sun - Planet, Earth - , Jupiter - Moons). We will then explore a three body system where masses are similar in magnitude. 
+The goal of this article is to explore how we can model N-body systems using numerical techniques. First we will begin by exploring the Jupiter-Galilean Moon system, where the mass of a 'central' body is much larger than mass of 'orbiting bodies' (i.e Sun - Planet, Earth - Moon, Jupiter - Moons). We will then explore a three body system where masses are similar in magnitude. 
 
 <div class = 'remarks'>
 Our focus is on numerical simulation techniques and not animation. For this reason, I will not include my animation code, but if you're curious on how I animated it please feel free to contact me.
@@ -114,10 +114,10 @@ def gravitational_acceleration(positions, masses):
 ```
 
 ## 5. Numerical Integration with Runge–Kutta 4
-The RK4 method provides a good balance between accuracy and computational cost. We update positions and velocities every timestep $\Delta t$. The  the local truncation error is on the order of  $O(h^{5})$ while the total accumulated error is on the order of $O(h^{4})$. RK$ is not symplectic, hence over a large time scale there will be an accumulation of errors. Here we have a short enought time scale where this wont cause any large issues.
+The RK4 method provides a good balance between accuracy and computational cost. We update positions and velocities every timestep $\Delta t$. The  the local truncation error is on the order of  $O(h^{5})$ while the total accumulated error is on the order of $O(h^{4})$. RK4 is not symplectic, hence over a large time scale there will be an accumulation of errors. Here we have a short enough time scale where this wont cause any large issues.
 
 <div class ='remarks' >
-It is always a careful choice on which iterative numerical method to use to use (Runge-Kutta, Euler,...). The answer comes down to the balance between desired accuracy and computational speed. Here where we have many interacting bodies causing small perturbations, 4th order Runge-Kutta (or simple Runge-Kutta) strikes a fair balance. When we model chaotic systems we may instead want higher order RK techniques.
+It is always a careful choice on which iterative numerical method to use to use (Runge-Kutta, Euler,...). The answer comes down to the balance between desired accuracy and computational speed. Here where we have many interacting bodies causing small perturbations, 4th order Runge-Kutta (or simply Runge-Kutta) strikes a fair balance. When we model chaotic systems we may instead want higher order RK techniques.
 </div>
 
 ```python
