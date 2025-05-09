@@ -2,7 +2,7 @@
 import "../styles/test.css";
 import Navbar from "../components/Navbar.astro";
 // Get the title from props with a default value
-const { title = "jaywalkin'" } = Astro.props;
+const { title = "jaywalking" } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +24,11 @@ const { title = "jaywalkin'" } = Astro.props;
   <header class="header">
     <div class="header-top">
       <div class="title-wrapper">
-        <a href="/" class="site-title">jaywalkin'</a>
+        <a href="/" class="site-title"> jaywalking </a>
       </div>
       <Navbar />
     </div>
-    <h2 class="subheader">put some pithy quote here</h2>
+    <h2 class="subheader">   </h2> 
   </header>
   <main>
     <slot />

@@ -1,16 +1,16 @@
 ---
-title: "Simulation Of Jupiter and its Galilean Moons"
+title: "Simple Simulation Of Jupiter and its Galilean Moons"
 date: "2025-05-07"
 author: "Jayneel Parikh"
 tags: ['python','physics']
 category: "Technical"
 featured_image: "/images/urban-garden.jpg"
-description: "Simulation of Jupiter and its Galilean Moons using 4th order Runge-Kutta techniques. Expanded to N-body problem and simulation of chaotic motion. This article was inspired by my friend Cam."
+description: "In this post, we’ll dive into modeling a multi-body system with straightforward numerical methods and a few simplifying assumptions. Focusing on Jupiter and its Galilean moons, you’ll see a minimal yet functional multi-body orbit simulator powered by a 4th-order Runge–Kutta solver. Think of this article as both an exploration into numerical techniques and a playground for testing how code snippets display with shiki in my blog. In a future installment, we’ll refine the physics and add more accuracy to the simulation."
 layout: ../../layouts/ArticleLayoutTest.astro
 ---
 
 # Introduction
-The goal of this article is to explore how we can model N-body systems using numerical techniques. First we will begin by exploring the Jupiter-Galilean Moon system, where the mass of a 'central' body is much larger than mass of 'orbiting bodies' (i.e Sun - Planet, Earth - Moon, Jupiter - Moons). We will then explore a three body system where masses are similar in magnitude. 
+The goal of this article is to explore how we can model multi-body systems using numerical techniques and simplifying assumptions. We will explore the Jupiter-Galilean Moons system to see a simple implementation of multi body orbits. In a later article, we will discuse a more accurate simulation of the system. 
 
 <div class = 'remarks'>
 Our focus is on numerical simulation techniques and not animation. For this reason, I will not include my animation code, but if you're curious on how I animated it please feel free to contact me.
@@ -24,6 +24,10 @@ We will begin with some simplifying assumptions:
  - Planer motion.
  - No atmospheric drag.
  - Each moon starts exactly at its periapsis.
+
+<div class='remarks'>
+ I chose this system as the mass of Jupiter is much greater than the mass of the surrounding moons. The surrounding moons also exert and 'equalizing' force on one another the helps keep their eccentricity low ($\approx$ 0). Here we do not consider conservations of energies and angular momenta in our RK4 implementation.
+ </div> 
 
 
 ```python
@@ -73,7 +77,10 @@ M_JUPITER = 1.898e27  # Mass of Jupiter (kg)
 ```
 
 ## 3. Initial Conditions
-Now we set up initial positions at periapsis using the semi-major axis and eccentricity. Velocities come from the vis-viva equation: $v = \sqrt{GM\left(\frac{2}{r} - \frac{1}{a}\right)}$.
+Now we set up initial positions at periapsis using the semi-major axis and eccentricity. Velocities come from the vis-viva equation: 
+$$
+v = \sqrt{GM\left(\frac{2}{r} - \frac{1}{a}\right)}
+$$
 
 
 ```python
@@ -109,12 +116,23 @@ def gravitational_acceleration(positions, masses):
             if i != j:
                 r_vec = positions[j] - positions[i]
                 dist_sq = np.dot(r_vec, r_vec)
-                accelerations[i] += G * masses[j] * r_vec / (dist_sq * np.sqrt(dist_sq))
+                accelerations[i] += G * masses[j] * r_vec / (dist_sq * 
+                                    np.sqrt(dist_sq))
     return accelerations
 ```
 
 ## 5. Numerical Integration with Runge–Kutta 4
-The RK4 method provides a good balance between accuracy and computational cost. We update positions and velocities every timestep $\Delta t$. The  the local truncation error is on the order of  $O(h^{5})$ while the total accumulated error is on the order of $O(h^{4})$. RK4 is not symplectic, hence over a large time scale there will be an accumulation of errors. Here we have a short enough time scale where this wont cause any large issues.
+The RK4 method provides a good balance between accuracy and computational cost. We update positions and velocities every timestep $\Delta t$. The local truncation error is on the order of  $O(h^{5})$ while the total accumulated error is on the order of $O(h^{4})$. RK4 is not symplectic, hence over a large time scale there will be an accumulation of errors. Here we have a short enough time scale where this wont cause any large issues.
+Our RK implementation on a high-level is: 
+    The specific steps in your implementation match the RK4 method:
+
+   - k1_v and k1_r: Initial derivatives
+   - k2_v and k2_r: Derivatives at halfway using k1 values
+   - k3_v and k3_r: Derivatives at halfway using k2 values
+   - k4_v and k4_r: Derivatives at the endpoint using k3 values
+   - Final weighted average to get the new values
+
+
 
 <div class ='remarks' >
 It is always a careful choice on which iterative numerical method to use to use (Runge-Kutta, Euler,...). The answer comes down to the balance between desired accuracy and computational speed. Here where we have many interacting bodies causing small perturbations, 4th order Runge-Kutta (or simply Runge-Kutta) strikes a fair balance. When we model chaotic systems we may instead want higher order RK techniques.
@@ -165,8 +183,17 @@ dt = sim_duration / (real_time * fps)
 trajectory = run_simulation(sim_duration, dt)
 ```
 <figure>
-<img src="/images/jupiter_moons.gif"  style="width:9cm;height:9cm" />
+<img src="/images/jupiter_moons.gif"  style="width:15cm;height:15cm" />
 <figcaption> 
 Simulation of Jupiter and its Galilean Moons
 </figcaption>
 </figure>
+
+<div class="bibliography">
+
+# Citations
+
+1. Newman, M. E. J. (2013). Computational physics. Createspace.  
+2. Galilean moons of Jupiter. Nasa.gov. (2013, July). https://www.nasa.gov/wp-content/uploads/2009/12/moons_of_jupiter_lithograph.pdf 
+
+

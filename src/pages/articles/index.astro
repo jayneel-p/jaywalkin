@@ -17,6 +17,10 @@ const allPosts: Post[] = Object.values(
   import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true })
 ).sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
+
+// Get a consistent tag order to assign colors
+const allTags: string[] = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
+
 const colorVars = [
   '--accent-yellow',
   '--accent-red',
@@ -28,9 +32,6 @@ const colorVars = [
   '--highlight-blue',
   '--highlight-olive',
 ];
-
-// Get a consistent tag order to assign colors
-const allTags: string[] = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
 ---
 
 <BaseLayout>

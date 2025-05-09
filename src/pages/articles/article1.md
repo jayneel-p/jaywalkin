@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Optical Tweezers and Statistical Mechanics (Test Article)"
-description: "An exploration of LaTeX and markdown, and there integration with my website. I am testing different ways to integrate LaTeX with markdown (i.e KaTex, MathJax,...) I have been having some trouble with rendering figures and some instances of latex equations (i.e aligned environment). Below is a formated article using KaTeX."
+description: "An exploration of LaTeX and markdown, and there integration with the website. This is an attempt and smooth out the article writing process and its subsequent integration to the blog. This article also serves as a 'template' for the implementation of KaTeX and figures." 
 date: "2025-05-05"
 tags: ["physics","latex"]
 layout: ../../layouts/ArticleLayoutTest.astro
