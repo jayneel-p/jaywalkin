@@ -1,5 +1,5 @@
 ---
-title: "Simple Simulation Of Jupiter and its Galilean Moons"
+title: "Simple Simulation Of Jupiter and its Galilean Moons (Test)"
 date: "2025-05-07"
 author: "Jayneel Parikh"
 tags: ['python','physics']
