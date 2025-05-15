@@ -196,4 +196,3 @@ Simulation of Jupiter and its Galilean Moons
 1. Newman, M. E. J. (2013). Computational physics. Createspace.  
 2. Galilean moons of Jupiter. Nasa.gov. (2013, July). https://www.nasa.gov/wp-content/uploads/2009/12/moons_of_jupiter_lithograph.pdf 
 
-
