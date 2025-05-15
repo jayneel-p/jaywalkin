@@ -2,7 +2,7 @@
 title: "Lorem Ipsum Generator"
 date: "2025-05-14"
 author: "Jayneel Parikh"
-tags: ['python','stochastic']
+tags: ['stochastic','python']
 category: "Technical"
 featured\_image: "/images/markov-chain.png"
 description: "We explore transition matrices by making a simple Lorem Ipsum generator that accepts any root text."
@@ -199,6 +199,13 @@ And finally we get:
 
  "The farmer, “call on Sundays, made more firmly bound to him, one in the Manchegan horizon, when out or would adopt the people who were to see and fixing bars of Gaul. Master Andres,” said to see if he mounted, and that they seemed in him, moreover, that this was like heretics.” “So say in these troutlets enough,” said the novice knight that ye shall be she might be, all that, his sword, which he could not thy captive Abindarraez gave Rocinante was like all the carrier’s head that he felt himself he mounted, and went off the landlord, seeing the shield until by my heart tell the Taverns of people, who, as the ceremonial of the artifice of La Mancha, the approach of chivalry with his thinking, lofty, sonorous, and deducted three of the bed is true,” said it was saying his intention of his horn to have been at last the ground, and said, the blood-lettings when he was it was proceeding to dark, poring over with such fury and the two gay damsels who hath to-day righted the man blustering in and covered all was—give him that this sort the valiant and matters little,” replied that special purpose. But these words and quiet, saying to give him, fell on Saturdays, lentils on their lucidity of in the title of himself, “If, for the oath on a thing so wantonly lashing that he considered, he bore them to set forth in and robbing everyone he might from both hands and took, because as he come in remembrance this sort the spot, and backpiece, but Pedro Alonso your High Magnificence,” replied Don Quixote braced his stirrups, got to stay two hours only, while his hand on this harangue of knighthood before him away to the youth that ye can against"
 </div>
+
+## Final Thoughts
+-   This implementation relies heavily on linear searches (using .index() multiple times), which would be inefficient for large texts. Using dictionaries or hash maps instead of repeated linear searches would significantly improve performance.
+- Overall the use of transition matrices in this way is wholly inefficient for larger data sets.
+- calculate_transition_probabilities is a long function and could be broken up into smaller functions
+- We do not cover a comparison to the classic Lorem Ipsum in any way. 
+- It would be interesting to explore how text size affects generation quality.
 
 **Mathematical Summary:**
 
