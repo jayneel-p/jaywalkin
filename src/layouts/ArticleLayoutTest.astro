@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/TestLayout.astro";
+import { getTagColor } from "../utils/colours.js";
 
 // Define interfaces for TypeScript
 interface Frontmatter {
@@ -8,8 +9,6 @@ interface Frontmatter {
   description?: string;
   tags?: string[];
 }
-
-
 interface Post {
   url: string;
   frontmatter: Frontmatter;
@@ -24,18 +23,6 @@ const allPosts = Object.values(
 const allTags = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
 
 const { frontmatter } = Astro.props;
-
-const colorVars = [
-  '--accent-yellow',
-  '--accent-red',
-  '--accent-green',
-  '--highlight-purple',
-  '--highlight-pink',
-  '--highlight-salmon',
-  '--highlight-dandelion',
-  '--highlight-blue',
-  '--highlight-olive',
-];
 ---
 
 <BaseLayout title={frontmatter.title}>
@@ -58,23 +45,19 @@ const colorVars = [
           <i>{frontmatter.description}</i>
         </p>
       )}
-       
-       {frontmatter.tags && (
+      {frontmatter.tags && (
         <div class="tag-list mt-2">
-          {frontmatter.tags.map((tag: string) => {
-            const tagIndex = allTags.indexOf(tag);
-            const colorVar = tagIndex >= 0
-              ? colorVars[tagIndex % colorVars.length]
-              : '--highlight-olive';
-            return (
-              <a href={`/tags/${tag}`} class="tag-inline" style={`color: var(${colorVar});`}>
-                {tag}
-              </a>
-            );
-          })}
+          {frontmatter.tags.map((tag: string) => (
+            <a 
+              href={`/tags/${tag}`} 
+              class="tag-inline" 
+              style={`color: ${getTagColor(tag, allTags)};`}
+            >
+              {tag}
+            </a>
+          ))}
         </div>
       )}
-
     </header>
     <div class="article-content">
       <slot />
