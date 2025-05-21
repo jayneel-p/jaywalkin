@@ -1,4 +1,7 @@
-// Define color variables once
+/**
+ * Color variables for tags
+ * @type {string[]}
+ */
 export const colorVars = [
   '--accent-yellow',
   '--accent-red',
@@ -11,40 +14,34 @@ export const colorVars = [
   '--highlight-olive',
 ];
 
-// Default color for when no match is found
+/**
+ * Default color variable
+ * @type {string}
+ */
 export const defaultColorVar = '--highlight-olive';
 
 /**
- * Get color variable for a tag based on its position in allTags
- * @param {string} tag - The tag to get a color for
- * @param {string[]} allTags - Array of all tags for consistent coloring
- * @returns {string} CSS variable name for the color
- */
-export function getTagColorVar(tag, allTags) {
-  const tagIndex = allTags.indexOf(tag);
-  return tagIndex >= 0 
-    ? colorVars[tagIndex % colorVars.length] 
-    : defaultColorVar;
-}
-
-/**
- * Get the CSS color value for a tag
- * @param {string} tag - The tag to get a color for
- * @param {string[]} allTags - Array of all tags for consistent coloring
- * @returns {string} CSS color in var() format
+ * Get color for a tag
+ * @param {string} tag - The tag to get color for
+ * @param {string[]} allTags - Array of all tags
+ * @returns {string} CSS color value
  */
 export function getTagColor(tag, allTags) {
-  return `var(${getTagColorVar(tag, allTags)})`;
+  const tagIndex = allTags.indexOf(tag);
+  return `var(${tagIndex >= 0 
+    ? colorVars[tagIndex % colorVars.length] 
+    : defaultColorVar})`;
 }
 
 /**
- * Get the first tag's color for an article
- * @param {string[]} articleTags - Array of tags for the article
- * @param {string[]} allTags - Array of all tags for consistent coloring
- * @returns {string} CSS color in var() format
+ * Get first tag's color for an article
+ * @param {string[] | undefined} tags - Array of article tags or undefined
+ * @param {string[]} allTags - Array of all tags
+ * @returns {string} CSS color value
  */
-export function getFirstTagColor(articleTags, allTags) {
-  return articleTags?.length 
-    ? getTagColor(articleTags[0], allTags)
-    : `var(${defaultColorVar})`;
+export function getFirstTagColor(tags, allTags) {
+  if (!tags || tags.length === 0) {
+    return `var(${defaultColorVar})`;
+  }
+  return getTagColor(tags[0], allTags);
 }
