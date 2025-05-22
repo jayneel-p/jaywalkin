@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Optical Tweezers and Statistical Mechanics (Test)"
-description: "An exploration of LaTeX and markdown, and there integration with the website. This is an attempt and smooth out the article writing process and its subsequent integration to the blog. This article also serves as a 'template' for the implementation of KaTeX and figures." 
+description: "This is an article I wrote for my Stat Mech 2 course. It's not wholly accurate. This a test article and is subject to be updated to test the implementation of new features on this blog. This article is incomplete in it's explinations." 
 date: "2025-05-05"
 tags: ["physics","latex"]
 layout: ../../layouts/ArticleLayout.astro

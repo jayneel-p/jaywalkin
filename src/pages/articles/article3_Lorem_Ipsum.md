@@ -1,11 +1,11 @@
 ---
-title: "Lorem Ipsum Generator"
+title: "Lorem Ipsum Generator (Test)"
 date: "2025-05-14"
 author: "Jayneel Parikh"
 tags: ['stochastic','python']
 category: "Technical"
 featured\_image: "/images/markov-chain.png"
-description: "We explore transition matrices by making a simple Lorem Ipsum generator that accepts any root text."
+description: "We explore transition matrices by making a simple Lorem Ipsum generator that accepts any root text. This a test article and is subject to be updated to test the implementation of new features on this blog. This article is incomplete in it's explinations."
 layout: ../../layouts/ArticleLayout.astro
 ---------------------------------------------
 
