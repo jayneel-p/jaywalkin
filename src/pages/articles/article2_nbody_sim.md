@@ -5,7 +5,7 @@ author: "Jayneel Parikh"
 tags: ['python','physics',"test"]
 category: "Technical"
 featured_image: "/images/urban-garden.jpg"
-description: "In this post, we’ll dive into modeling a multi-body system with straightforward numerical methods and a few simplifying assumptions. Focusing on Jupiter and its Galilean moons, we will explore how to use the Runge-Kutta 4th order method. This a test article and is subject to be updated to test the implementation of new features on this blog. This article is incomplete in it's explanation."
+description: "In this post, we’ll dive into modeling a multi-body system with straightforward numerical methods and a few simplifying assumptions. Focusing on Jupiter and its Galilean moons, we will explore how to use the Runge-Kutta 4th order method. This a test article and is subject to be updated to test the implementation of new features on this blog. This article is incomplete in its explanation."
 layout: ../../layouts/ArticleLayout.astro
 ---
 ## Table of contents
