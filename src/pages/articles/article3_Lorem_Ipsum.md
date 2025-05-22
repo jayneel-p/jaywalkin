@@ -1,5 +1,5 @@
 ---
-title: "Lorem Ipsum Generator (Test)"
+title: "Lorem Ipsum Generator"
 date: "2025-05-14"
 author: "Jayneel Parikh"
 tags: ['stochastic','python',"test"]
