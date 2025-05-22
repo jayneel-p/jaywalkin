@@ -39,6 +39,13 @@
   /* Special elements */
   --colour-accent: #E6B800;       /* General accent colour  */
   --colour-highlight: #FF6347;    /* Hover highlights  */
+
+  /* Code Block */
+  --colour-code-top-bar: linear-gradient(90deg, #FF00FF, #00FFFF, #FFFF00); /* Neon gradient */
+  --colour-code-bottom-bar: linear-gradient(90deg, #FFFF00, #00FFFF, #FF00FF); /* Reversed gradient */
+  --colour-code-bg: #1a1a1a; /* Slightly lighter than main background for contrast */
+  --colour-code-glow: #00FFFF; /* Cyan glow */
+
 }
 
 /* ===========================================
@@ -451,7 +458,7 @@ figcaption .katex {
 }
 
 /* ===========================================
-   CODE STYLING WITH COHESIVE COLOURS FOR SHIKI
+   CODE STYLING WITH TOP/BOTTOM BARS
    =========================================== */
 pre[class*="astro-code"],
 pre[class*="language-"],
@@ -467,18 +474,30 @@ code[class*="language-"] {
   tab-size: 2;
   hyphens: none;
   overflow-x: auto;
-  border-radius: 8px;
+  
+  /* Remove full border, add subtle top/bottom bars */
+  border: none;
+  border-top: 1px solid var(--colour-text-muted); /* Gold top bar */
+  border-bottom: 1px solid var(--colour-text-muted); /* Blue bottom bar */
+  
+  /* Keep your existing background */
+  background-color: var(--colour-code-bg);
+  
+  border-radius: 0; /* Remove rounded corners for cleaner separator look */
   padding: 1.25rem;
   margin: 1.5rem 0;
-  border: 2px solid var(--colour-code-border);
+  
 }
 
 code, pre {
   font-family: 'Go Mono', monospace;
 }
 
+/* Inline code - keep minimal styling */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.4em;
   border-radius: 4px;
   white-space: normal;
+  background-color: var(--colour-code-bg);
+  border: 1px solid var(--colour-tag1); /* Subtle gold border for inline code */
 }
