@@ -1,0 +1,264 @@
+---
+// src/pages/interests/records/index.astro
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RecordCollage from '../../../components/record_collage.astro';
+
+// Discogs API configuration
+const DISCOGS_TOKEN = import.meta.env.DISCOGS_TOKEN;
+const DISCOGS_USERNAME = import.meta.env.DISCOGS_USERNAME;
+
+if (!DISCOGS_TOKEN || !DISCOGS_USERNAME) {
+  throw new Error('Missing Discogs credentials. Please set DISCOGS_TOKEN and DISCOGS_USERNAME in your .env file');
+}
+
+// Fetch collection from Discogs API
+async function fetchDiscogsCollection() {
+  try {
+    console.log('Fetching from:', `https://api.discogs.com/users/${DISCOGS_USERNAME}/collection/folders/0/releases`);
+    console.log('Using token:', DISCOGS_TOKEN ? 'Token present' : 'No token');
+    
+    const response = await fetch(
+      `https://api.discogs.com/users/${DISCOGS_USERNAME}/collection/folders/0/releases?per_page=100`,
+      {
+        headers: {
+          'Authorization': `Discogs token=${DISCOGS_TOKEN}`,
+          'User-Agent': 'jaywalking-blog/1.0'
+        }
+      }
+    );
+
+    console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.log('Error response:', errorText);
+      throw new Error(`Discogs API error: ${response.status} ${response.statusText} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log('Successfully fetched', data.releases?.length || 0, 'records');
+    return data.releases || [];
+  } catch (error) {
+    console.error('Error fetching Discogs collection:', error);
+    return [];
+  }
+}
+
+// Transform Discogs data to our format
+function transformDiscogsRecord(discogsRecord: any) {
+  const basicInfo = discogsRecord.basic_information;
+  
+  return {
+    id: `discogs_${discogsRecord.id}`,
+    artist: basicInfo.artists?.[0]?.name || 'Unknown Artist',
+    title: basicInfo.title || 'Unknown Title',
+    year: basicInfo.year || null,
+    rating: discogsRecord.rating || null, // Your personal rating
+    coverUrl: basicInfo.cover_image || basicInfo.thumb || '/images/records/placeholder.jpg',
+    genres: basicInfo.genres || [],
+    personalNote: discogsRecord.notes || '',
+    dateAdded: discogsRecord.date_added || '',
+    isDiscogs: true,
+    discogsId: discogsRecord.id,
+    // Additional Discogs data
+    label: basicInfo.labels?.[0]?.name || '',
+    catalogNumber: basicInfo.labels?.[0]?.catno || '',
+    format: basicInfo.formats?.[0]?.name || 'Vinyl'
+  };
+}
+
+// Fetch and transform data
+const discogsReleases = await fetchDiscogsCollection();
+const records = discogsReleases.map(transformDiscogsRecord);
+
+// Add any manual records (not in Discogs yet)
+const manualRecords: any[] = [
+  // Add any records you haven't cataloged in Discogs yet
+  // {
+  //   id: "manual_1",
+  //   artist: "Local Band",
+  //   title: "Demo Album",
+  //   year: 2023,
+  //   rating: 3,
+  //   coverUrl: "/images/records/placeholder.jpg",
+  //   genres: ["Indie"],
+  //   personalNote: "Need to add to Discogs",
+  //   isDiscogs: false
+  // }
+];
+
+// Combine Discogs and manual records
+const allRecords = [...records, ...manualRecords];
+
+// Calculate stats
+const totalRecords = allRecords.length;
+const ratedRecords = allRecords.filter(record => record.rating !== null && record.rating > 0);
+const averageRating = ratedRecords.length > 0 
+  ? (ratedRecords.reduce((total, record) => total + record.rating, 0) / ratedRecords.length).toFixed(1)
+  : 'N/A';
+const fiveStarCount = allRecords.filter(record => record.rating === 5).length;
+---
+
+<BaseLayout title="My Record Collection">
+  <section class="records-page">
+    <header class="records-header">
+      <h1>My Record Collection</h1>
+      <div class="collection-stats">
+        <div class="stat">
+          <span class="stat-number">{totalRecords}</span>
+          <span class="stat-label">Total Records</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{averageRating}</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{fiveStarCount}</span>
+          <span class="stat-label">5-Star Albums</span>
+        </div>
+      </div>
+      <p class="collection-description">
+        My vinyl collection from Discogs, sized by personal rating. Hover over albums to see details and ratings.
+      </p>
+    </header>
+
+    {allRecords.length > 0 ? (
+      <RecordCollage records={allRecords} />
+    ) : (
+      <div class="no-records">
+        <p>No records found. Make sure your Discogs username and token are correct.</p>
+      </div>
+    )}
+    
+    <footer class="records-footer">
+      <p class="records-note">
+        <b>Note:</b> Larger albums are rated higher, smaller ones lower. 
+        Data synced from my <a href={`https://discogs.com/user/${DISCOGS_USERNAME}`} target="_blank">Discogs collection</a>.
+      </p>
+    </footer>
+  </section>
+</BaseLayout>
+
+<style>
+  .records-page {
+    padding: 1rem 0;
+  }
+
+  .records-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .records-header h1 {
+    color: var(--colour-h1);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-decoration: underline;
+    text-decoration-color: var(--colour-tag1);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+  }
+
+  .collection-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--colour-tag1);
+    font-family: 'Go Mono', monospace;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    color: var(--colour-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .collection-description {
+    font-size: 1.1rem;
+    color: var(--colour-text-muted);
+    line-height: 1.6;
+    margin-top: 2rem;
+    text-indent: 0;
+  }
+
+  .no-records {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--colour-text-muted);
+  }
+
+  .records-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--colour-border);
+  }
+
+  .records-note {
+    font-size: 0.9rem;
+    color: var(--colour-text-muted);
+    text-indent: 0;
+    font-style: italic;
+  }
+
+  .records-note a {
+    color: var(--colour-link);
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .records-header h1 {
+      font-size: 2rem;
+    }
+
+    .collection-stats {
+      gap: 2rem;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+    }
+
+    .collection-description {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .records-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .collection-stats {
+      gap: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 1.25rem;
+    }
+
+    .collection-description {
+      font-size: 0.95rem;
+    }
+  }
+</style>

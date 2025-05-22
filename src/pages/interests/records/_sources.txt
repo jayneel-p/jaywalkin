@@ -1,0 +1,13 @@
+https://www.w3schools.com/howto/howto_js_image_grid.asp
+https://codepen.io/NicholasMClark/pen/BOavmM
+
+######DELETE LATER########
+
+Consumer Key	vVHTJyFzGJapecFgdPQr
+Consumer Secret	OUdLCVsZAagJgvVdFxgGpwTxMIfKCtEP
+Request Token URL	https://api.discogs.com/oauth/request_token
+Authorize URL	https://www.discogs.com/oauth/authorize
+Access Token URL	https://api.discogs.com/oauth/access_token
+
+Current token: PMdJynydhobcuSToRBPHFpcBXsdYZZHAmPDMjiwZ
+
