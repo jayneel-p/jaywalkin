@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/TestLayout.astro';
+import { getTagColor, getFirstTagColor } from '../../utils/colours.js';
 
 interface Frontmatter {
   title: string;
@@ -17,58 +18,40 @@ const allPosts: Post[] = Object.values(
   import.meta.glob<Post>('/src/pages/articles/*.md', { eager: true })
 ).sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
 
-
 // Get a consistent tag order to assign colors
 const allTags: string[] = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
-
-const colorVars = [
-  '--accent-yellow',
-  '--accent-red',
-  '--accent-green',
-  '--highlight-purple',
-  '--highlight-pink',
-  '--highlight-salmon',
-  '--highlight-dandelion',
-  '--highlight-blue',
-  '--highlight-olive',
-];
 ---
 
 <BaseLayout>
   <section>
     <div class="tags-top">
-      {allTags.map((tag, i) => (
-        <a class="tag-inline" href={`/tags/${tag}`} style={`color: var(${colorVars[i % colorVars.length]});`}>
+      {allTags.map((tag) => (
+        <a class="tag-inline" href={`/tags/${tag}`} style={`color: ${getTagColor(tag, allTags)};`}>
           {tag}
         </a>
       ))}
     </div>
 
     <ul class="article-list">
-      {allPosts.map((post, i) => {
+      {allPosts.map((post) => {
         const { title, description, date, tags = [] } = post.frontmatter;
-        const firstTag = tags[0];
-        const tagIndex = allTags.indexOf(firstTag);
-        const color = tagIndex >= 0 ? `var(${colorVars[tagIndex % colorVars.length]})` : 'var(--highlight-olive)';
+        const color = getFirstTagColor(tags, allTags);
 
         return (
           <li class="article-item">
             <div class="article-header">
-              <a class="article-link" href={post.url} style={`border-bottom: 3px solid ${color};`}>
+              <a class="article-link" href={post.url} style={`text-decoration: underline; text-decoration-color: ${color}; text-decoration-thickness: 3px; text-underline-offset: 4px;`}>
                 {title}
               </a>
               <span class="article-date">{date}</span>
             </div>
             <p class="article-desc">{description}</p>
             <div class="tag-list">
-              {tags.map((tag) => {
-                const i = allTags.indexOf(tag);
-                return (
-                  <a class="tag-inline" href={`/tags/${tag}`} style={`color: var(${colorVars[i % colorVars.length]});`}>
-                    {tag}
-                  </a>
-                );
-              })}
+              {tags.map((tag) => (
+                <a class="tag-inline" href={`/tags/${tag}`} style={`color: ${getTagColor(tag, allTags)};`}>
+                  {tag}
+                </a>
+              ))}
             </div>
           </li>
         );

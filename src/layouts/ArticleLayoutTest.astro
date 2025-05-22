@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/TestLayout.astro";
-import { getTagColor } from "../utils/colours.js";
+import { getTagColor, getFirstTagColor } from "../utils/colours.js";
+
 
 // Define interfaces for TypeScript
 interface Frontmatter {
@@ -9,6 +10,7 @@ interface Frontmatter {
   description?: string;
   tags?: string[];
 }
+
 interface Post {
   url: string;
   frontmatter: Frontmatter;
@@ -23,14 +25,18 @@ const allPosts = Object.values(
 const allTags = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
 
 const { frontmatter } = Astro.props;
+
+const tagColor = getFirstTagColor(frontmatter.tags, allTags);
 ---
 
 <BaseLayout title={frontmatter.title}>
   <article class="prose mx-auto p-4">
     <header class="mb-8">
-      <h1 class="text-4xl font-bold mb-2" style="color: var(--text-dark);">
-        {frontmatter.title}
-      </h1>
+    <h1   
+      class="text-4xl font-bold mb-2 inline-block"
+      style={`text-decoration: underline; text-decoration-color: ${tagColor}; text-decoration-thickness: 3px; text-underline-offset: 7px;`} >
+      {frontmatter.title}
+    </h1>
       <p style="text-indent: 0px;">
         {frontmatter.date
           ? new Date(frontmatter.date).toLocaleDateString('en-US', {
@@ -41,18 +47,15 @@ const { frontmatter } = Astro.props;
           : 'Date not available'}
       </p>
       {frontmatter.description && (
-        <p style ="font-size: 0.95rem; color: var(--text-dark); margin-top: 1rem; text-indent: 0px;">
+        <p style="font-size: 0.95rem; color: var(--text-dark); margin-top: 1rem; text-indent: 0px;">
           <i>{frontmatter.description}</i>
         </p>
       )}
+       
       {frontmatter.tags && (
         <div class="tag-list mt-2">
           {frontmatter.tags.map((tag: string) => (
-            <a 
-              href={`/tags/${tag}`} 
-              class="tag-inline" 
-              style={`color: ${getTagColor(tag, allTags)};`}
-            >
+            <a href={`/tags/${tag}`} class="tag-inline" style={`color: ${getTagColor(tag, allTags)};`}>
               {tag}
             </a>
           ))}

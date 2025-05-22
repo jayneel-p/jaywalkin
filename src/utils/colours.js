@@ -3,15 +3,17 @@
  * @type {string[]}
  */
 export const colorVars = [
-  '--accent-yellow',
-  '--accent-red',
-  '--accent-green',
-  '--highlight-purple',
-  '--highlight-pink',
-  '--highlight-salmon',
-  '--highlight-dandelion',
-  '--highlight-blue',
-  '--highlight-olive',
+"  --color-tag-red",
+"  --color-tag-orange",
+" --color-tag-yellow",
+"  --color-tag-green",  
+" --color-tag-teal",
+"  --color-tag-blue",   
+"  --color-tag-purple", 
+"  --color-tag-pink",    
+" --color-tag-olive",
+"  --color-tag-salmon:", 
+"  --color-tag-lavender" ,
 ];
 
 /**

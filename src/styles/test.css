@@ -1,373 +1,423 @@
 /* ===========================================
    THEME VARIABLES
    =========================================== */
-   :root {
-    /* Base colors */
-    --bg-color: #ECDFC1;
-    --text-dark: #333;
-    --text-muted: #5a5a5a;
-    
-    /* Primary accent colors */
-    --accent-yellow: #F0BB3D;
-    --accent-red: #C4502A;
-    --accent-green: #697F3F;
-    
-    /* Highlight colors */
-    --highlight-purple: #8A4495;
-    --highlight-pink: #C85B8A;
-    --highlight-salmon: #F8A479;
-    --highlight-dandelion: #FBD773;
-    --highlight-blue: #7F9F8F;
-    --highlight-olive: #657665;
-    
-    /* Heading colors */
-    --title-brown: #8E5B3E;
-    --subheader-rust: #AA6539;
-  }
-  
-  /* ===========================================
-     RESET & BASE STYLES
-     =========================================== */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Go Mono', monospace;
-    background-color: var(--bg-color);
-    color: var(--text-dark);
-    line-height: 1.6;
-    padding: 2rem;
-  }
-  
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-  
-  p {
-    text-indent: 50px;
-  }
 
-  .special {
-    text-indent: 30px;
-  }
-  
-  /* ===========================================
-     HEADER & NAVIGATION
-     =========================================== */
-  .header-top {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 4rem;
-  }
-  
-  .title-wrapper {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .site-title {
-    font-size: 2.5rem;
-    color: var(--accent-red);
-    font-family: 'Go Mono', monospace;
-    text-align: center;
-    letter-spacing: 0.5px;
-    font-weight: bold;
-  }
-  
-  .subheader {
-    text-align: center;
-    margin-top: 0.1rem;
-    font-size: 1.25rem;
-    color: var(--subheader-rust);
-    font-family: 'Go Mono', monospace;
-    font-weight: 600;
-  }
-  
-  /* Navigation menu */
-  .navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
-  
-  .navbar li {
-    margin-right: 1rem;
-  }
-  
-  .navbar a {
-    color: var(--highlight-purple);
-    text-decoration: none;
-    font-weight: bold;
-    font-family: 'Go Mono', monospace;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
-  /* ===========================================
-     ARTICLE LIST STYLES
-     =========================================== */
-  .article-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .article-item {
-    margin-bottom: 2.5rem;
-  }
-  
-  .article-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.2rem;
-  }
-  
-  .article-link {
-    font-size: 1rem; 
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--text-dark);
-    display: inline-block;
-    line-height: 1.2;
-  }
-  
-  .article-link:hover {
-    color: var(--highlight-pink);
-  }
-  
-  .article-date {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
-  
-  .article-desc {
-    font-size: 0.85rem;
-    margin: 0.5rem 0 0.3rem;
-    text-indent: 0;
-  }
-  
-  /* ===========================================
-     ARTICLE CONTENT STYLES
-     =========================================== */
-  .article-content {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.07);
-  }
-  
-  .article header {
-    margin-bottom: 2.5rem;
-  }
-  
-  .prose {
-    font-family: 'Go Mono', monospace;
-    line-height: 1.6;
-  }
-  
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    color: var(--text-dark);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .prose p {
-    margin-bottom: 1.5rem;
-  }
-  .remarks {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--text-muted, #666); /* Fallback if --text-muted isn't defined */
-    text-indent: 0;
-    display: block;
-    margin: 1rem 0;
-    line-height: 1.5;
+:root {
+  /* Base layout colors */
+  --color-background: #2E2E2E;       /* Slightly lighter than #191919 for better contrast */
+  --color-surface: #2D4263;          /* Card/background surface elements (kept as is for depth) */
 
-    /* Optional styling for emphasis, adds padding */
-    border-left: 3px solid var(--highlight-blue);
-    padding-left: 1rem;
-    opacity: 0.85;
-  }
- /* ===========================================
+  /* Text colors */
+  --color-text-primary: #FAF0E6;     /* Cream - Main body text */
+  --color-text-secondary: #A6A6A6;   /* More muted silver-gray for better contrast */
+
+  /* Accent / interactive elements */
+  --color-accent-primary: #FF5EC2;   /* Neon pink */
+  --color-accent-secondary: #94D0FF; /* Pastel electric blue for hover/highlight balance */
+
+  /* Typography emphasis */
+  --color-heading: #ECDBBA;          /* Keep cream for strong heading contrast */
+  --color-subheading: #FF5EC2;       /* Neon pink for pop */
+
+  /* Tag & metadata styles */
+  --color-tag-default: #2D4263;      /* Leave unchanged unless you want more retro feel */
+  --color-tag-highlight: #FF5EC2;    /* Neon pink for standout tags */
+  --color-tag-muted: #ECDBBA;        /* Keep cream for subtlety */
+
+  --color-tag-red:     #EF476F;
+  --color-tag-orange:  #F4A261;
+  --color-tag-yellow:  #FFD166;
+  --color-tag-green:   #06D6A0;
+  --color-tag-teal:    #45C4B0;
+  --color-tag-blue:    #3A86FF;
+  --color-tag-pink:    #FF5EC2;
+  --color-tag-purple:  #9D4EDD;
+  --color-tag-olive:   #84A98C;
+  --color-tag-salmon:  #FF9770;
+  --color-tag-lavender:#BFA2DB;
+
+  /* Borders / dividers */
+  --color-border: #44475A;           /* Cooler metallic gray tone */
+}
+  
+  
+/* ===========================================
+   RESET & BASE STYLES
+   =========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Go Mono', monospace;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  padding: 2rem;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+p {
+  text-indent: 50px;
+}
+
+.special {
+  text-indent: 30px;
+}
+
+b {
+  transition: none !important;
+}
+a {
+  color: var(--color-tag-blue);
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-tag-pink);
+}
+
+
+/* ===========================================
+   HEADER & NAVIGATION
+   =========================================== */
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-wrapper {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.site-title {
+  font-size: 2.5rem;
+  color: var(--color-text-primary);
+  font-family: 'Go Mono', monospace;
+  text-align: center;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 0.3rem;
+  font-size: 1.25rem;
+  color: var(--color-subheading);
+  font-family: 'Go Mono', monospace;
+  font-weight: 600;
+}
+
+/* Navigation menu */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-tag-lavender);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;  
+  font-weight: bold;
+  font-family: 'Go Mono', monospace;
+  padding: 1rem 0.75rem;
+  border-radius: 2px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--color-tag-pink);
+}
+
+
+/* ===========================================
+   ARTICLE LIST STYLES
+   =========================================== */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-item {
+  margin-bottom: 2.5rem;
+}
+
+.article-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.2rem;
+}
+
+.article-link {
+  font-size: 1rem; 
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.article-link:hover {
+  color: var(--color-tag-pink);
+}
+
+.article-date {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.article-desc {
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0.3rem;
+  text-indent: 0;
+}
+
+
+/* ===========================================
+   ARTICLE CONTENT STYLES
+   =========================================== */
+.article-content {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.article-content header {
+  margin-bottom: 2.5rem;
+}
+
+.prose {
+  font-family: 'Go Mono', monospace;
+  line-height: 1.6;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+}
+
+.remarks {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  text-indent: 0;
+  display: block;
+  margin: 1rem 0;
+  line-height: 1.5;
+  border-left: 3px solid var(--color-tag-blue);
+  padding-left: 1rem;
+  opacity: 0.85;
+}
+
+
+/* ===========================================
    TAG STYLES
    =========================================== */
-/* Inline tags and tag lists */
 .tags-top {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tag-inline {
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.tag-inline:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.tag-list {
+  margin-top: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Tag page header */
+.tag-subheader {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.25rem;
+  color: var(--color-tag-pink);
+  font-family: 'Go Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+
+/* ===========================================
+   FIGURE & IMAGE STYLES
+   =========================================== */
+figure {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Figure variations */
+.figure-wide {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.figure-centered {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure-diagram img {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border: 1px solid #eaeaea;
+}
+
+/* For figures containing LaTeX math in captions */
+figcaption .katex {
+  font-size: 0.9em;
+}
+
+
+/* ===========================================
+   BIBLIOGRAPHY STYLES
+   =========================================== */
+.bibliography-unnumbered {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.bibliography-unnumbered h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.bibliography-unnumbered ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.bibliography-unnumbered li {
+  margin-bottom: 0.8rem;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+
+/* ===========================================
+   RESPONSIVE STYLES
+   =========================================== */
+/* Side-by-side figures on larger screens */
+@media (min-width: 768px) {
+  .figures-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  
-  .tag-inline {
-    font-weight: bold;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-  
-  .tag-inline:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
-  
-  .tag-list {
-    margin-top: 0.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  
-  /* Tag page header */
-  .tag-subheader {
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-bottom: 0.7rem;
-    font-size: 1.25rem;
-    color: var(--highlight-pink);
-    font-family: 'Go Mono', monospace;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-  /* ===========================================
-     FIGURE & IMAGE STYLES
-     =========================================== */
-  figure {
-    margin: 2rem auto;
-    text-align: center;
-    max-width: 100%;
-  }
-  
-  figure img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-    text-align: center;
-  }
-  
-  /* Figure variations */
-  .figure-wide {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-  
-  .figure-centered {
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .figure-diagram img {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border: 1px solid #eaeaea;
-  }
-  
-  /* For figures containing LaTeX math in captions */
-  figcaption .katex {
-    font-size: 0.9em;
-  }
-  
-  /* ===========================================
-     BIBLIOGRAPHY STYLES
-     =========================================== */
-  .bibliography-unnumbered {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #ddd;
-  }
-  
-  .bibliography-unnumbered h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .bibliography-unnumbered ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .bibliography-unnumbered li {
-    margin-bottom: 0.8rem;
-    padding-left: 1em;
-    text-indent: -1em;
-  }
-  
-  /* ===========================================
-     RESPONSIVE STYLES
-     =========================================== */
-  /* Side-by-side figures on larger screens */
-  @media (min-width: 768px) {
-    .figures-container {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      margin: 2rem 0;
-    }
-  
-    .figures-container figure {
-      flex: 1 1 0;
-      margin: 0;
-    }
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 1100px) {
-    body {
-      padding: 1rem;
-    }
-  
-    .header-top {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
-    }
-  
-    .title-wrapper {
-      position: static;
-      transform: none;
-      margin-bottom: 1rem;
-      text-align: center;
-      width: 100%;
-    }
-  
-    .navbar ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .navbar li {
-      margin-bottom: 0.5rem;
-    }
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
   }
 
-   /* ===========================================
+  .figures-container figure {
+    flex: 1 1 0;
+    margin: 0;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1100px) {
+  body {
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .subheader {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ===========================================
    Code Styling with Shiki Integration
    =========================================== */
-
-/* Base code block styling */
 pre[class*="astro-code"],
 pre[class*="language-"],
 code[class*="language-"] {
@@ -381,25 +431,16 @@ code[class*="language-"] {
   tab-size: 2;
   hyphens: none;
   overflow-x: auto;
-    
-  /* Rounded corners */
   border-radius: 8px;
-  
-  /* Padding and margin */
   padding: 1.25rem;
   margin: 1.5rem 0;
-  
-  /* Subtle shadow for depth */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-  /* Optional border */
   border: 1px solid #383e4a;
 }
 
-/* Ensure inline code blocks match theme but with adjusted padding */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.4em;
   border-radius: 4px;
   white-space: normal;
-  
 }
+

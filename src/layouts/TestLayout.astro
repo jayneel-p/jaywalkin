@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar.astro";
 // Get the title from props with a default value
 const { title = "jaywalking" } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,7 @@ const { title = "jaywalking" } = Astro.props;
       {left: '$', right: '$', display: false}] })">
       </script>
 </head>
+
 <body>
   <header class="header">
     <div class="header-top">
@@ -31,10 +33,32 @@ const { title = "jaywalking" } = Astro.props;
       </div>
       <Navbar />
     </div>
-    <h2 class="subheader">   </h2> 
+    <h2 class="subheader"> </h2> 
   </header>
   <main>
     <slot />
   </main>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const colors = [
+                      '#EF476F', // red
+                      '#F4A261', // orange
+                      '#FFD166', // yellow
+                      '#06D6A0', // green
+                      '#45C4B0', // teal
+                      '#3A86FF', // blue
+                      '#FF5EC2', // pink
+                      '#9D4EDD', // purple
+                      '#84A98C', // olive
+                      '#FF9770', // salmon
+                      '#BFA2DB'  // lavender
+                    ];;
+    const bolds = document.querySelectorAll('b');
+    bolds.forEach(b => {
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      b.style.color = color;
+    });
+  });
+</script>
 </body>
 </html>

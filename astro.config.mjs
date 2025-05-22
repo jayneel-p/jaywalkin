@@ -11,7 +11,7 @@ export default defineConfig({
     // Enable syntax highlighting for Python and other languages
     shikiConfig: {
       // Choose from Shiki's built-in themes. Find full list at: https://shiki.style/themes
-      theme: 'rose-pine-moon',
+      theme: 'solarized-light',
       // Enable word wrap
       wrap: true,
       // Languages to be loaded

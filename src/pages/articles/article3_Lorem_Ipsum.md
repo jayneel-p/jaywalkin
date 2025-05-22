@@ -12,40 +12,40 @@ layout: ../../layouts/ArticleLayoutTest.astro
 A few years back in my CompPhys 2 course my group (s.o Jackson Morphew) had come up with a 'Next-Word generator' inspired by 'PageRank'. Essentially it was a shitty gibberish generator. Much more recently, as I was reading (read: struggling through) Don Quixote, I was struck by it's unique syntax and sentence structure. I took it upon myself to clean our old code and make a Don Quixote based Lorem Ipsum generator, to atleast make the code semi-useful (in the loosest definition of useful). Will anyone ever want this? No. But here it is. 
 </div>
 
-# Introduction
+### Introduction
 
 This article outlines the use of transition matrices to generate a sequence of words based on a root text. We use a First-Order Markov process with the acknowledgement that better results can be found with Hidden Markov Models. In this article we will generate a Lorem Ipsum style text given the root text of Don Quixote. 
 
-## 1. Notation and Assumptions
+### 1. Notation and Assumptions
 
 * Let $\mathcal{V} = \{w_1, w_2, \dots, w_N\}$ be the space of $N$ distinct words, extracted in order of first appearance from a given root text.
 * The input corpus is a sequence of $L$ tokens:
 
   $$
     \mathbf{w} = (w^{(1)}, w^{(2)}, \dots, w^{(L)}),
-    \quad w^{(i)} \in \mathcal{V}.
+    \quad w^{(i)} \in \mathcal{V}
   $$
 * We assume a first-order Markov property:
 
   $$
     P\bigl(w^{(i+1)} \mid w^{(1)}, \dots, w^{(i)}\bigr)
-    = P\bigl(w^{(i+1)} \mid w^{(i)}\bigr).
+    = P\bigl(w^{(i+1)} \mid w^{(i)}\bigr)
   $$
 
-## 2. Extracting Bigrams and Counting Frequencies
+### 2. Extracting Bigrams and Counting Frequencies
 
 Define the set of all observed ordered pairs (bigrams) including a self-pair at the end:
 
 $$
 \mathcal{B} = 
 \bigl\{(w^{(i)}, w^{(i+1)}) : i = 1,\dots,L-1\bigr\}
-\cup \{(w^{(L)}, w^{(L)})\}.
+\cup \{(w^{(L)}, w^{(L)})\}
 $$
 
 Let $C: \mathcal{V}\times\mathcal{V} \to \mathbb{N}_0$ be *the* count function:
 
 $$
-C\bigl(u, v\bigr) = \#\bigl\{\,i : (w^{(i)}, w^{(i+1)}) = (u,v)\bigr\}.
+C\bigl(u, v\bigr) = \#\bigl\{\,i : (w^{(i)}, w^{(i+1)}) = (u,v)\bigr\}
 $$
 
 In code, we build:
@@ -67,19 +67,19 @@ def read_text(text):
 
 and then count each bigram $(u,v)$ to obtain $C(u,v)$.
 
-## 3. Transition Probabilities
+### 3. Transition Probabilities
 
 For each $u\in\mathcal{V}$, define the total outgoing count:
 
 $$
-T(u) = \sum_{v\in\mathcal{V}} C(u, v).
+T(u) = \sum_{v\in\mathcal{V}} C(u, v)
 $$
 
 Then the conditional probability of transitioning from $u$ to $v$ is:
 
 $$
 P\bigl(v\mid u\bigr) = \frac{C(u, v)}{T(u)},
-\quad \text{for all } u,v \in \mathcal{V}.
+\quad \text{for all } u,v \in \mathcal{V}
 $$
 
 This yields a probability distribution over the next word given the current word.
@@ -134,7 +134,7 @@ def calculate_transition_probabilities(word_list, unique_words):
 
 
 ```
-## 4. The Transition Matrix
+### 4. The Transition Matrix
 
 We index words by $1 \le i,j \le N$ such that $w_i =$ $\mathcal{V}[i]$. Then define the transition matrix $\mathbf{P} \in \mathbb{R}^{N\times N}$ with entries:
 
@@ -159,7 +159,7 @@ def build_transition_matrix(pair_probabilities, unique_words, unique_pairs):
 
 ```
 
-## 5. Sampling the Next Word
+### 5. Sampling the Next Word
 
 Given the current word $w^{(t)} = w_i$ (index $i$), we draw the next word index $j$ with probability:
 
@@ -172,7 +172,7 @@ Concretely, if $\boldsymbol{P}_{i,:}$ denotes row $i$ of $\mathbf{P}$, then
 
 $$
 \Pr\bigl(j = k\bigr) = P_{i,k},
-\quad k=1,\dots,N.
+\quad k=1,\dots,N
 $$
 
 ```python
@@ -192,7 +192,7 @@ def generate_text(initial_word, transition_matrix, unique_words, iterations=10):
     predicted_text = " ".join(predicted_text)
     return predicted_text
 ```
-## 6. Generated Text
+### 6. Generated Text
 
 And finally we get:
 <div class = 'remarks'>
@@ -207,7 +207,7 @@ And finally we get:
 - We do not cover a comparison to the classic Lorem Ipsum in any way. 
 - It would be interesting to explore how text size affects generation quality.
 
-**Mathematical Summary:**
+#### Mathematical Summary:
 
 1. **Bigram counts:** $C(u,v)$.
 2. **Outgoing totals:** $T(u)=\sum_v C(u,v)$.
