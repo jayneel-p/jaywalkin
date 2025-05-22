@@ -1,0 +1,139 @@
+/* ===========================================
+   TABLE OF CONTENTS STYLES
+   =========================================== */
+
+/* Hide the main TOC heading */
+h2#table-of-contents,
+.prose h2#table-of-contents {
+  display: none;
+}
+
+/* Details container */
+details {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 2rem 0;
+  box-shadow: none;
+}
+
+/* Collapsible header */
+details summary {
+  color: var(--colour-text);
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: 'Go Mono', monospace;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+/* Hide default triangle and add custom arrow */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary::before {
+  content: " - ";
+  transition: transform 0.2s ease;
+  color: var(--colour-tag5);
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Remove empty paragraphs */
+details > p:empty {
+  display: none;
+}
+
+/* Base list styling */
+details ul {
+list-style: none;
+padding: 0;
+margin: 0.1rem 1rem;
+}
+
+/* Each ul determines how deep you are going. For short articles I use ## (not #) */
+
+/* Outer wrapper indentation */
+details > ul {
+  padding-left: 1.5rem;
+}
+
+/* Main TOC list */
+details ul ul > li {
+  margin: 0.1rem 1rem;
+  border-left: 2px solid var(--colour-tag4);
+  padding-left: 0.75rem;
+  position: relative;
+}
+
+/* Subsections - indented with border */
+details ul ul ul {
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+  border-left: 2px solid var(--colour-tag5);
+  padding-left: 1rem;
+}
+
+details ul ul ul > li {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+/* Deep subsections */
+details ul ul ul ul {
+  margin-left: 1.5rem;
+  border-left: 1px solid var(--colour-tag6);
+  padding-left: 1rem;
+}
+
+details ul ul ul ul > li {
+  font-size: 0.85rem;
+}
+
+/* Remove numbering from all levels */
+
+/* Link styling */
+details a {
+  color: var(--colour-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Go Mono', monospace;
+}
+
+details a:hover {
+  color: var(--colour-tag3);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag3);
+  text-underline-offset: 3px;
+}
+
+/* Subsection link hover - override general link hover for deeper levels */
+details ul ul  a:hover {
+  color: var(--colour-tag4);
+  text-decoration-color: var(--colour-tag4);
+}
+
+/* Hover effects for main items */
+details ul ul > li:hover {
+  color: var(--colour-tag4);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag4);
+  text-underline-offset: 3px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  details ul ul ul {
+    margin-left: 1.5rem;
+    padding-left: 0.75rem;
+  }
+  
+  details ul ul ul ul {
+    margin-left: 1rem;
+    padding-left: 0.75rem;
+  }
+}

@@ -11,34 +11,34 @@
   --colour-border: #44475A;
 
   /* Titles and headings */
-  --colour-title: var(--colour-text);        /* Main site title - mustard */
-  --colour-h1: var(--colour-text);           /* H1 headings - mustard */
-  --colour-h2: #D2691E;           /* H2 underlines - burnt orange */
-  --colour-h3: var(--colour-text-muted);           /* H3 underlines - mustard */
+  --colour-title: var(--colour-text);        /* Main site title  */
+  --colour-h1: var(--colour-text);           /* H1 headings  */
+  --colour-h2: #D2691E;                           /* H2 underlines  */
+  --colour-h3: var(--colour-text-muted);           /* H3 underlines  */
 
   /* Tags */
-  --colour-tag1: #E6B800;         /* Featured/primary - mustard */
-  --colour-tag2: #D2691E;         /* Secondary - burnt orange */
-  --colour-tag3: #228B22;         /* Third - forest green */
-  --colour-tag4: #B22222;         /* Fourth - brick red */
-  --colour-tag5: #6495ED;         /* Fifth - deep blue */
-  --colour-tag6: #8B4789;         /* Sixth - plum */
+  --colour-tag1: #E6B800;         
+  --colour-tag2: #D2691E;         
+  --colour-tag3: #228B22;        
+  --colour-tag4: #B22222;       
+  --colour-tag5: #6495ED;         
+  --colour-tag6: #8B4789;         
 
   /* Links */
-  --colour-link: #6495ED;         /* Regular links - deep blue */
-  --colour-link-hover: #FF6347;   /* Link hover - coral */
+  --colour-link: #6495ED;         /* Regular links */
+  --colour-link-hover: #FF6347;   /* Link hover  */
 
   /* Code blocks */
   --colour-code-border: #FAF0E6;  /* Code block borders */
   --colour-code-bg: #000001;      /* Code background */
 
   /* Navigation */
-  --colour-nav: #E6B800;          /* Nav link underlines - mustard */
-  --colour-nav-hover: #8B4789;    /* Nav hover - plum */
+  --colour-nav: #E6B800;          /* Nav link underlines */
+  --colour-nav-hover: #8B4789;    /* Nav hover  */
 
   /* Special elements */
-  --colour-accent: #E6B800;       /* General accent colour - mustard */
-  --colour-highlight: #FF6347;    /* Hover highlights - coral */
+  --colour-accent: #E6B800;       /* General accent colour  */
+  --colour-highlight: #FF6347;    /* Hover highlights  */
 }
 
 /* ===========================================

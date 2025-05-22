@@ -8,15 +8,21 @@ featured\_image: "/images/markov-chain.png"
 description: "We explore transition matrices by making a simple Lorem Ipsum generator that accepts any root text."
 layout: ../../layouts/ArticleLayoutTest.astro
 ---------------------------------------------
+
 <div class = 'remarks'>
 A few years back in my CompPhys 2 course my group (s.o Jackson Morphew) had come up with a 'Next-Word generator' inspired by 'PageRank'. Essentially it was a shitty gibberish generator. Much more recently, as I was reading (read: struggling through) Don Quixote, I was struck by it's unique syntax and sentence structure. I took it upon myself to clean our old code and make a Don Quixote based Lorem Ipsum generator, to atleast make the code semi-useful (in the loosest definition of useful). Will anyone ever want this? No. But here it is. 
 </div>
 
-### Introduction
+## Table of contents
+
+## Introduction
 
 This article outlines the use of transition matrices to generate a sequence of words based on a root text. We use a First-Order Markov process with the acknowledgement that better results can be found with Hidden Markov Models. In this article we will generate a Lorem Ipsum style text given the root text of Don Quixote. 
 
-### 1. Notation and Assumptions
+
+
+
+## Notation and Assumptions
 
 * Let $\mathcal{V} = \{w_1, w_2, \dots, w_N\}$ be the space of $N$ distinct words, extracted in order of first appearance from a given root text.
 * The input corpus is a sequence of $L$ tokens:
@@ -32,7 +38,7 @@ This article outlines the use of transition matrices to generate a sequence of w
     = P\bigl(w^{(i+1)} \mid w^{(i)}\bigr)
   $$
 
-### 2. Extracting Bigrams and Counting Frequencies
+## Extracting Bigrams and Counting Frequencies
 
 Define the set of all observed ordered pairs (bigrams) including a self-pair at the end:
 
@@ -67,7 +73,7 @@ def read_text(text):
 
 and then count each bigram $(u,v)$ to obtain $C(u,v)$.
 
-### 3. Transition Probabilities
+## Transition Probabilities
 
 For each $u\in\mathcal{V}$, define the total outgoing count:
 
@@ -134,7 +140,7 @@ def calculate_transition_probabilities(word_list, unique_words):
 
 
 ```
-### 4. The Transition Matrix
+## The Transition Matrix
 
 We index words by $1 \le i,j \le N$ such that $w_i =$ $\mathcal{V}[i]$. Then define the transition matrix $\mathbf{P} \in \mathbb{R}^{N\times N}$ with entries:
 
@@ -159,7 +165,7 @@ def build_transition_matrix(pair_probabilities, unique_words, unique_pairs):
 
 ```
 
-### 5. Sampling the Next Word
+## Sampling the Next Word
 
 Given the current word $w^{(t)} = w_i$ (index $i$), we draw the next word index $j$ with probability:
 
@@ -192,7 +198,7 @@ def generate_text(initial_word, transition_matrix, unique_words, iterations=10):
     predicted_text = " ".join(predicted_text)
     return predicted_text
 ```
-### 6. Generated Text
+## Generated Text
 
 And finally we get:
 <div class = 'remarks'>
@@ -207,7 +213,7 @@ And finally we get:
 - We do not cover a comparison to the classic Lorem Ipsum in any way. 
 - It would be interesting to explore how text size affects generation quality.
 
-#### Mathematical Summary:
+### Mathematical Summary
 
 1. **Bigram counts:** $C(u,v)$.
 2. **Outgoing totals:** $T(u)=\sum_v C(u,v)$.
@@ -218,6 +224,6 @@ And finally we get:
 
 ---
 
-# Citations
+## Citations
 1. Cervantes Saavedra, M. de. (2003). Don Quixote (E. Grossman, Trans.). HarperCollins. (Original work published 1605)
 

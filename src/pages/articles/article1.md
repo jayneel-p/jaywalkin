@@ -5,7 +5,9 @@ date: "2025-05-05"
 tags: ["physics","latex"]
 layout: ../../layouts/ArticleLayoutTest.astro
 ---
-# Introduction
+## Table of contents
+
+## Introduction
 
 Optical tweezers is a subject of direct consequence to the advent of the
 LASER, and now plays a seminal role in single particle physics in
@@ -36,7 +38,7 @@ counter-propogating-beam OT, g) optical strecher, h) interferometric OT.
 From Pesce et al. 2020.</figcaption>
 </figure>
 
-# Principles of Optical Tweezers
+## Principles of Optical Tweezers
 
 Historically, optical forces have been conceptualized through strong
 approximations regarding the optical regime (Pesce et al. 2020). The
@@ -60,8 +62,6 @@ a) in three dimensions and b) in the plane of incidence. From Jones et
 al. 2015.</figcaption>
 </figure>
 
-
-#### 
 
 We will define important concepts in optical tweezers using notation
 from Jones et al. (2015). A photon has energy $E=hc/ \lambda$ and
@@ -100,9 +100,7 @@ $Q_{ray,s}$ as a function of $\theta$, the angle of incidence, using
 exact expressions derived by Ashkin (1992). Now having some background
 in optical tweezers
 
-# Brownian Motion
-
-#### 
+## Brownian Motion
 
 Brownian Motion (BM), as modelled by Langevin Theory, is a classical
 concept founded upon Newton's second law and equipartition theorem.
@@ -121,10 +119,6 @@ ostensibly rise to random motion, that is now known to be impossible to
 solve for (Cecconi et al, 2005)
 
 
-
-
-#### 
-
 Haphazardous behaviour shown by particles suspended in a fluid (i.e air,
 water) are conceptually modelled by random, continuous collisions,
 displayed mathematically on the microscopic scale by Langevin. Built on
@@ -137,7 +131,7 @@ fluctuations through Fluctuation Dissipation theorem and linear response
 theory, finally ending in its relation to optical tweezers through
 optical trapping.
 
-#### Einstein|
+### Einstein
 
 A seminal portion of Einstein's 1905 work \"Investigations on the Theory
 of Brownian Motion\" is showing the diffusion coefficient $D$ depends
@@ -233,7 +227,7 @@ the square root of time. The derivations show a masterful synthesis of
 early statistical mechanics and molecular-kinetic theory and laid
 important early work for Brownian motion.
 
-#### Langevin|
+### Langevin
 
 The Langevin equations elegantly capture the intricate interplay between
 the deterministic forces that act upon a particle, such as friction, and
@@ -265,7 +259,7 @@ $$
 where $\gamma$ = $6\pi \mu r$ and $W(t)$ is white noise with intensity
 2$D$, where the mean, $<W(t)>$, is zero.
 
-#### Linear Response Theory|
+### Linear Response Theory
 
 The Kinetic method approach to non-quilibrium statistical mechanics
 focuses on the evolution of distribution functions describing the
@@ -286,7 +280,6 @@ is the Fluctuation Dissipation theorem, which connects the response of a
 system to an external perturbation with its internal thermal
 fluctuations.
 
-#### 
 
 Fluctuation Dissipation theorem (FDT), first thought to be introduced by
 Harry Nyquist, and later proved by Callen and Welton in 1951 who
@@ -309,7 +302,6 @@ $$\sigma(\omega) = \int e^{-i\omega t} <J(0);J(t)>\frac{kT}{V}$$ where
 the bracketed term inside the integral corresponds to correlation
 function of current.
 
-#### 
 
 A Brownian particle in an optical trap will experience an interplay of
 interactions, where the Brownian motion pushes the particle out of the
@@ -347,7 +339,7 @@ $\kappa_x=\kappa_y$=1.0 fN/nm and $\kappa_z$=0.2 fN/nm, since trapping
 stiffness is larger along propagation axis, the particle explores an
 ellipsoidal volume inside the trap (Pesce et al. 2020).
 
-# Conclusion
+## Conclusion
 
 Optical tweezers is an emergent new field in physics as a result of the
 invention of the LASER. Though the field won a Nobel in 2018 for
@@ -371,7 +363,7 @@ using the equations presented in the preceding section.
 :::
 <div class="bibliography">
 
-# Bibliography
+## Bibliography
 
 *All references provided in 'The Astrophysical Journal' citation notation.*
 

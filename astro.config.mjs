@@ -6,7 +6,7 @@ import remarkCollapse from 'remark-collapse';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import customTheme from "./src/utils/custom_shiki_theme.json";
 
-// Astro ships with a built-in Shiki integration
+// Astro has built-in Shiki integration, fuck ya astro you absolute legend
 export default defineConfig({
   markdown: {
     // Enable syntax highlighting for Python and other languages

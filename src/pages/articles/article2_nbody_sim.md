@@ -8,15 +8,15 @@ featured_image: "/images/urban-garden.jpg"
 description: "In this post, we’ll dive into modeling a multi-body system with straightforward numerical methods and a few simplifying assumptions. Focusing on Jupiter and its Galilean moons, you’ll see a minimal yet functional multi-body orbit simulator powered by a 4th-order Runge–Kutta solver. Think of this article as both an exploration into numerical techniques and a playground for testing how code snippets display with shiki in my blog. In a future installment, we’ll refine the physics and add more accuracy to the simulation."
 layout: ../../layouts/ArticleLayoutTest.astro
 ---
-
-### Introduction
+## Table of contents
+## Introduction
 The goal of this article is to explore how we can model multi-body systems using numerical techniques and simplifying assumptions. We will explore the Jupiter-Galilean Moons system to see a simple implementation of multi body orbits. In a later article, we will discuse a more accurate simulation of the system. 
 
 <div class = 'remarks'>
 Our focus is on numerical simulation techniques and not animation. For this reason, I will not include my animation code, but if you're curious on how I animated it please feel free to contact me.
 </div>
 
-### 1. Simplifying Assumptions For Jupiter - Moons System and Importing Libraries 
+## Simplifying Assumptions For Jupiter - Moons System and Importing Libraries 
 We will begin with some simplifying assumptions:
  - The system is restricted to Jupiter and its Galilean moons. Small moons within the orbit of IO are not considered. The sun is not considered.
  - Jupiter is initially a stationary object.
@@ -38,7 +38,7 @@ from matplotlib.patches import Circle #can ignore
 import matplotlib.colors as mcolors #can ignore
 ```
 
-### 2. Defining Constants
+## Defining Constants
 
 All constants are in SI units.
 
@@ -76,7 +76,7 @@ JUPITER_COLOR = 'orange'
 M_JUPITER = 1.898e27  # Mass of Jupiter (kg)
 ```
 
-### 3. Initial Conditions
+## Initial Conditions
 Now we set up initial positions at periapsis using the semi-major axis and eccentricity. Velocities come from the vis-viva equation: 
 $$
 v = \sqrt{GM\left(\frac{2}{r} - \frac{1}{a}\right)}
@@ -101,7 +101,7 @@ def initialize_system():
     return np.array(positions), np.array(velocities)
 ```
 
-### 4. Gravitational Acceleration
+## Gravitational Acceleration
 We compute pairwise gravitational acceleration for each body: 
 $$
 \mathbf{a}_i = G\sum_{j\neq i} m_j \frac{\mathbf{r}_j - \mathbf{r}_i}{|\mathbf{r}_j - \mathbf{r}_i|^3}
@@ -121,7 +121,7 @@ def gravitational_acceleration(positions, masses):
     return accelerations
 ```
 
-### 5. Numerical Integration with Runge–Kutta 4
+## Numerical Integration with Runge–Kutta 4
 The RK4 method provides a good balance between accuracy and computational cost. We update positions and velocities every timestep $\Delta t$. The local truncation error is on the order of  $O(h^{5})$ while the total accumulated error is on the order of $O(h^{4})$. RK4 is not symplectic, hence over a large time scale there will be an accumulation of errors. Here we have a short enough time scale where this wont cause any large issues.
 Our RK implementation on a high-level is: 
     The specific steps in your implementation match the RK4 method:
@@ -157,7 +157,7 @@ def rk4_step(positions, velocities, masses, dt):
     return positions_new, velocities_new
 ```
 
-### 6. Running the Simulation
+## Running the Simulation
 We integrate for one Jovian month (~30.44 days) mapped to a 60-second animation. This cell runs the core loop and stores trajectories.
 
 ```python
@@ -191,7 +191,7 @@ Simulation of Jupiter and its Galilean Moons
 
 <div class="bibliography">
 
-### Citations
+## Citations
 
 1. Newman, M. E. J. (2013). Computational physics. Createspace.  
 2. Galilean moons of Jupiter. Nasa.gov. (2013, July). https://www.nasa.gov/wp-content/uploads/2009/12/moons_of_jupiter_lithograph.pdf 
