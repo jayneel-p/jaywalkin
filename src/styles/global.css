@@ -242,9 +242,9 @@ a:hover {
 }
 
 .prose h3 {
-  color: var(--color-text);
+  color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--colour-h3);
+  text-decoration-color: var(--toc-secondary-color, var(--colour-tag4)); /* Use secondary color with fallback */
   text-decoration-thickness: 3px;
   text-underline-offset: 6px;
   margin-top: 2rem;

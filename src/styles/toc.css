@@ -60,75 +60,96 @@ details > ul {
   padding-left: 1.5rem;
 }
 
-/* Main TOC list - H2 level (uses article tag color) */
-details ul ul > li {
+/* Main TOC list - H2 level items */
+details > ul > li {
   margin: 0.1rem 1rem;
   border-left: 2px solid var(--article-accent-color, var(--colour-tag1));
   padding-left: 0.75rem;
   position: relative;
 }
 
-/* Subsections - H3 level (uses secondary color - always different from H2) */
-details ul ul ul {
+/* H3 level sublists */
+details > ul > li > ul {
   margin-top: 0.5rem;
   margin-left: 2rem;
   border-left: 2px solid var(--toc-secondary-color, var(--colour-tag4));
   padding-left: 1rem;
 }
 
-/* Deep subsections - H4 level (uses blue) */
-details ul ul ul ul {
+/* H4 level sublists */
+details > ul > li > ul > li > ul {
   margin-left: 1.5rem;
   border-left: 1px solid var(--colour-tag5);
   padding-left: 1rem;
 }
 
-details ul ul ul > li {
+/* H3 level items */
+details > ul > li > ul > li {
   margin: 0.4rem 0;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
 }
 
-details ul ul ul ul > li {
+/* H4 level items */
+details > ul > li > ul > li > ul > li {
   font-size: 0.85rem;
 }
 
-/* Link styling */
-details a {
+/* DEFAULT LINK STYLING - H2 level links */
+details > ul > li > a {
   color: var(--colour-text);
   text-decoration: none;
   transition: color 0.2s ease;
   font-family: 'Go Mono', monospace;
 }
 
-details a:hover {
+/* H3 level links - default color */
+details > ul > li > ul > li > a {
+  color: var(--colour-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Go Mono', monospace;
+}
+/* H4 level links */
+details > ul > li > ul > li > ul > li > a {
+  color: var(--colour-tag5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: 'Go Mono', monospace;
+}
+
+/* HOVER EFFECTS */
+/* H2 level hover */
+details > ul > li > a:hover {
   color: var(--article-accent-color, var(--colour-tag1));
   text-decoration: underline;
   text-decoration-color: var(--article-accent-color, var(--colour-tag1));
   text-underline-offset: 3px;
 }
 
-/* Subsection link hover - uses secondary color */
-details ul ul ul a:hover {
+/* H3 level hover */
+details > ul > li > ul > li > a:hover {
   color: var(--toc-secondary-color, var(--colour-tag4));
+  text-decoration: underline;
   text-decoration-color: var(--toc-secondary-color, var(--colour-tag4));
+  text-underline-offset: 3px;
 }
 
-/* Hover effects for main items - uses article tag color */
-details ul ul > li:hover {
-  color: var(--article-accent-color, var(--colour-tag1));
+/* H4 level hover */
+details > ul > li > ul > li > ul > li > a:hover {
+  color: var(--colour-tag5);
   text-decoration: underline;
-  text-decoration-color: var(--article-accent-color, var(--colour-tag1));
+  text-decoration-color: var(--colour-tag5);
   text-underline-offset: 3px;
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  details ul ul ul {
+  details > ul > li > ul {
     margin-left: 1.5rem;
     padding-left: 0.75rem;
   }
   
-  details ul ul ul ul {
+  details > ul > li > ul > li > ul {
     margin-left: 1rem;
     padding-left: 0.75rem;
   }
