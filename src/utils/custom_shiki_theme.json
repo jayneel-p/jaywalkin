@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/shikijs/tm-themes/master/schema.json",
+  "name": "jaywalkin-theme",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#FAF0E6",
+    "editor.foreground": "#2a2a2a"
+  },
+  "tokenColors": [
+    {
+      "scope": "comment",
+      "settings": { "foreground": "#22543d", "fontStyle": "italic" }
+    },
+    {
+      "scope": ["keyword", "keyword.control", "keyword.other", "storage.type", "storage.modifier"],
+      "settings": { "foreground": "#C41E3A" }
+    },
+    {
+      "scope": "string",
+      "settings": { "foreground": "#D2691E" }
+    },
+    {
+      "scope": ["variable", "variable.other", "variable.parameter"],
+      "settings": { "foreground": "#B8860B" }
+    },
+    {
+      "scope": "constant",
+      "settings": { "foreground": "#1E3A8A" }
+    },
+    {
+      "scope": "function",
+      "settings": { "foreground": "#0F766E" }
+    },
+    {
+      "scope": "type",
+      "settings": { "foreground": "#B91C1C" }
+    },
+    {
+      "scope": "number",
+      "settings": { "foreground": "#6B21A8" }
+    },
+    {
+      "scope": "operator",
+      "settings": { "foreground": "#94D0FF" }
+    },
+    {
+      "scope": "punctuation",
+      "settings": { "foreground": "#b8b8b8" }
+    }
+  ]
+}

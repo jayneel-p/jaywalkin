@@ -4,12 +4,12 @@
  */
 export const colorVars = [
 "  --color-tag-red",
+"  --color-tag-purple", 
 "  --color-tag-orange",
-" --color-tag-yellow",
 "  --color-tag-green",  
+" --color-tag-yellow",
 " --color-tag-teal",
 "  --color-tag-blue",   
-"  --color-tag-purple", 
 "  --color-tag-pink",    
 " --color-tag-olive",
 "  --color-tag-salmon:", 

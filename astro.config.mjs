@@ -4,6 +4,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkToc from 'remark-toc';
 import remarkCollapse from 'remark-collapse';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
+import customTheme from "./src/utils/custom_shiki_theme.json";
 
 // Astro ships with a built-in Shiki integration
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
     // Enable syntax highlighting for Python and other languages
     shikiConfig: {
       // Choose from Shiki's built-in themes. Find full list at: https://shiki.style/themes
-      theme: 'solarized-light',
+      theme: customTheme,
       // Enable word wrap
       wrap: true,
       // Languages to be loaded
