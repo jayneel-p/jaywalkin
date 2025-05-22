@@ -1,51 +1,51 @@
 {
   "$schema": "https://raw.githubusercontent.com/shikijs/tm-themes/master/schema.json",
-  "name": "jaywalkin-theme",
+  "name": "jaywalkin-retro-theme",
   "type": "dark",
   "colors": {
-    "editor.background": "#FAF0E6",
-    "editor.foreground": "#2a2a2a"
+    "editor.background": "#2E2E2E",
+    "editor.foreground": "#FAF0E6"
   },
   "tokenColors": [
     {
       "scope": "comment",
-      "settings": { "foreground": "#22543d", "fontStyle": "italic" }
+      "settings": { "foreground": "#A0522D", "fontStyle": "italic" }
     },
     {
       "scope": ["keyword", "keyword.control", "keyword.other", "storage.type", "storage.modifier"],
-      "settings": { "foreground": "#C41E3A" }
+      "settings": { "foreground": "#E6B800" }
     },
     {
       "scope": "string",
-      "settings": { "foreground": "#D2691E" }
+      "settings": { "foreground": "#FF6347" }
     },
     {
       "scope": ["variable", "variable.other", "variable.parameter"],
-      "settings": { "foreground": "#B8860B" }
+      "settings": { "foreground": "#228B22" }
     },
     {
       "scope": "constant",
-      "settings": { "foreground": "#1E3A8A" }
+      "settings": { "foreground": "#4169E1" }
     },
     {
       "scope": "function",
-      "settings": { "foreground": "#0F766E" }
+      "settings": { "foreground": "#D2691E" }
     },
     {
       "scope": "type",
-      "settings": { "foreground": "#B91C1C" }
+      "settings": { "foreground": "#B22222" }
     },
     {
       "scope": "number",
-      "settings": { "foreground": "#6B21A8" }
+      "settings": { "foreground": "#6495ED" }
     },
     {
       "scope": "operator",
-      "settings": { "foreground": "#94D0FF" }
+      "settings": { "foreground": "#A0522D" }
     },
     {
       "scope": "punctuation",
-      "settings": { "foreground": "#b8b8b8" }
+      "settings": { "foreground": "#A6A6A6" }
     }
   ]
 }

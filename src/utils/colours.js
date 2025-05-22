@@ -1,32 +1,27 @@
 /**
- * Color variables for tags
+ * Colour variables for tags
  * @type {string[]}
  */
 export const colorVars = [
-"  --color-tag-red",
-"  --color-tag-purple", 
-"  --color-tag-orange",
-"  --color-tag-green",  
-" --color-tag-yellow",
-" --color-tag-teal",
-"  --color-tag-blue",   
-"  --color-tag-pink",    
-" --color-tag-olive",
-"  --color-tag-salmon:", 
-"  --color-tag-lavender" ,
+  "--colour-tag1", // #E6B800 - mustard
+  "--colour-tag2", // #D2691E - burnt orange
+  "--colour-tag3", // #228B22 - forest green
+  "--colour-tag4", // #B22222 - brick red
+  "--colour-tag5", // #4169E1 - deep blue
+  "--colour-tag6", // #8B4789 - plum
 ];
 
 /**
- * Default color variable
+ * Default colour variable
  * @type {string}
  */
-export const defaultColorVar = '--highlight-olive';
+export const defaultColorVar = '--colour-tag1';
 
 /**
- * Get color for a tag
- * @param {string} tag - The tag to get color for
+ * Get colour for a tag
+ * @param {string} tag - The tag to get colour for
  * @param {string[]} allTags - Array of all tags
- * @returns {string} CSS color value
+ * @returns {string} CSS colour value
  */
 export function getTagColor(tag, allTags) {
   const tagIndex = allTags.indexOf(tag);
@@ -36,10 +31,10 @@ export function getTagColor(tag, allTags) {
 }
 
 /**
- * Get first tag's color for an article
+ * Get first tag's colour for an article
  * @param {string[] | undefined} tags - Array of article tags or undefined
  * @param {string[]} allTags - Array of all tags
- * @returns {string} CSS color value
+ * @returns {string} CSS colour value
  */
 export function getFirstTagColor(tags, allTags) {
   if (!tags || tags.length === 0) {

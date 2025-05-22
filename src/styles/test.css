@@ -1,45 +1,46 @@
 /* ===========================================
-   THEME VARIABLES
+   COHESIVE CANADIAN COLOUR SCHEME
    =========================================== */
 
 :root {
-  /* Base layout colors */
-  --color-background: #2E2E2E;       /* Keeping the same charcoal background */
-  --color-surface: #3A2A2A;          /* Darker warm surface for sunset depth */
+  /* Base colours */
+  --colour-background: #2E2E2E;
+  --colour-surface: #2D4263;
+  --colour-text: #FAF0E6;
+  --colour-text-muted: #A6A6A6;
+  --colour-border: #44475A;
 
-  /* Text colors */
-  --color-text-primary: #FAF0E6;     /* Sunset yellow - main body text */
-  --color-text-secondary: #E6E6E6;   /* Muted golden for secondary text */
+  /* Titles and headings */
+  --colour-title: var(--colour-text);        /* Main site title - mustard */
+  --colour-h1: var(--colour-text);           /* H1 headings - mustard */
+  --colour-h2: #D2691E;           /* H2 underlines - burnt orange */
+  --colour-h3: var(--colour-text-muted);           /* H3 underlines - mustard */
 
-  /* Accent / interactive elements */
-  --color-accent-primary: #DC3535;   /* Sunset red */
-  --color-accent-secondary: #F49D1A; /* Sunset orange for hover/highlight */
+  /* Tags */
+  --colour-tag1: #E6B800;         /* Featured/primary - mustard */
+  --colour-tag2: #D2691E;         /* Secondary - burnt orange */
+  --colour-tag3: #228B22;         /* Third - forest green */
+  --colour-tag4: #B22222;         /* Fourth - brick red */
+  --colour-tag5: #6495ED;         /* Fifth - deep blue */
+  --colour-tag6: #8B4789;         /* Sixth - plum */
 
-  /* Typography emphasis */
-  --color-heading: #FFE15D;          /* Bright sunset yellow for headings */
-  --color-subheading: #B01E68;       /* Deep sunset magenta for subheadings */
+  /* Links */
+  --colour-link: #6495ED;         /* Regular links - deep blue */
+  --colour-link-hover: #FF6347;   /* Link hover - coral */
 
-   --color-tag-default: #3A2A2A;      /* Dark warm surface */
-  --color-tag-highlight: #DC3535;    /* Sunset red for standout tags */
-  --color-tag-muted: #C4B5A0;        /* Muted warm beige for subtlety */
+  /* Code blocks */
+  --colour-code-border: #FAF0E6;  /* Code block borders */
+  --colour-code-bg: #000001;      /* Code background */
 
-  --color-tag-red:     #C94A4A;      /* Retro sunset red */
-  --color-tag-orange:  #E6934A;      /* Retro sunset orange */
-  --color-tag-yellow:  #E6D156;      /* Retro sunset yellow */
-  --color-tag-green:   #4A9B4A;      /* Retro green */
-  --color-tag-teal:    #4A9BC9;      /* Retro teal */
-  --color-tag-blue:    #4A6BC9;      /* Retro blue */
-  --color-tag-pink:    #A64A73;      /* Retro sunset magenta */
-  --color-tag-purple:  #B84A9B;      /* Retro sunset purple */
-  --color-tag-olive:   #7A9B7A;      /* Retro sage */
-  --color-tag-salmon:  #E6734A;      /* Retro coral */
-  --color-tag-lavender:#B86BB8;      /* Retro orchid */
+  /* Navigation */
+  --colour-nav: #E6B800;          /* Nav link underlines - mustard */
+  --colour-nav-hover: #8B4789;    /* Nav hover - plum */
 
-  /* Borders / dividers */
-  --color-border: #5A4A3A;           /* Warm dark border */
+  /* Special elements */
+  --colour-accent: #E6B800;       /* General accent colour - mustard */
+  --colour-highlight: #FF6347;    /* Hover highlights - coral */
 }
-  
-  
+
 /* ===========================================
    RESET & BASE STYLES
    =========================================== */
@@ -51,8 +52,8 @@
 
 body {
   font-family: 'Go Mono', monospace;
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
+  background-color: var(--colour-background);
+  color: var(--colour-text);
   line-height: 1.6;
   padding: 2rem;
 }
@@ -74,17 +75,17 @@ p {
 b {
   transition: none !important;
 }
+
 a {
-  color: var(--color-tag-blue);
+  color: var(--colour-link);
   text-decoration: underline;
   font-weight: bold;
-  transition: color 0.2s ease;
+  transition: colour 0.2s ease;
 }
 
 a:hover {
-  color: var(--color-tag-pink);
+  color: var(--colour-link-hover);
 }
-
 
 /* ===========================================
    HEADER & NAVIGATION
@@ -105,7 +106,7 @@ a:hover {
 
 .site-title {
   font-size: 2.5rem;
-  color: var(--color-text-primary);
+  color: var(--colour-title);
   font-family: 'Go Mono', monospace;
   text-align: center;
   letter-spacing: 0.5px;
@@ -117,7 +118,7 @@ a:hover {
   text-align: center;
   margin-top: 0.3rem;
   font-size: 1.25rem;
-  color: var(--color-subheading);
+  color: var(--colour-h2);
   font-family: 'Go Mono', monospace;
   font-weight: 600;
 }
@@ -144,22 +145,21 @@ a:hover {
 }
 
 .navbar a {
-  color: var(--color-text-primary);
+  color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--color-tag-yellow);
+  text-decoration-color: var(--colour-nav);
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;  
   font-weight: bold;
   font-family: 'Go Mono', monospace;
   padding: 1rem 0.75rem;
   border-radius: 2px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-colour 0.2s ease, color 0.2s ease;
 }
 
 .navbar a:hover {
-  color: var(--color-tag-pink);
+  color: var(--colour-nav-hover);
 }
-
 
 /* ===========================================
    ARTICLE LIST STYLES
@@ -186,18 +186,18 @@ a:hover {
   font-size: 1rem; 
   font-weight: bold;
   text-decoration: none;
-  color: var(--color-text-primary);
+  color: var(--colour-text);
   display: inline-block;
   line-height: 1.2;
 }
 
 .article-link:hover {
-  color: var(--color-tag-pink);
+  color: var(--color-highlight);
 }
 
 .article-date {
   font-size: 0.85rem;
-  color: var(--color-text-secondary);
+  color: var(--colour-text-muted);
 }
 
 .article-desc {
@@ -205,7 +205,6 @@ a:hover {
   margin: 0.5rem 0 0.3rem;
   text-indent: 0;
 }
-
 
 /* ===========================================
    ARTICLE CONTENT STYLES
@@ -226,35 +225,51 @@ a:hover {
 }
 
 .prose h1 {
-  color: var(--color-text-primary); /* Muted tan - warmer than your cream text */
+  color: var(--colour-h1);
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-
 .prose h2 {
-  color: #D4965A; /* Warm muted orange for h2 */
+  color: var(--colour-text);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-h2);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .prose h3 {
-  color: var(--color-tag-yellow); /* Retro sunset orange - colorful but not in-your-face */
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-h3);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .prose h4 {
-  color: #B5624A; /* Deeper warm tone for h4 */
+  color: var(--colour-text);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag4);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .prose h5 {
-  color: #A5524A; /* Even deeper for h5 */
+  color: var(--colour-text);
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag5);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+
 .prose p {
   margin-bottom: 1.5rem;
 }
@@ -262,16 +277,15 @@ a:hover {
 .remarks {
   font-style: italic;
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: var(--colour-text-muted);
   text-indent: 0;
   display: block;
   margin: 1rem 0;
   line-height: 1.5;
-  border-left: 3px solid var(--color-tag-blue);
+  border-left: 3px solid var(--colour-nav); /* Same as nav underline for cohesion */
   padding-left: 1rem;
   opacity: 0.85;
 }
-
 
 /* ===========================================
    TAG STYLES
@@ -310,12 +324,11 @@ a:hover {
   margin-top: 1.5rem;
   margin-bottom: 0.7rem;
   font-size: 1.25rem;
-  color: var(--color-tag-pink);
+  color: var(--colour-accent);
   font-family: 'Go Mono', monospace;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
-
 
 /* ===========================================
    FIGURE & IMAGE STYLES
@@ -336,7 +349,7 @@ figure img {
 figcaption {
   margin-top: 0.75rem;
   font-size: 0.9rem;
-  color: var(--color-text-secondary);
+  color: var(--colour-text-muted);
   line-height: 1.4;
   text-align: center;
 }
@@ -364,20 +377,20 @@ figcaption .katex {
   font-size: 0.9em;
 }
 
-
 /* ===========================================
    BIBLIOGRAPHY STYLES
    =========================================== */
 .bibliography-unnumbered {
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--colour-border);
 }
 
 .bibliography-unnumbered h1 {
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: var(--colour-h1);
 }
 
 .bibliography-unnumbered ul {
@@ -390,7 +403,6 @@ figcaption .katex {
   padding-left: 1em;
   text-indent: -1em;
 }
-
 
 /* ===========================================
    RESPONSIVE STYLES
@@ -437,9 +449,8 @@ figcaption .katex {
   }
 }
 
-
 /* ===========================================
-   Code Styling with Shiki Integration
+   CODE STYLING WITH COHESIVE COLOURS
    =========================================== */
 pre[class*="astro-code"],
 pre[class*="language-"],
@@ -448,17 +459,17 @@ code[class*="language-"] {
   line-height: 1.5;
   direction: ltr;
   text-align: left;
-  white-space: pre;
+  white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
+  word-wrap: break-word;
   tab-size: 2;
   hyphens: none;
   overflow-x: auto;
   border-radius: 8px;
   padding: 1.25rem;
   margin: 1.5rem 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #383e4a;
+  border: 2px solid var(--colour-code-border);
 }
 
 code, pre {
@@ -470,4 +481,3 @@ code, pre {
   border-radius: 4px;
   white-space: normal;
 }
-
