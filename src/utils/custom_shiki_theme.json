@@ -9,7 +9,11 @@
   "tokenColors": [
     {
       "scope": "comment",
-      "settings": { "foreground": "#A0522D", "fontStyle": "italic" }
+      "settings": { "foreground": "#8B4789", "fontStyle": "italic" }
+    },
+    {
+      "scope": ["string.quoted.docstring.multi.python", "string.quoted.triple.python"],
+      "settings": { "foreground": "#8B4789", "fontStyle": "italic" }
     },
     {
       "scope": ["keyword", "keyword.control", "keyword.other", "storage.type", "storage.modifier"],
