@@ -233,11 +233,12 @@ a:hover {
 .prose h2 {
   color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--colour-h2);
-  text-decoration-thickness: 3px;
+  text-decoration-color: var(--article-accent-color, var(--colour-h2)); /* Fallback to original */
+  text-decoration-thickness: 2px;
   text-underline-offset: 6px;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  font-size: 1.3rem; /* If you want to reduce size too */
 }
 
 .prose h3 {

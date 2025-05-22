@@ -36,7 +36,7 @@ details summary::-webkit-details-marker {
 details summary::before {
   content: " - ";
   transition: transform 0.2s ease;
-  color: var(--colour-tag5);
+  color: var(--article-accent-color, var(--colour-tag1));
 }
 
 details[open] summary::before {
@@ -50,31 +50,36 @@ details > p:empty {
 
 /* Base list styling */
 details ul {
-list-style: none;
-padding: 0;
-margin: 0.1rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.1rem 1rem;
 }
-
-/* Each ul determines how deep you are going. For short articles I use ## (not #) */
 
 /* Outer wrapper indentation */
 details > ul {
   padding-left: 1.5rem;
 }
 
-/* Main TOC list */
+/* Main TOC list - H2 level (uses article tag color) */
 details ul ul > li {
   margin: 0.1rem 1rem;
-  border-left: 2px solid var(--colour-tag4);
+  border-left: 2px solid var(--article-accent-color, var(--colour-tag1));
   padding-left: 0.75rem;
   position: relative;
 }
 
-/* Subsections - indented with border */
+/* Subsections - H3 level (uses secondary color - always different from H2) */
 details ul ul ul {
   margin-top: 0.5rem;
   margin-left: 2rem;
-  border-left: 2px solid var(--colour-tag5);
+  border-left: 2px solid var(--toc-secondary-color, var(--colour-tag4));
+  padding-left: 1rem;
+}
+
+/* Deep subsections - H4 level (uses blue) */
+details ul ul ul ul {
+  margin-left: 1.5rem;
+  border-left: 1px solid var(--colour-tag5);
   padding-left: 1rem;
 }
 
@@ -83,18 +88,9 @@ details ul ul ul > li {
   font-size: 0.9rem;
 }
 
-/* Deep subsections */
-details ul ul ul ul {
-  margin-left: 1.5rem;
-  border-left: 1px solid var(--colour-tag6);
-  padding-left: 1rem;
-}
-
 details ul ul ul ul > li {
   font-size: 0.85rem;
 }
-
-/* Remove numbering from all levels */
 
 /* Link styling */
 details a {
@@ -105,23 +101,23 @@ details a {
 }
 
 details a:hover {
-  color: var(--colour-tag3);
+  color: var(--article-accent-color, var(--colour-tag1));
   text-decoration: underline;
-  text-decoration-color: var(--colour-tag3);
+  text-decoration-color: var(--article-accent-color, var(--colour-tag1));
   text-underline-offset: 3px;
 }
 
-/* Subsection link hover - override general link hover for deeper levels */
-details ul ul  a:hover {
-  color: var(--colour-tag4);
-  text-decoration-color: var(--colour-tag4);
+/* Subsection link hover - uses secondary color */
+details ul ul ul a:hover {
+  color: var(--toc-secondary-color, var(--colour-tag4));
+  text-decoration-color: var(--toc-secondary-color, var(--colour-tag4));
 }
 
-/* Hover effects for main items */
+/* Hover effects for main items - uses article tag color */
 details ul ul > li:hover {
-  color: var(--colour-tag4);
+  color: var(--article-accent-color, var(--colour-tag1));
   text-decoration: underline;
-  text-decoration-color: var(--colour-tag4);
+  text-decoration-color: var(--article-accent-color, var(--colour-tag1));
   text-underline-offset: 3px;
 }
 

@@ -27,10 +27,23 @@ const allTags = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
 const { frontmatter } = Astro.props;
 
 const tagColor = getFirstTagColor(frontmatter.tags, allTags);
+
+// Define secondary color for TOC that avoids the primary tag color
+const colors = [
+  'var(--colour-tag4)', // red
+  'var(--colour-tag5)', // blue  
+  'var(--colour-tag2)', // orange
+  'var(--colour-tag6)', // purple
+  'var(--colour-tag3)', // green
+  'var(--colour-tag1)'  // yellow
+];
+
+// Find a color that's different from the primary tag color
+const secondaryColor = colors.find(color => color !== tagColor) || 'var(--colour-tag4)';
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <article class="prose mx-auto p-4">
+  <article class="prose mx-auto p-4" style={`--article-accent-color: ${tagColor}; --toc-secondary-color: ${secondaryColor};`}>
     <header class="mb-8">
       <h1   
         class="text-4xl font-bold mb-2 inline-block"
