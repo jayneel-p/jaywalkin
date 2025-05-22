@@ -450,7 +450,7 @@ figcaption .katex {
 }
 
 /* ===========================================
-   CODE STYLING WITH COHESIVE COLOURS
+   CODE STYLING WITH COHESIVE COLOURS FOR SHIKI
    =========================================== */
 pre[class*="astro-code"],
 pre[class*="language-"],

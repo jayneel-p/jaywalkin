@@ -6,7 +6,7 @@ tags: ['stochastic','python']
 category: "Technical"
 featured\_image: "/images/markov-chain.png"
 description: "We explore transition matrices by making a simple Lorem Ipsum generator that accepts any root text."
-layout: ../../layouts/ArticleLayoutTest.astro
+layout: ../../layouts/ArticleLayout.astro
 ---------------------------------------------
 
 <div class = 'remarks'>

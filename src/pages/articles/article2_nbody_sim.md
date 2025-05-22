@@ -6,7 +6,7 @@ tags: ['python','physics']
 category: "Technical"
 featured_image: "/images/urban-garden.jpg"
 description: "In this post, we’ll dive into modeling a multi-body system with straightforward numerical methods and a few simplifying assumptions. Focusing on Jupiter and its Galilean moons, you’ll see a minimal yet functional multi-body orbit simulator powered by a 4th-order Runge–Kutta solver. Think of this article as both an exploration into numerical techniques and a playground for testing how code snippets display with shiki in my blog. In a future installment, we’ll refine the physics and add more accuracy to the simulation."
-layout: ../../layouts/ArticleLayoutTest.astro
+layout: ../../layouts/ArticleLayout.astro
 ---
 ## Table of contents
 ## Introduction
