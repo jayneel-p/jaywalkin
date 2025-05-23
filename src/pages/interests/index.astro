@@ -1,10 +1,63 @@
 ---
+// src/pages/interests/index.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 <BaseLayout>
   <section>
-    <p>
-      <a href="/interests/records"><b>My Record Collection</b></a> - Check out my vinyl! Fetched using Discogs API.
-    </p>
+    <div class="interests-grid">
+      <div class="interest-item">
+        <a href="/interests/records"><b>My Record Collection</b></a>
+        <p class="interest-desc">Vinyl collection with ratings, synced from Discogs API. Albums sized by personal rating.</p>
+      </div>
+      
+      <div class="interest-item">
+        <a href="/interests/books"><b>Reading Collection</b></a>
+        <p class="interest-desc">Books I've read across physics, literature, and philosophy. Auto-synced from Goodreads.</p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+.interests-grid {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.interest-item {
+  border: 1px solid var(--colour-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.3s ease;
+}
+
+.interest-item:hover {
+  border-color: var(--colour-tag1);
+}
+
+.interest-item a {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag1);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.interest-desc {
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  line-height: 1.5;
+  text-indent: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .interests-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</style>
