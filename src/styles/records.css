@@ -1,182 +1,373 @@
+/* ===========================================
+   RECORDS PAGE - CENTRALIZED STYLES
+   =========================================== */
 
-  /* Size classes using viewport units with min/max constraints */
+/* ===========================================
+   PAGE LAYOUT & HEADER
+   =========================================== */
+.records-page {
+  padding: 1rem 0;
+}
+
+.records-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.records-header h1 {
+  color: var(--colour-h1);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+  text-decoration-color: var(--colour-tag1);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+}
+
+.collection-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--colour-tag1);
+  font-family: 'Go Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.collection-description {
+  font-size: 1.1rem;
+  color: var(--colour-text-muted);
+  line-height: 1.6;
+  margin-top: 2rem;
+  text-indent: 0;
+}
+
+.no-records {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--colour-text-muted);
+}
+
+.records-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--colour-border);
+}
+
+.records-note {
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  text-indent: 0;
+  font-style: italic;
+}
+
+.records-note a {
+  color: var(--colour-link);
+}
+
+/* ===========================================
+   RECORD COLLAGE LAYOUT
+   =========================================== */
+.record-collage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Add some visual breathing room */
+.record-collage::before,
+.record-collage::after {
+  content: '';
+  flex: 1;
+  max-width: 2rem;
+}
+
+/* ===========================================
+   RECORD TILE STYLES
+   =========================================== */
+.record-tile {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.record-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ===========================================
+   RECORD TILE SIZE CLASSES
+   =========================================== */
 .record-tile--large {
-    width: 28vw;
-    height: 28vw;
-    min-width: 180px;
-    min-height: 180px;
-    max-width: 280px;
-    max-height: 280px;
-  }
+  width: 28vw;
+  height: 28vw;
+  min-width: 180px;
+  min-height: 180px;
+  max-width: 280px;
+  max-height: 280px;
+}
 
 .record-tile--medium {
-    width: 24vw;
-    height: 24vw;
-    min-width: 140px;
-    min-height: 140px;
-    max-width: 220px;
-    max-height: 220px;
-  }
+  width: 24vw;
+  height: 24vw;
+  min-width: 140px;
+  min-height: 140px;
+  max-width: 220px;
+  max-height: 220px;
+}
 
 .record-tile--small {
-    width: 18vw;
-    height: 18vw;
-    min-width: 120px;
-    min-height: 120px;
+  width: 18vw;
+  height: 18vw;
+  min-width: 120px;
+  min-height: 120px;
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.record-tile--tiny {
+  width: 14vw;
+  height: 14vw;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 140px;
+  max-height: 140px;
+}
+
+/* ===========================================
+   RECORD COVER & IMAGE STYLES
+   =========================================== */
+.record-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.record-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===========================================
+   RECORD OVERLAY & INFO
+   =========================================== */
+.record-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.record-tile:hover .record-overlay {
+  opacity: 1;
+}
+
+.record-info {
+  color: var(--colour-text);
+  width: 100%;
+}
+
+.record-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.record-artist {
+  font-size: 0.8rem;
+  color: var(--colour-text-muted);
+  margin: 0 0 0.25rem 0;
+}
+
+.record-year {
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  margin: 0 0 0.5rem 0;
+}
+
+.record-rating {
+  margin: 0.25rem 0;
+}
+
+.stars {
+  color: var(--colour-tag1);
+  font-size: 0.8rem;
+}
+
+.record-note {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--colour-text-muted);
+  margin: 0.25rem 0 0 0;
+  line-height: 1.3;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN - TABLET
+   =========================================== */
+@media (max-width: 768px) {
+  /* Page layout adjustments */
+  .records-header h1 {
+    font-size: 2rem;
+  }
+
+  .collection-stats {
+    gap: 2rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .collection-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  /* Collage adjustments */
+  .record-collage {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* Tile size adjustments */
+  .record-tile--large {
+    width: 40vw;
+    height: 40vw;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .record-tile--medium {
+    width: 35vw;
+    height: 35vw;
     max-width: 180px;
     max-height: 180px;
   }
 
-.record-tile--tiny {
-    width: 14vw;
-    height: 14vw;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 140px;
-    max-height: 140px;
-  }
-
-.record-cover {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-.record-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-.record-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    align-items: flex-end;
-    padding: 1rem;
-  }
-
-.record-tile:hover .record-overlay {
-    opacity: 1;
-  }
-
-.record-info {
-    color: var(--colour-text);
-    width: 100%;
-  }
-
-.record-title {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin: 0 0 0.25rem 0;
-    line-height: 1.2;
-  }
-
-.record-artist {
-    font-size: 0.8rem;
-    color: var(--colour-text-muted);
-    margin: 0 0 0.25rem 0;
-  }
-
-.record-year {
-    font-size: 0.7rem;
-    color: var(--colour-text-muted);
-    margin: 0 0 0.5rem 0;
-  }
-
-.record-rating {
-    margin: 0.25rem 0;
-  }
-
-.stars {
-    color: var(--colour-tag1);
-    font-size: 0.8rem;
-  }
-
-.record-note {
-    font-size: 0.7rem;
-    font-style: italic;
-    color: var(--colour-text-muted);
-    margin: 0.25rem 0 0 0;
-    line-height: 1.3;
-}
-
-  /* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .record-tile--large {
-      width: 40vw;
-      height: 40vw;
-      max-width: 200px;
-      max-height: 200px;
-    }
-
-  .record-tile--medium {
-      width: 35vw;
-      height: 35vw;
-      max-width: 180px;
-      max-height: 180px;
-    }
-
   .record-tile--small {
-      width: 28vw;
-      height: 28vw;
-      max-width: 150px;
-      max-height: 150px;
-    }
+    width: 28vw;
+    height: 28vw;
+    max-width: 150px;
+    max-height: 150px;
+  }
 
   .record-tile--tiny {
-      width: 22vw;
-      height: 22vw;
-      max-width: 120px;
-      max-height: 120px;
-    }
+    width: 22vw;
+    height: 22vw;
+    max-width: 120px;
+    max-height: 120px;
+  }
 }
 
+/* ===========================================
+   RESPONSIVE DESIGN - MOBILE
+   =========================================== */
 @media (max-width: 480px) {
+  /* Page layout adjustments */
+  .records-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .collection-stats {
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .collection-description {
+    font-size: 0.95rem;
+  }
+
+  /* Collage adjustments */
+  .record-collage {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  /* Tile size adjustments */
   .record-tile--large {
-      width: 45vw;
-      height: 45vw;
-    }
+    width: 45vw;
+    height: 45vw;
+  }
 
   .record-tile--medium {
-      width: 40vw;
-      height: 40vw;
-    }
+    width: 40vw;
+    height: 40vw;
+  }
 
   .record-tile--small {
-      width: 32vw;
-      height: 32vw;
-    }
+    width: 32vw;
+    height: 32vw;
+  }
 
   .record-tile--tiny {
-      width: 28vw;
-      height: 28vw;
-    }
+    width: 28vw;
+    height: 28vw;
+  }
 
+  /* Info adjustments */
   .record-overlay {
-      padding: 0.5rem;
-    }
+    padding: 0.5rem;
+  }
 
   .record-title {
-      font-size: 0.8rem;
-    }
+    font-size: 0.8rem;
+  }
 
-   .record-artist, .record-year {
-      font-size: 0.7rem;
-    }
+  .record-artist, .record-year {
+    font-size: 0.7rem;
+  }
 
   .record-note {
-      font-size: 0.65rem;
-    }
+    font-size: 0.65rem;
+  }
 }

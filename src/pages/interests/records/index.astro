@@ -1,6 +1,6 @@
 ---
 // src/pages/interests/records/index.astro
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import RecordsLayout from '../../../layouts/RecordLayout.astro';
 import RecordCollage from '../../../components/record_collage.astro';
 
 // Discogs API configuration
@@ -57,7 +57,7 @@ function transformDiscogsRecord(discogsRecord: any) {
     rating: discogsRecord.rating || null, // Your personal rating
     coverUrl: basicInfo.cover_image || basicInfo.thumb || '/images/records/placeholder.jpg',
     genres: basicInfo.genres || [],
-    personalNote: discogsRecord.notes || '',
+    personalNote: String(discogsRecord.notes || ''), // No personal note from Discogs
     dateAdded: discogsRecord.date_added || '',
     isDiscogs: true,
     discogsId: discogsRecord.id,
@@ -100,7 +100,7 @@ const averageRating = ratedRecords.length > 0
 const fiveStarCount = allRecords.filter(record => record.rating === 5).length;
 ---
 
-<BaseLayout title="My Record Collection">
+<RecordsLayout title="My Record Collection">
   <section class="records-page">
     <header class="records-header">
       <h1>My Record Collection</h1>
@@ -134,131 +134,8 @@ const fiveStarCount = allRecords.filter(record => record.rating === 5).length;
     <footer class="records-footer">
       <p class="records-note">
         <b>Note:</b> Larger albums are rated higher, smaller ones lower. 
-        Data synced from my <a href={`https://discogs.com/user/${DISCOGS_USERNAME}`} target="_blank">Discogs collection</a>.
+        Data synced from my <a href={`https://discogs.com/user/${DISCOGS_USERNAME}`} target="_blank">Discogs</a>.
       </p>
     </footer>
   </section>
 </BaseLayout>
-
-<style>
-  .records-page {
-    padding: 1rem 0;
-  }
-
-  .records-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .records-header h1 {
-    color: var(--colour-h1);
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-decoration: underline;
-    text-decoration-color: var(--colour-tag1);
-    text-decoration-thickness: 3px;
-    text-underline-offset: 8px;
-  }
-
-  .collection-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--colour-tag1);
-    font-family: 'Go Mono', monospace;
-  }
-
-  .stat-label {
-    font-size: 0.9rem;
-    color: var(--colour-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .collection-description {
-    font-size: 1.1rem;
-    color: var(--colour-text-muted);
-    line-height: 1.6;
-    margin-top: 2rem;
-    text-indent: 0;
-  }
-
-  .no-records {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--colour-text-muted);
-  }
-
-  .records-footer {
-    text-align: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--colour-border);
-  }
-
-  .records-note {
-    font-size: 0.9rem;
-    color: var(--colour-text-muted);
-    text-indent: 0;
-    font-style: italic;
-  }
-
-  .records-note a {
-    color: var(--colour-link);
-  }
-
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-    .records-header h1 {
-      font-size: 2rem;
-    }
-
-    .collection-stats {
-      gap: 2rem;
-    }
-
-    .stat-number {
-      font-size: 1.5rem;
-    }
-
-    .collection-description {
-      font-size: 1rem;
-      padding: 0 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .records-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .collection-stats {
-      gap: 1.5rem;
-    }
-
-    .stat-number {
-      font-size: 1.25rem;
-    }
-
-    .collection-description {
-      font-size: 0.95rem;
-    }
-  }
-</style>

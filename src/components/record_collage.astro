@@ -2,6 +2,7 @@
 // RecordCollage.astro
 import RecordTile from '../components/record_tile.astro';
 
+
 interface Props {
   records: Array<{
     id: string;
@@ -49,38 +50,4 @@ const displayRecords = sortedRecords;
   ))}
 </div>
 
-<style>
-  .record-collage {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
 
-  /* Add some visual breathing room */
-  .record-collage::before,
-  .record-collage::after {
-    content: '';
-    flex: 1;
-    max-width: 2rem;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 768px) {
-    .record-collage {
-      gap: 1rem;
-      padding: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .record-collage {
-      gap: 0.75rem;
-      padding: 0.75rem;
-    }
-  }
-</style>
