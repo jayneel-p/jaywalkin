@@ -50,6 +50,9 @@ const starDisplay = getStarRating(record.rating);
             <span class="stars">{starDisplay}</span>
           </div>
         )}
+        {record.personalNote && (
+          <p class="record-note">{record.personalNote}</p>
+        )}
       </div>
     </div>
   </div>

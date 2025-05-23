@@ -26,8 +26,7 @@ async function fetchDiscogsCollection() {
         }
       }
     );
-
-    console.log('Response status:', response.status);
+    console.log('Response status:', response.status); 
     console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
@@ -48,20 +47,27 @@ async function fetchDiscogsCollection() {
 // Transform Discogs data to our format
 function transformDiscogsRecord(discogsRecord: any) {
   const basicInfo = discogsRecord.basic_information;
-  
+  // Extract personal notes (usually field_id 3 is the personal note field)
+  let personalNote = '';
+  if (discogsRecord.notes && Array.isArray(discogsRecord.notes)) {
+    // Find the personal note field (field_id 3 is typically the notes field)
+    const noteField = discogsRecord.notes.find((note: any) => note.field_id === 3);
+    if (noteField && noteField.value) {
+      personalNote = noteField.value;
+    }
+  }
   return {
     id: `discogs_${discogsRecord.id}`,
     artist: basicInfo.artists?.[0]?.name || 'Unknown Artist',
     title: basicInfo.title || 'Unknown Title',
     year: basicInfo.year || null,
-    rating: discogsRecord.rating || null, // Your personal rating
+    rating: discogsRecord.rating || null,
     coverUrl: basicInfo.cover_image || basicInfo.thumb || '/images/records/placeholder.jpg',
     genres: basicInfo.genres || [],
-    personalNote: String(discogsRecord.notes || ''), // No personal note from Discogs
+    personalNote: personalNote, // Now properly extracted from the notes array
     dateAdded: discogsRecord.date_added || '',
     isDiscogs: true,
     discogsId: discogsRecord.id,
-    // Additional Discogs data
     label: basicInfo.labels?.[0]?.name || '',
     catalogNumber: basicInfo.labels?.[0]?.catno || '',
     format: basicInfo.formats?.[0]?.name || 'Vinyl'
@@ -70,6 +76,7 @@ function transformDiscogsRecord(discogsRecord: any) {
 
 // Fetch and transform data
 const discogsReleases = await fetchDiscogsCollection();
+
 const records = discogsReleases.map(transformDiscogsRecord);
 
 // Add any manual records (not in Discogs yet)
@@ -103,7 +110,6 @@ const fiveStarCount = allRecords.filter(record => record.rating === 5).length;
 <RecordsLayout title="My Record Collection">
   <section class="records-page">
     <header class="records-header">
-      <h1>My Record Collection</h1>
       <div class="collection-stats">
         <div class="stat">
           <span class="stat-number">{totalRecords}</span>
@@ -118,9 +124,7 @@ const fiveStarCount = allRecords.filter(record => record.rating === 5).length;
           <span class="stat-label">5-Star Albums</span>
         </div>
       </div>
-      <p class="collection-description">
-        My vinyl collection from Discogs, sized by personal rating. Hover over albums to see details and ratings.
-      </p>
+     
     </header>
 
     {allRecords.length > 0 ? (

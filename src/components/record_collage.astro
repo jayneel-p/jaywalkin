@@ -43,11 +43,10 @@ const sortedRecords = records.sort((a, b) => {
 // const displayRecords = shuffleArray(records);
 const displayRecords = sortedRecords;
 ---
-
 <div class="record-collage">
-  {displayRecords.map((record) => (
-    <RecordTile record={record} />
+  {displayRecords.map((record, index) => (
+    <div class={`debug-wrapper item-${index}`} data-index={index}>
+      <RecordTile record={record} />
+    </div>
   ))}
 </div>
-
-
