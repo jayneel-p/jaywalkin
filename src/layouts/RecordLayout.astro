@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
 const { title = "Records" } = Astro.props;
+import '../styles/records.css';  
 ---
 
 <BaseLayout title={title}>
-  <link rel="stylesheet" href="/src/styles/records.css">
   <slot/>
 </BaseLayout>
