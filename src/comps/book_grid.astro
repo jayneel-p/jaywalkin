@@ -1,0 +1,264 @@
+---
+interface Props {
+  books: Array<{
+    title: string;
+    author: string;
+    link: string;
+    coverImage: string;
+    rating: number | null;
+    dateRead: string;
+    pubDate: string;
+  }>;
+}
+
+const { books } = Astro.props;
+
+// Sort books by date read (most recent first)
+const sortedBooks = books.sort((a, b) => {
+  const dateA = new Date(a.dateRead || a.pubDate);
+  const dateB = new Date(b.dateRead || b.pubDate);
+  return dateB.getTime() - dateA.getTime();
+});
+
+function getStarRating(rating: number | null): string {
+  const filled = rating && rating > 0 ? Math.round(rating) : 0;
+  const empty = 5 - filled;
+  return '★'.repeat(filled) + '☆'.repeat(empty);
+}
+---
+
+<div class="book-grid">
+  {sortedBooks.map((book) => (
+    <div class="book-item">
+      <a 
+        href={book.link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="book-link"
+      >
+        <div class="book-cover">
+          <img 
+            src={book.coverImage || ''} 
+            alt={`${book.title} by ${book.author}`}
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+         
+          </div>
+          <div class="book-overlay">
+            <div class="book-info">
+              <h3 class="book-title">{book.title}</h3>
+              <p class="book-author">{book.author}</p>
+            {book.rating && (
+             <div class="book-rating">
+              <span class="stars">{getStarRating(book.rating)}</span>
+            </div>
+            )}
+            </div>
+          </div>
+        </div>
+      </a>
+  ))}
+</div>
+
+<style>
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.book-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  width: 120px;
+  height: 180px;
+}
+
+.book-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.book-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.book-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  border: 2px solid var(--colour-border);
+  background-color: var(--colour-surface);
+  background-image: 
+    linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 50%, transparent 50%),
+    linear-gradient(-45deg, transparent 25%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.05) 50%, transparent 50%);
+  background-size: 20px 20px;
+}
+
+.book-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--colour-surface) 0%, var(--colour-background) 100%);
+  border: 2px dashed var(--colour-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--colour-text-muted);
+}
+
+.book-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.book-title-placeholder {
+  font-size: 0.65rem;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-author-placeholder {
+  font-size: 0.55rem;
+  opacity: 0.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-item:hover .book-cover img {
+  border-color: var(--colour-tag2);
+}
+
+.book-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.book-item:hover .book-overlay {
+  opacity: 1;
+}
+
+.book-info {
+  color: var(--colour-text);
+  width: 100%;
+  text-align: left;
+}
+
+.book-title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+  text-indent: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-author {
+  font-size: 0.7rem;
+  color: var(--colour-text-muted);
+  margin: 0 0 0.25rem 0;
+  text-indent: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.book-rating {
+  margin-top: 0.25rem;
+}
+
+.stars {
+  font-size: 0.7rem;
+  color: var(--colour-tag1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .book-grid {
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .book-item {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-grid {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .book-item {
+    width: 80px;
+    height: 120px;
+  }
+
+  .book-overlay {
+    padding: 0.5rem;
+  }
+
+  .book-title {
+    font-size: 0.7rem;
+  }
+
+  .book-author {
+    font-size: 0.6rem;
+  }
+
+  .stars {
+    font-size: 0.6rem;
+  }
+}
+</style>

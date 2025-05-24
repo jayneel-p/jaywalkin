@@ -1,247 +1,98 @@
 ---
 // src/pages/interests/books/index.astro
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BookGrid from '../../../comps/book_grid.astro';
+import { fetchGoodreadsBooks } from '../../../utils/goodreads.js';
+
+const USER_ID = '171634278';
+const MAX_BOOKS = 50;
+
+type Book = {
+  title: string;
+  author: string;
+  link: string;
+  coverImage: string;
+  rating: number | null;
+  dateRead: string;
+  pubDate: string;
+};
+
+let books: Book[] = [];
+let error = null;
+
+try {
+  const raw = await fetchGoodreadsBooks(USER_ID, 'read', MAX_BOOKS);
+  books = raw.map((b: any) => ({
+    title: b.title ?? '',
+    author: b.author ?? '',
+    link: b.link ?? '',
+    coverImage: b.coverImage ?? '',
+    rating: typeof b.rating === 'number' ? b.rating : (b.rating ? Number(b.rating) : null),
+    dateRead: b.dateRead ?? '',
+    pubDate: b.pubDate ?? '',
+  }));
+} catch (err) {
+  error = err instanceof Error ? err.message : String(err);
+}
+
+const total = books.length;
+const rated = books.filter(b => b.rating);
+const avgRating = rated.length ? (rated.reduce((t, b) => t + (b.rating ?? 0), 0) / rated.length).toFixed(1) : 'N/A';
+const fiveStars = books.filter(b => b.rating === 5).length;
+const recent = books.slice(0, 3);
 ---
 
 <BaseLayout title="My Books">
   <section class="books-page">
     <header class="books-header">
+
       <p class="books-description">
-        All the books I have recently read, made with the provided Goodreads Widget.
+        Books I've read, automatically synced from my Goodreads profile with data fetched from RSS feed.
+        Hover over covers to see title, author, and my subjective (and often ill-conceived) rating.
       </p>
-    </header>
-
-    <div class="goodreads-container">
-      <style type="text/css" media="screen">
-        /* Override Goodreads default styles to match your site */
-        .gr_grid_container {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important;
-          justify-content: center !important;
-          max-width: 1200px !important;
-          margin: 0 auto !important;
-          padding: 2rem !important;
-        }
-
-        .gr_grid_book_container {
-          /* Force override Goodreads styles */
-          float: none !important;
-          width: 120px !important;
-          height: 180px !important;
-          padding: 0 !important;
-          overflow: visible !important;
-          margin: 0 !important;
-          display: block !important;
-          
-          /* Your site styling */
-          position: relative !important;
-          border-radius: 8px;
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          cursor: pointer;
-        }
-
-        .gr_grid_book_container:hover {
-          transform: scale(1.05);
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        .gr_grid_book_container img {
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
-          border-radius: 8px !important;
-          border: 2px solid var(--colour-border) !important;
-          display: block !important;
-        }
-
-        .gr_grid_book_container:hover img {
-          border: 2px solid var(--colour-tag1) !important;
-        }
-
-        .gr_grid_book_container a {
-          display: block !important;
-          width: 100% !important;
-          height: 100% !important;
-        }
-
-        /* Force remove any clearing elements that might stack vertically */
-        .gr_grid_container br {
-          display: none !important;
-        }
-
-        /* Style the header link */
-        .gr_grid_container h2 {
-          text-align: center;
-          margin-bottom: 2rem;
-        }
-
-        .gr_grid_container h2 a {
-          color: var(--colour-text) !important;
-          text-decoration: underline !important;
-          text-decoration-color: var(--colour-tag1) !important;
-          text-decoration-thickness: 2px !important;
-          text-underline-offset: 4px !important;
-          font-family: 'Go Mono', monospace !important;
-          font-size: 1.5rem !important;
-        }
-
-        /* Style the footer branding */
-        .gr_grid_branding {
-          display: none !important; /* Hide the branding link */
-        }
-
-        /* Hide any other Goodreads branding that might appear */
-        .gr_grid_container a[href*="goodreads.com/user"] {
-          display: none !important;
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-          .gr_grid_container {
-            gap: 0.75rem;
-            padding: 1rem;
-          }
-          
-          .gr_grid_book_container {
-            width: 100px;
-            height: 150px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .gr_grid_container {
-            gap: 0.5rem;
-            padding: 0.75rem;
-          }
-          
-          .gr_grid_book_container {
-            width: 80px;
-            height: 120px;
-          }
-        }
-      </style>
-
-      <!-- Goodreads Widget -->
-      <div id="gr_grid_widget_1748036003">
-        <!-- Static HTML fallback -->
-        <h2>
-          <a style="text-decoration: none;" rel="nofollow" href="https://www.goodreads.com/review/list/171634278-jay-neel?shelf=read&utm_medium=api&utm_source=grid_widget">Recent Reads</a>
-        </h2>
-        <div class="gr_grid_container">
-          <div class="gr_grid_book_container"><a title="Meditations" rel="nofollow" href="https://www.goodreads.com/book/show/30659.Meditations"><img alt="Meditations" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1421618636l/30659._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Can't Hurt Me: Master Your Mind and Defy the Odds" rel="nofollow" href="https://www.goodreads.com/book/show/41721428-can-t-hurt-me"><img alt="Can't Hurt Me: Master Your Mind and Defy the Odds" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1536184191l/41721428._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Tao Te Ching" rel="nofollow" href="https://www.goodreads.com/book/show/67896.Tao_Te_Ching"><img alt="Tao Te Ching" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1333578861l/67896._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Siddhartha" rel="nofollow" href="https://www.goodreads.com/book/show/52036.Siddhartha"><img alt="Siddhartha" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1629378189l/52036._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Alchemist" rel="nofollow" href="https://www.goodreads.com/book/show/18144590-the-alchemist"><img alt="The Alchemist" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1654371463l/18144590._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Existentialism is a Humanism" rel="nofollow" href="https://www.goodreads.com/book/show/51985.Existentialism_is_a_Humanism"><img alt="Existentialism is a Humanism" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328870158l/51985._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones" rel="nofollow" href="https://www.goodreads.com/book/show/40121378-atomic-habits"><img alt="Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1655988385l/40121378._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Flow: The Psychology of Optimal Experience" rel="nofollow" href="https://www.goodreads.com/book/show/66354.Flow"><img alt="Flow: The Psychology of Optimal Experience" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1432253110l/66354._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Outliers: The Story of Success" rel="nofollow" href="https://www.goodreads.com/book/show/3228917-outliers"><img alt="Outliers: The Story of Success" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1344266315l/3228917._SX50_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Talking to Strangers: What We Should Know About the People We Don't Know" rel="nofollow" href="https://www.goodreads.com/book/show/43848929-talking-to-strangers"><img alt="Talking to Strangers: What We Should Know About the People We Don't Know" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1549393502l/43848929._SX50_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Sapiens: A Brief History of Humankind" rel="nofollow" href="https://www.goodreads.com/book/show/23692271-sapiens"><img alt="Sapiens: A Brief History of Humankind" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1703329310l/23692271._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Zorba the Greek" rel="nofollow" href="https://www.goodreads.com/book/show/53639.Zorba_the_Greek"><img alt="Zorba the Greek" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1542885673l/53639._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Prophet" rel="nofollow" href="https://www.goodreads.com/book/show/2547.The_Prophet"><img alt="The Prophet" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1355046521l/2547._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Broken Wings" rel="nofollow" href="https://www.goodreads.com/book/show/291.The_Broken_Wings"><img alt="The Broken Wings" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347637124l/291._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Catch-22" rel="nofollow" href="https://www.goodreads.com/book/show/168668.Catch_22"><img alt="Catch-22" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1463157317l/168668._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Hitchhiker's Guide to the Galaxy (Hitchhiker's Guide to the Galaxy, #1)" rel="nofollow" href="https://www.goodreads.com/book/show/11.The_Hitchhiker_s_Guide_to_the_Galaxy"><img alt="The Hitchhiker's Guide to the Galaxy" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1531891848l/11._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time" rel="nofollow" href="https://www.goodreads.com/book/show/4806.Longitude"><img alt="Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388462711l/4806._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="In the Wake of Chaos: Unpredictable Order in Dynamical Systems (Science and Its Conceptual Foundations series)" rel="nofollow" href="https://www.goodreads.com/book/show/1772732.In_the_Wake_of_Chaos"><img alt="In the Wake of Chaos: Unpredictable Order in Dynamical Systems" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1349065438l/1772732._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Direction of Time (Dover Books on Physics)" rel="nofollow" href="https://www.goodreads.com/book/show/848892.The_Direction_of_Time"><img alt="The Direction of Time" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328865834l/848892._SY75_.jpg" /></a></div>
-          <div class="gr_grid_book_container"><a title="The Fountainhead" rel="nofollow" href="https://www.goodreads.com/book/show/2122.The_Fountainhead"><img alt="The Fountainhead" src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1491163636l/2122._SY75_.jpg" /></a></div>
-          <br style="clear: both"/><br/>
-        </div>
-      </div>
-
-      <!-- Load the JavaScript to replace static content -->
-      <script src="https://www.goodreads.com/review/grid_widget/171634278.Jay(neel)'s%20bookshelf:%20read?cover_size=small&hide_link=&hide_title=true&num_books=40&order=a&shelf=read&sort=date_added&widget_id=1748036003" type="text/javascript" charset="utf-8"></script>
       
-      <!-- Fix layout after Goodreads script loads -->
-      <script is:inline>
-        function fixGoodreadsLayout() {
-          var container = document.querySelector('.gr_grid_container');
-          var bookContainers = document.querySelectorAll('.gr_grid_book_container');
-          
-          if (container && bookContainers.length > 0) {
-            // Apply flexbox to container
-            container.style.cssText = 'display: flex !important; flex-wrap: wrap !important; gap: 1rem !important; justify-content: center !important; max-width: 1200px !important; margin: 0 auto !important; padding: 2rem !important;';
-            
-            // Fix each book container
-            bookContainers.forEach(function(book) {
-              book.style.cssText = 'float: none !important; width: 120px !important; height: 180px !important; padding: 0 !important; overflow: visible !important; margin: 0 !important; display: block !important; position: relative !important; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); cursor: pointer;';
-              
-              // Fix images and upgrade quality
-              var img = book.querySelector('img');
-              if (img) {
-                // Upgrade image URL for better quality
-                var currentSrc = img.src;
-                var higherQualitySrc = currentSrc
-                  .replace('_SX50_', '_SX150_')
-                  .replace('_SY75_', '_SY225_')
-                  .replace('/50x75-', '/150x225-');
-                
-                img.src = higherQualitySrc;
-                img.style.cssText = 'width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 8px !important; border: 2px solid #44475A !important; display: block !important;';
-              }
-              
-              // Fix links
-              var link = book.querySelector('a');
-              if (link) {
-                link.style.cssText = 'display: block !important; width: 100% !important; height: 100% !important;';
-              }
-            });
-            
-            // Remove any br tags that cause vertical stacking
-            var breaks = container.querySelectorAll('br');
-            breaks.forEach(function(br) {
-              br.style.display = 'none';
-            });
-            
-            // Remove the "Jay(neel)'s favorite books" link that overlaps
-            var brandingLinks = document.querySelectorAll('.gr_grid_branding, a[href*="goodreads.com/user"]');
-            brandingLinks.forEach(function(link) {
-              link.style.display = 'none';
-            });
-          }
-        }
-        
-        // Try to fix layout multiple times as Goodreads might load slowly
-        setTimeout(fixGoodreadsLayout, 100);
-        setTimeout(fixGoodreadsLayout, 500);
-        setTimeout(fixGoodreadsLayout, 1000);
-        setTimeout(fixGoodreadsLayout, 2000);
-        
-        // Also fix on page load
-        document.addEventListener('DOMContentLoaded', fixGoodreadsLayout);
-        window.addEventListener('load', fixGoodreadsLayout);
-      </script>
-    </div>
+      {total > 0 ? (
+        <div class="reading-stats">
+          <div class="stat">
+            <span class="stat-number">{total}</span>
+            <span class="stat-label">Books Read</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{avgRating}</span>
+            <span class="stat-label">Average Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">{fiveStars}</span>
+            <span class="stat-label">5-Star Books</span>
+          </div>
+        </div>
+      ) : null}
+    </header>
+    
+    <BookGrid books={books} />
 
     <footer class="books-footer">
-      <div class="reading-stats">
-        <p class="books-note">
-          <b>Note:</b> This collection auto-syncs with my 
-          <a href="https://www.goodreads.com/user/show/171634278-jay-neel" target="_blank">Goodreads profile</a>. 
-          Hover over covers to see titles, click to view on Goodreads.
-        </p>
-      </div>
+      <p class="books-note">
+        <strong>Note:</strong> This collection auto-syncs with my
+        <a href="https://www.goodreads.com/user/show/171634278-jay-neel" target="_blank">Goodreads profile</a>.
+        Books are sorted by date read (most recent first).
+      </p>
+      <p class="technical-note">
+        Data is fetched at build time from Goodreads RSS feed for better performance and reliability.
+      </p>
     </footer>
   </section>
 </BaseLayout>
 
 <style>
-/* Additional page-specific styles */
 .books-page {
   padding: 1rem 0;
 }
 
 .books-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin: 0 auto 3rem;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .books-header h1 {
@@ -261,9 +112,49 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   margin-bottom: 2rem;
 }
 
-.goodreads-container {
+.reading-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--colour-tag2);
+  font-family: 'Go Mono', monospace;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(178, 34, 34, 0.1);
+  border: 1px solid var(--colour-tag4);
+  border-radius: 8px;
   margin: 2rem auto;
-  padding: 0;
+  max-width: 600px;
+}
+
+.no-books {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--colour-text-muted);
 }
 
 .books-footer {
@@ -271,12 +162,19 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid var(--colour-border);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.books-note {
+.books-note, .technical-note {
   font-size: 0.9rem;
   color: var(--colour-text-muted);
-  text-indent: 0;
+  margin: 0.5rem 0;
+}
+
+.technical-note {
+  font-size: 0.8rem;
   font-style: italic;
 }
 
@@ -288,15 +186,28 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
   color: var(--colour-link-hover);
 }
 
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .books-header h1 {
     font-size: 2rem;
   }
-  
   .books-description {
     font-size: 1rem;
     padding: 0 1rem;
+  }
+  .reading-stats {
+    gap: 2rem;
+  }
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reading-stats {
+    gap: 1.5rem;
+  }
+  .stat-number {
+    font-size: 1.25rem;
   }
 }
 </style>
