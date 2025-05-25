@@ -21,7 +21,10 @@ const sortedBooks = books.sort((a, b) => {
 });
 
 function getStarRating(rating: number | null): string {
-  const filled = rating && rating > 0 ? Math.round(rating) : 0;
+  if (!rating || rating <= 0) {
+    return '☆'.repeat(5);
+  }
+  const filled = Math.round(rating);
   const empty = 5 - filled;
   return '★'.repeat(filled) + '☆'.repeat(empty);
 }
@@ -49,11 +52,11 @@ function getStarRating(rating: number | null): string {
             <div class="book-info">
               <h3 class="book-title">{book.title}</h3>
               <p class="book-author">{book.author}</p>
-            {book.rating && (
-             <div class="book-rating">
-              <span class="stars">{getStarRating(book.rating)}</span>
-            </div>
-            )}
+              {book.rating !== null && (
+                <div class="book-rating">
+                  <span class="stars">{getStarRating(book.rating)}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
