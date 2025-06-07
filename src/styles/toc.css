@@ -1,156 +1,204 @@
 /* ===========================================
-   TABLE OF CONTENTS STYLES
+   SIDEBAR TABLE OF CONTENTS
    =========================================== */
 
-/* Hide the main TOC heading */
+/* Hide the original inline TOC */
+.prose details {
+  display: none;
+}
+
 h2#table-of-contents,
 .prose h2#table-of-contents {
   display: none;
 }
 
-/* Details container */
-details {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 2rem 0;
-  box-shadow: none;
+/* Sidebar container */
+.toc-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--colour-background);
+  border-right: 2px solid var(--colour-tag1);
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 
-/* Collapsible header */
-details summary {
+.toc-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Adjust main content when sidebar is open */
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+  margin-left: 280px;
+}
+
+/* TOC Header */
+.toc-header {
   color: var(--colour-text);
   font-weight: bold;
   font-size: 1.1rem;
-  cursor: pointer;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--colour-tag1);
   font-family: 'Go Mono', monospace;
-  margin-bottom: 1rem;
-  list-style: none;
 }
 
-/* Hide default triangle and add custom arrow */
-details summary::-webkit-details-marker {
-  display: none;
+/* Close button */
+.toc-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--colour-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-details summary::before {
-  content: " - ";
-  transition: transform 0.2s ease;
-  color: var(--article-accent-color, var(--colour-tag1));
+.toc-close:hover {
+  background-color: var(--colour-tag1);
+  color: var(--colour-background);
 }
 
-details[open] summary::before {
-  transform: rotate(90deg);
+/* TOC Toggle button */
+.toc-toggle {
+  position: fixed;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--colour-tag1);
+  color: var(--colour-background);
+  border: none;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Go Mono', monospace;
+  z-index: 101;
+  transition: all 0.3s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 
-/* Remove empty paragraphs */
-details > p:empty {
-  display: none;
+.toc-toggle:hover {
+  background: var(--colour-tag2);
+  padding-left: 0.75rem;
 }
 
-/* Base list styling */
-details ul {
+.toc-toggle.hidden {
+  transform: translateY(-50%) translateX(-100%);
+}
+
+/* Basic TOC List */
+.sidebar-toc-list {
   list-style: none;
   padding: 0;
-  margin: 0.1rem 1rem;
+  margin: 0;
 }
 
-/* Outer wrapper indentation */
-details > ul {
-  padding-left: 1.5rem;
+.sidebar-toc-list li {
+  margin: 0.3rem 0;
+  padding-left: 1rem;
 }
 
-/* Main TOC list - H2 level items */
-details > ul > li {
-  margin: 0.1rem 1rem;
-  border-left: 2px solid var(--article-accent-color, var(--colour-tag1));
-  padding-left: 0.75rem;
-  position: relative;
+.sidebar-toc-list a {
+  color: var(--colour-text);
+  text-decoration: none;
+  font-family: 'Go Mono', monospace;
+  font-size: 0.9rem;
+  display: block;
+  padding: 0.2rem 0;
+  transition: color 0.2s ease;
 }
 
-/* H3 level sublists */
-details > ul > li > ul {
-  margin-top: 0.5rem;
+/* H1 - NO BORDER */
+.sidebar-toc-list li[data-level="1"] {
+  display: none;
+}
+
+/* H2 - Orange */
+.sidebar-toc-list li[data-level="2"] {
+  border-left: 2px solid var(--colour-tag2);
+}
+.sidebar-toc-list li[data-level="2"] a:hover {
+  color: var(--colour-tag2);
+}
+
+/* H3 - Red */
+.sidebar-toc-list li[data-level="3"] {
+  border-left: 2px solid var(--colour-tag4);
+  margin-left: 1rem;
+}
+.sidebar-toc-list li[data-level="3"] a:hover {
+  color: var(--colour-tag4);
+}
+
+/* H4 - Purple */
+.sidebar-toc-list li[data-level="4"] {
+  border-left: 2px solid var(--colour-tag6);
   margin-left: 2rem;
-  border-left: 2px solid var(--toc-secondary-color, var(--colour-tag4));
-  padding-left: 1rem;
+}
+.sidebar-toc-list li[data-level="4"] a:hover {
+  color: var(--colour-tag6);
 }
 
-/* H4 level sublists */
-details > ul > li > ul > li > ul {
-  margin-left: 1.5rem;
-  border-left: 1px solid var(--colour-tag5);
-  padding-left: 1rem;
+/* H5 - Green */
+.sidebar-toc-list li[data-level="5"] {
+  border-left: 2px solid var(--colour-tag3);
+  margin-left: 3rem;
+}
+.sidebar-toc-list li[data-level="5"] a:hover {
+  color: var(--colour-tag3);
 }
 
-/* H3 level items */
-details > ul > li > ul > li {
-  margin: 0.4rem 0;
-  font-size: 1.05rem;
+/* Active section */
+.sidebar-toc-list a.active {
+  color: var(--colour-tag1) !important;
+  font-weight: bold;
 }
 
-/* H4 level items */
-details > ul > li > ul > li > ul > li {
-  font-size: 0.85rem;
+/* KaTeX support */
+.sidebar-toc-list .katex {
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
 
-/* DEFAULT LINK STYLING - H2 level links */
-details > ul > li > a {
-  color: var(--colour-text);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-family: 'Go Mono', monospace;
+.sidebar-toc-list .katex-display {
+  margin: 0 !important;
+  text-align: left !important;
 }
 
-/* H3 level links - default color */
-details > ul > li > ul > li > a {
-  color: var(--colour-text);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-family: 'Go Mono', monospace;
-}
-/* H4 level links */
-details > ul > li > ul > li > ul > li > a {
-  color: var(--colour-tag5);
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-family: 'Go Mono', monospace;
-}
-
-/* HOVER EFFECTS */
-/* H2 level hover */
-details > ul > li > a:hover {
-  color: var(--article-accent-color, var(--colour-tag1));
-  text-decoration: underline;
-  text-decoration-color: var(--article-accent-color, var(--colour-tag1));
-  text-underline-offset: 3px;
-}
-
-/* H3 level hover */
-details > ul > li > ul > li > a:hover {
-  color: var(--toc-secondary-color, var(--colour-tag4));
-  text-decoration: underline;
-  text-decoration-color: var(--toc-secondary-color, var(--colour-tag4));
-  text-underline-offset: 3px;
-}
-
-/* H4 level hover */
-details > ul > li > ul > li > ul > li > a:hover {
-  color: var(--colour-tag5);
-  text-decoration: underline;
-  text-decoration-color: var(--colour-tag5);
-  text-underline-offset: 3px;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  details > ul > li > ul {
-    margin-left: 1.5rem;
-    padding-left: 0.75rem;
+/* Responsive */
+@media (max-width: 1200px) {
+  .toc-sidebar {
+    width: 260px;
   }
-  
-  details > ul > li > ul > li > ul {
-    margin-left: 1rem;
-    padding-left: 0.75rem;
+  .main-content.shifted {
+    margin-left: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .toc-sidebar {
+    width: 100%;
+  }
+  .main-content.shifted {
+    margin-left: 0;
+  }
+  .toc-toggle {
+    left: 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
 }

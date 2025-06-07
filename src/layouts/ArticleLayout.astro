@@ -43,6 +43,7 @@ const secondaryColor = colors.find(color => color !== tagColor) || 'var(--colour
 ---
 
 <BaseLayout title={frontmatter.title}>
+  <script src="../utils/sidebar_toc.js"></script>
   <article class="prose mx-auto p-4" style={`--article-accent-color: ${tagColor}; --toc-secondary-color: ${secondaryColor};`}>
     <header class="mb-8">
       <h1   

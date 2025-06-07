@@ -12,9 +12,10 @@
 
   /* Titles and headings */
   --colour-title: var(--colour-text);        /* Main site title  */
-  --colour-h1: var(--colour-text);           /* H1 headings  */
-  --colour-h2: #D2691E;                           /* H2 underlines  */
-  --colour-h3: var(--colour-text-muted);           /* H3 underlines  */
+  --colour-h1: var(--colour-text-muted);           /* H1 headings  */
+  --colour-h2: var(--colour-text-muted);                           /* H2 underlines  */
+  --colour-h3: var(--colour-text-muted);   
+  --colour-h4: var(--colour-text-muted);        /* H3 underlines  */
 
   /* Tags */
   --colour-tag1: #E6B800;         
@@ -240,28 +241,30 @@ a:hover {
 .prose h2 {
   color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--article-accent-color, var(--colour-h2)); /* Fallback to original */
+  text-decoration-color: var(--colour-tag2); /* Orange - matches TOC H2 */
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-size: 1.3rem; /* If you want to reduce size too */
+  font-size: 1.7rem;
 }
 
 .prose h3 {
   color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--toc-secondary-color, var(--colour-tag4)); /* Use secondary color with fallback */
+  text-decoration-color: var(--colour-tag4); /* Red - matches TOC H3 */
   text-decoration-thickness: 3px;
   text-underline-offset: 6px;
   margin-top: 2rem;
   margin-bottom: 1rem;
+  font-size: 1.3rem;
+
 }
 
 .prose h4 {
   color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--colour-tag4);
+  text-decoration-color: var(--colour-tag6); /* Purple - matches TOC H4 */
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
   margin-top: 2rem;
@@ -271,13 +274,12 @@ a:hover {
 .prose h5 {
   color: var(--colour-text);
   text-decoration: underline;
-  text-decoration-color: var(--colour-tag5);
+  text-decoration-color: var(--colour-tag3); /* Green - matches TOC H5 */
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-
 .prose p {
   margin-bottom: 1.5rem;
 }
@@ -338,13 +340,16 @@ a:hover {
   letter-spacing: 0.3px;
 }
 
+
 /* ===========================================
    FIGURE & IMAGE STYLES
    =========================================== */
+
+/* Only apply centering to figure contents, not to subsequent elements */
 figure {
   margin: 2rem auto;
-  text-align: center;
   max-width: 100%;
+  /* Remove global text-align: center from here */
 }
 
 figure img {
@@ -359,7 +364,18 @@ figcaption {
   font-size: 0.9rem;
   color: var(--colour-text-muted);
   line-height: 1.4;
-  text-align: center;
+  text-align: center; /* Only center the caption */
+}
+
+/* Specific centering for your article figures */
+.article-figure {
+  text-align: center; /* Center content within the figure only */
+}
+
+/* Ensure text after figures returns to normal alignment */
+.article-figure + *,
+.article-figure ~ * {
+  text-align: left !important;
 }
 
 /* Figure variations */
