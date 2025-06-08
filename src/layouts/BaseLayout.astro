@@ -57,6 +57,8 @@ const { title = "jaywalking" } = Astro.props;
   border-radius: 3px;
   font-family: 'Go Mono', monospace;
   transition: all 0.2s ease;
+  margin-right: 6px;
+
 }
 
 #theme-btn:hover {
@@ -70,23 +72,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('theme-btn');
   const themeText = document.getElementById('theme-text');
   
-  // Check for saved theme or default to light
+  /**
+   * @param {string} theme
+   */
+  /**
+   * @param {string} theme
+   */
+  function updateThemeNote(theme: string) {
+    const existing = document.querySelector('.theme-note');
+    if (existing) existing.remove();
+    
+    const note = document.createElement('span');
+    note.className = 'theme-note';
+    note.style.cssText = 'font-style: italic; opacity: 0.7; margin-left: 8px;';
+    note.textContent = theme === 'dark' 
+      ? 'Note: Figures may be hard to read in Dark mode'
+      : 'Note: Light mode is ideal for figures';
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.appendChild(note);
+    }
+  }
+  
+  // Set initial theme
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   if (themeText) {
     themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
   }
+  updateThemeNote(savedTheme);
   
+  // Handle clicks
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
+      const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       if (themeText) {
         themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
       }
       localStorage.setItem('theme', newTheme);
+      updateThemeNote(newTheme);
     });
   }
 });

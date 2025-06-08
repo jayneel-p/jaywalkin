@@ -3,7 +3,7 @@
   "name": "jaywalkin-coffee-theme",
   "type": "dark",
   "colors": {
-    "editor.background": "#3E2723",
+    "editor.background": "#6D4C41",
     "editor.foreground": "#fff2c5"
   },
   "tokenColors": [
