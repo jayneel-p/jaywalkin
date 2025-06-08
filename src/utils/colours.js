@@ -3,12 +3,12 @@
  * @type {string[]}
  */
 export const colorVars = [
-  "--colour-tag1", // #E6B800 - mustard
-  "--colour-tag2", // #D2691E - burnt orange
-  "--colour-tag3", // #228B22 - forest green
-  "--colour-tag4", // #B22222 - brick red
-  "--colour-tag5", // #4169E1 - deep blue
-  "--colour-tag6", // #8B4789 - plum
+  "--colour-tag1", //
+  "--colour-tag2", //
+  "--colour-tag3", //
+  "--colour-tag4", //
+  "--colour-tag5", //
+  "--colour-tag6", //
 ];
 
 /**

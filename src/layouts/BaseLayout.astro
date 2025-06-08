@@ -40,19 +40,17 @@ const { title = "jaywalking" } = Astro.props;
   </main>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Get CSS variables from the document
+    const rootStyles = getComputedStyle(document.documentElement);
     const colors = [
-                      '#EF476F', // red
-                      '#F4A261', // orange
-                      '#FFD166', // yellow
-                      '#06D6A0', // green
-                      '#45C4B0', // teal
-                      '#3A86FF', // blue
-                      '#FF5EC2', // pink
-                      '#9D4EDD', // purple
-                      '#84A98C', // olive
-                      '#FF9770', // salmon
-                      '#BFA2DB'  // lavender
-                    ];;
+      rootStyles.getPropertyValue('--colour-tag1').trim(),
+      rootStyles.getPropertyValue('--colour-tag2').trim(),
+      rootStyles.getPropertyValue('--colour-tag3').trim(),
+      rootStyles.getPropertyValue('--colour-tag4').trim(),
+      rootStyles.getPropertyValue('--colour-tag5').trim(),
+      rootStyles.getPropertyValue('--colour-tag6').trim()
+    ];
+    
     const bolds = document.querySelectorAll('b');
     bolds.forEach(b => {
       const color = colors[Math.floor(Math.random() * colors.length)];

@@ -2,7 +2,7 @@
 title: "Introduction to Optical Tweezers and Statistical Mechanics"
 description: "This is an article I wrote for my Stat Mech 2 course. It's not wholly accurate. This a test article and is subject to be updated to test the implementation of new features on this blog. This article is incomplete in its explanation." 
 date: "2025-05-05"
-tags: ["physics","latex","test"]
+tags: ["physics","test"]
 layout: ../../layouts/ArticleLayout.astro
 ---
 

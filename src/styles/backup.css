@@ -7,7 +7,7 @@
 
 :root {
   /* Base */
-  --colour-background: #fff2c5; /* canvas */
+  --colour-background: #FFF2D7; /* canvas */
   --colour-surface: #F4CAB8; /* soft peach for surfaces */
   --colour-text: #3E2723; /* espresso for main text */
   --colour-text-muted: #8D8F8C; /* warm slate-gray for muted text */
@@ -28,11 +28,12 @@
   --colour-h3: #5E7C7E; /* muted teal for h3 */
 
   /* Tags - variety with the new colors */
- --colour-tag1: #6B2A4A; /* rich plum */
-  --colour-tag2: #5E7C7E; /* muted teal */
-  --colour-tag3: #E0A458; /* honey amber */
-  --colour-tag4: #3E2723; /* espresso */
-  --colour-tag5: #8D8F8C; /* warm slate-gray */
+  --colour-tag1: #D4A574;         /* muted coffee cream */
+  --colour-tag2: #A67C52;         /* muted coffee brown */
+  --colour-tag3: #8B4513;         /* muted dark roast */
+  --colour-tag4: #CD853F;         /* muted golden coffee */
+  --colour-tag5: #5E4037;         /* muted espresso */
+  --colour-tag6: #8B7355;         /* muted coffee bean */
 
 
   /* Links */
