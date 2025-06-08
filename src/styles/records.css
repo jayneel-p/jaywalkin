@@ -96,7 +96,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: flex-start; 
+  justify-content: center; 
   align-content: flex-start;   
   align-items: flex-start;
   max-width: 1400px;
@@ -131,8 +131,8 @@
   height: 28vw;
   min-width: 180px;
   min-height: 180px;
-  max-width: 280px;
-  max-height: 280px;
+  max-width: 200px;  /* was 280px */
+  max-height: 200px; /* was 280px */
 }
 
 .record-tile--medium {
@@ -140,8 +140,8 @@
   height: 24vw;
   min-width: 140px;
   min-height: 140px;
-  max-width: 220px;
-  max-height: 220px;
+  max-width: 180px;  /* was 220px */
+  max-height: 180px; /* was 220px */
 }
 
 .record-tile--small {
@@ -149,8 +149,8 @@
   height: 18vw;
   min-width: 120px;
   min-height: 120px;
-  max-width: 180px;
-  max-height: 180px;
+  max-width: 150px;  /* was 180px */
+  max-height: 150px; /* was 180px */
 }
 
 .record-tile--tiny {
@@ -158,8 +158,8 @@
   height: 14vw;
   min-width: 100px;
   min-height: 100px;
-  max-width: 140px;
-  max-height: 140px;
+  max-width: 120px;  /* was 140px */
+  max-height: 120px; /* was 140px */
 }
 
 /* ===========================================
@@ -204,7 +204,7 @@
 }
 
 .record-info {
-  color: var(--colour-text);
+  color: var(--colour-background);
   width: 100%;
   text-align: left;
 }

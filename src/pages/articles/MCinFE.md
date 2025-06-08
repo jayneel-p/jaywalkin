@@ -174,7 +174,7 @@ print(f"Theoretical Standard Deviation: {math.sqrt(sigma_squared(f_x, n) / n)}")
     Theoretical Standard Deviation: 0.007833
 
 <figure>
-<img src="/images/output_7_0.png"  style="width:15cm;height:12cm" />
+<img src="/images/histogram_MC_Integration_CLT.png"  style="width:15cm;height:12cm" />
 <figcaption> </figcaption>
 </figure>
 
