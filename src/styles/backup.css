@@ -1,373 +1,474 @@
 /* ===========================================
-   THEME VARIABLES
+   RESTRAINED MONOCHROMATIC COLOUR SCHEME
    =========================================== */
-   :root {
-    /* Base colors */
-    --bg-color: #ECDFC1;
-    --text-dark: #333;
-    --text-muted: #5a5a5a;
-    
-    /* Primary accent colors */
-    --accent-yellow: #F0BB3D;
-    --accent-red: #C4502A;
-    --accent-green: #697F3F;
-    
-    /* Highlight colors */
-    --highlight-purple: #8A4495;
-    --highlight-pink: #C85B8A;
-    --highlight-salmon: #F8A479;
-    --highlight-dandelion: #FBD773;
-    --highlight-blue: #7F9F8F;
-    --highlight-olive: #657665;
-    
-    /* Heading colors */
-    --title-brown: #8E5B3E;
-    --subheader-rust: #AA6539;
-  }
-  
-  /* ===========================================
-     RESET & BASE STYLES
-     =========================================== */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Go Mono', monospace;
-    background-color: var(--bg-color);
-    color: var(--text-dark);
-    line-height: 1.6;
-    padding: 2rem;
-  }
-  
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-  
-  p {
-    text-indent: 50px;
-  }
 
-  .special {
-    text-indent: 30px;
-  }
-  
-  /* ===========================================
-     HEADER & NAVIGATION
-     =========================================== */
-  .header-top {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 4rem;
-  }
-  
-  .title-wrapper {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .site-title {
-    font-size: 2.5rem;
-    color: var(--accent-red);
-    font-family: 'Go Mono', monospace;
-    text-align: center;
-    letter-spacing: 0.5px;
-    font-weight: bold;
-  }
-  
-  .subheader {
-    text-align: center;
-    margin-top: 0.1rem;
-    font-size: 1.25rem;
-    color: var(--subheader-rust);
-    font-family: 'Go Mono', monospace;
-    font-weight: 600;
-  }
-  
-  /* Navigation menu */
-  .navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
-  
-  .navbar li {
-    margin-right: 1rem;
-  }
-  
-  .navbar a {
-    color: var(--highlight-purple);
-    text-decoration: none;
-    font-weight: bold;
-    font-family: 'Go Mono', monospace;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
-  /* ===========================================
-     ARTICLE LIST STYLES
-     =========================================== */
-  .article-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .article-item {
-    margin-bottom: 2.5rem;
-  }
-  
-  .article-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.2rem;
-  }
-  
-  .article-link {
-    font-size: 1rem; 
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--text-dark);
-    display: inline-block;
-    line-height: 1.2;
-  }
-  
-  .article-link:hover {
-    color: var(--highlight-pink);
-  }
-  
-  .article-date {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
-  
-  .article-desc {
-    font-size: 0.85rem;
-    margin: 0.5rem 0 0.3rem;
-    text-indent: 0;
-  }
-  
-  /* ===========================================
-     ARTICLE CONTENT STYLES
-     =========================================== */
-  .article-content {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.07);
-  }
-  
-  .article header {
-    margin-bottom: 2.5rem;
-  }
-  
-  .prose {
-    font-family: 'Go Mono', monospace;
-    line-height: 1.6;
-  }
-  
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    color: var(--text-dark);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .prose p {
-    margin-bottom: 1.5rem;
-  }
-  .remarks {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--text-muted, #666); /* Fallback if --text-muted isn't defined */
-    text-indent: 0;
-    display: block;
-    margin: 1rem 0;
-    line-height: 1.5;
+/* Import Cormorant Garamond (main font) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
-    /* Optional styling for emphasis, adds padding */
-    border-left: 3px solid var(--highlight-blue);
-    padding-left: 1rem;
-    opacity: 0.85;
-  }
- /* ===========================================
-   TAG STYLES
+:root {
+  /* Base */
+  --colour-background: #fff2c5; /* canvas */
+  --colour-surface: #F4CAB8; /* soft peach for surfaces */
+  --colour-text: #3E2723; /* espresso for main text */
+  --colour-text-muted: #8D8F8C; /* warm slate-gray for muted text */
+  --colour-border: #8D8F8C; /* warm slate-gray for borders */
+
+  /* Accents */
+  --colour-accent: #E0A458; /* honey amber */
+  --colour-accent-hover: #5E7C7E; /* muted teal */
+
+  /* Code blocks */
+  --colour-code-bg: #F4CAB8; /* soft peach background */
+  --colour-code-border: #8D8F8C; /* slate-gray border */
+
+  /* Headers */
+  --colour-title: #3E2723; /* espresso for titles */
+  --colour-h1: #3E2723; /* espresso */
+  --colour-h2: #E0A458; /* honey amber for h2 */
+  --colour-h3: #5E7C7E; /* muted teal for h3 */
+
+  /* Tags - variety with the new colors */
+ --colour-tag1: #6B2A4A; /* rich plum */
+  --colour-tag2: #5E7C7E; /* muted teal */
+  --colour-tag3: #E0A458; /* honey amber */
+  --colour-tag4: #3E2723; /* espresso */
+  --colour-tag5: #8D8F8C; /* warm slate-gray */
+
+
+  /* Links */
+  --colour-link: #E0A458; /* honey amber */
+  --colour-link-hover: #6B2A4A; /* rich plum */
+}
+/* ===========================================
+   RESET & BASE STYLES
    =========================================== */
-/* Inline tags and tag lists */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: var(--colour-background);
+  color: var(--colour-text);
+  line-height: 1.6;
+  padding: 3rem 2rem;
+  font-weight: 400;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+}
+
+p {
+  text-indent: 0;
+  margin-bottom: 1.5rem;
+}
+
+.special {
+  text-indent: 30px;
+}
+
+/* Remove bold text coloring - keep it simple */
+b {
+  color: inherit;
+  font-weight: bold;
+}
+
+a {
+  color: var(--colour-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--colour-link-hover);
+}
+
+/* ===========================================
+   HEADER & NAVIGATION
+   =========================================== */
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 3rem;
+  margin-bottom: 2rem;
+}
+
+.title-wrapper {
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.site-title {
+  font-size: 3.5rem;
+  color: var(--colour-title);
+  text-align: center;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.subheader {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  font-family: 'Go Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation menu - simplified */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  color: var(--colour-text);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--colour-accent);
+}
+
+/* ===========================================
+   ARTICLE LIST STYLES
+   =========================================== */
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.article-item {
+  margin-bottom: 3rem;
+}
+
+.article-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.article-link {
+  font-size: 1.1rem; 
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--colour-text);
+  display: inline-block;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.article-link:hover {
+  color: var(--colour-accent);
+}
+
+.article-date {
+  font-size: 0.85rem;
+  color: var(--colour-text-muted);
+  font-family: 'Go Mono', monospace;
+}
+
+.article-desc {
+  font-size: 0.95rem;
+  margin: 0.75rem 0 1rem;
+  text-indent: 0;
+  line-height: 1.5;
+  color: var(--colour-text-muted);
+}
+
+/* ===========================================
+   ARTICLE CONTENT STYLES
+   =========================================== */
+.article-content {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--colour-border);
+}
+
+.article-content header {
+  margin-bottom: 3rem;
+}
+
+.prose {
+  line-height: 1.7;
+}
+
+/* Simplified headings */
+.prose h1 {
+  color: var(--colour-h1);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.prose h2 {
+  color: var(--colour-text);
+  margin-top: 2.5rem;
+  margin-bottom: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  font-size: 2rem;
+
+}
+.prose h3 {
+  color: var(--colour-text);
+  margin-top: 2rem;
+  margin-bottom: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 1.75rem;
+
+}
+
+.prose h4{
+  color: var(--colour-text);
+  margin-top: 2rem;
+  margin-bottom: 1.3rem;
+  font-weight: 600;
+  font-size: 1.45rem;
+}
+
+.prose h5 {
+  color: var(--colour-text);
+  margin-top: 1.5rem;
+  margin-bottom: 1.3rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-bottom: 1.2rem;
+}
+
+.remarks {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--colour-text-muted);
+  text-indent: 0;
+  display: block;
+  margin: 2rem 0;
+  line-height: 1.6;
+  border-left: 3px solid var(--colour-accent);
+  padding-left: 1.5rem;
+  opacity: 0.85;
+}
+
+/* Add this to your CSS */
+.prose ul, .prose ol {
+  margin-left: 2.5rem;
+}
+
+
+/* If you want nested lists to indent further */
+.prose ul ul, .prose ol ol, .prose ul ol, .prose ol ul {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ===========================================
+   SIMPLIFIED TAG STYLES
+   =========================================== */
 .tags-top {
-    margin-bottom: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  
-  .tag-inline {
-    font-weight: bold;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-  
-  .tag-inline:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
-  
-  .tag-list {
-    margin-top: 0.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  
-  /* Tag page header */
-  .tag-subheader {
-    text-align: center;
-    margin-top: 1.5rem;
-    margin-bottom: 0.7rem;
-    font-size: 1.25rem;
-    color: var(--highlight-pink);
-    font-family: 'Go Mono', monospace;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-  }
-  /* ===========================================
-     FIGURE & IMAGE STYLES
-     =========================================== */
-  figure {
-    margin: 2rem auto;
-    text-align: center;
-    max-width: 100%;
-  }
-  
-  figure img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    height: auto;
-  }
-  
-  figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-    text-align: center;
-  }
-  
-  /* Figure variations */
-  .figure-wide {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-  
-  .figure-centered {
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .figure-diagram img {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border: 1px solid #eaeaea;
-  }
-  
-  /* For figures containing LaTeX math in captions */
-  figcaption .katex {
-    font-size: 0.9em;
-  }
-  
-  /* ===========================================
-     BIBLIOGRAPHY STYLES
-     =========================================== */
-  .bibliography-unnumbered {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #ddd;
-  }
-  
-  .bibliography-unnumbered h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .bibliography-unnumbered ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .bibliography-unnumbered li {
-    margin-bottom: 0.8rem;
-    padding-left: 1em;
-    text-indent: -1em;
-  }
-  
-  /* ===========================================
-     RESPONSIVE STYLES
-     =========================================== */
-  /* Side-by-side figures on larger screens */
-  @media (min-width: 768px) {
-    .figures-container {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      margin: 2rem 0;
-    }
-  
-    .figures-container figure {
-      flex: 1 1 0;
-      margin: 0;
-    }
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 1100px) {
-    body {
-      padding: 1rem;
-    }
-  
-    .header-top {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
-    }
-  
-    .title-wrapper {
-      position: static;
-      transform: none;
-      margin-bottom: 1rem;
-      text-align: center;
-      width: 100%;
-    }
-  
-    .navbar ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .navbar li {
-      margin-bottom: 0.5rem;
-    }
-  }
+  margin-bottom: 2rem;
+  margin-top: -2rem;
 
-   /* ===========================================
-   Code Styling with Shiki Integration
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tag-inline {
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--colour-accent);
+  transition: opacity 0.2s ease;
+  font-family: 'Go Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.tag-inline:hover {
+  opacity: 0.8;
+}
+
+.tag-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Tag page header */
+.tag-subheader {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--colour-accent);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ===========================================
+   FIGURE & IMAGE STYLES
    =========================================== */
+figure {
+  margin: 3rem auto;
+  text-align: center;
+  max-width: 100%;
+}
 
-/* Base code block styling */
+figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Figure variations */
+.figure-wide {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.figure-centered {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.figure-diagram img {
+  background-color: var(--colour-surface);
+  padding: 1rem;
+  border: 1px solid var(--colour-border);
+}
+
+/* For figures containing LaTeX math in captions */
+figcaption .katex {
+  font-size: 0.9em;
+}
+
+/* ===========================================
+   BIBLIOGRAPHY STYLES
+   =========================================== */
+.bibliography-unnumbered {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--colour-border);
+}
+
+.bibliography-unnumbered h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--colour-h1);
+}
+
+.bibliography-unnumbered ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.bibliography-unnumbered li {
+  margin-bottom: 0.8rem;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+/* ===========================================
+   RESPONSIVE STYLES
+   =========================================== */
+/* Side-by-side figures on larger screens */
+@media (min-width: 768px) {
+  .figures-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .figures-container figure {
+    flex: 1 1 0;
+    margin: 0;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1100px) {
+  body {
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .site-title {
+    font-size: 2.2rem;
+  }
+
+  .subheader {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================================
+   SIMPLIFIED CODE STYLING
+   =========================================== */
 pre[class*="astro-code"],
 pre[class*="language-"],
 code[class*="language-"] {
@@ -375,31 +476,48 @@ code[class*="language-"] {
   line-height: 1.5;
   direction: ltr;
   text-align: left;
-  white-space: pre;
+  white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
+  word-wrap: break-word;
   tab-size: 2;
   hyphens: none;
   overflow-x: auto;
-    
-  /* Rounded corners */
-  border-radius: 8px;
   
-  /* Padding and margin */
+  /* Minimal border styling */
+  border: 1px solid var(--colour-code-border);
+  background-color: var(--colour-code-bg);
+  border-radius: 4px;
   padding: 1.25rem;
   margin: 1.5rem 0;
-  
-  /* Subtle shadow for depth */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-  /* Optional border */
-  border: 1px solid #383e4a;
 }
 
-/* Ensure inline code blocks match theme but with adjusted padding */
+code, pre {
+  font-family: 'Go Mono', monospace;
+}
+
+/* Inline code - minimal styling */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.4em;
   border-radius: 4px;
   white-space: normal;
-  
+  background-color: var(--colour-code-bg);
+  border: 1px solid var(--colour-code-border);
+}
+
+/* Make KaTeX blend with your design without breaking math rendering */
+.katex {
+  font-size: 1em !important; /* Match your body font size */
+  color: var(--colour-text) !important; /* Match your text color */
+}
+
+/* For display math, you might want slightly different styling */
+.katex-display {
+  margin: 2rem 0 !important;
+  color: var(--colour-text) !important;
+}
+
+/* Make inline math blend better */
+.katex * {
+  border-color: var(--colour-text) !important;
 }

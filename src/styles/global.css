@@ -509,6 +509,11 @@ code, pre {
   font-family: 'Go Mono', monospace;
 }
 
+
+[class*="katex"] {
+  font-size: 0.9em !important;
+}
+
 /* Inline code - keep minimal styling */
 :not(pre) > code[class*="language-"] {
   padding: 0.2em 0.4em;

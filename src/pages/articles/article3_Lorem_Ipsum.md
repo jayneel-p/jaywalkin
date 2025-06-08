@@ -13,7 +13,6 @@ layout: ../../layouts/ArticleLayout.astro
 A few years back in my CompPhys 2 course my group (s.o Jackson Morphew) had come up with a 'Next-Word generator' inspired by 'PageRank'. Essentially it was a shitty gibberish generator. Much more recently, as I was reading (read: struggling through) Don Quixote, I was struck by it's unique syntax and sentence structure. I took it upon myself to clean our old code and make a Don Quixote based Lorem Ipsum generator, to atleast make the code semi-useful (in the loosest definition of useful). Will anyone ever want this? No. But here it is. 
 </div>
 
-## Table of contents
 
 ## Introduction
 

@@ -5,7 +5,6 @@ date: "2025-05-05"
 tags: ["physics","latex","test"]
 layout: ../../layouts/ArticleLayout.astro
 ---
-## Table of contents
 
 ## Introduction
 
