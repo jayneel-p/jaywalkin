@@ -150,7 +150,7 @@ a:hover {
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: color 0.2s ease;
 }
 
@@ -180,7 +180,7 @@ a:hover {
 }
 
 .article-link {
-  font-size: 1.1rem; 
+  font-size: 1.2rem; 
   font-weight: 600;
   text-decoration: none;
   color: var(--colour-text);
@@ -520,4 +520,28 @@ code, pre {
 /* Make inline math blend better */
 .katex * {
   border-color: var(--colour-text) !important;
+}
+
+/* Replace your code block styles with this minimal version */
+pre[class*="astro-code"],
+pre[class*="language-"],
+code[class*="language-"] {
+  font-family: 'Go Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  
+  /* Prevent wrapping and enable horizontal scroll */
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+  /* Styling */
+  background-color: var(--colour-code-bg);
+  border-top: 1px solid var(--colour-text-muted);
+  border-bottom: 1px solid var(--colour-text-muted);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  
+  /* Reset any inherited indentation */
+  text-indent: 0;
 }

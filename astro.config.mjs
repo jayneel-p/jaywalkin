@@ -14,7 +14,7 @@ export default defineConfig({
       // Choose from Shiki's built-in themes. Find full list at: https://shiki.style/themes
       theme: customTheme,
       // Enable word wrap
-      wrap: true,
+      wrap: false,
       // Languages to be loaded
       langs: ['python', 'javascript', 'typescript', 'bash', 'markdown','c', 'cpp', 'java', 'html', 'css'],
     },

@@ -8,7 +8,6 @@ description: "Notes from 'Monte Carlo Methods in Financial Engineering' by Paul 
 layout: ../../layouts/ArticleLayout.astro
 ---
 
-
 ```python
 import scipy.integrate as integrate
 import random

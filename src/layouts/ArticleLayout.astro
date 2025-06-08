@@ -44,13 +44,17 @@ const secondaryColor = colors.find(color => color !== tagColor) || 'var(--colour
 
 <BaseLayout title={frontmatter.title}>
   <script src="../utils/sidebar_toc.js"></script>
-  <article class="prose mx-auto p-4" style={`--article-accent-color: ${tagColor}; --toc-secondary-color: ${secondaryColor};`}>
+  <article
+    class="prose mx-auto p-4"
+    style={`--article-accent-color: ${tagColor}; --toc-secondary-color: ${secondaryColor};`}>
+    
     <header class="mb-8">
-      <h1   
+      <h1
         class="text-4xl font-bold mb-2 inline-block"
         style={`color: var(--colour-text); text-decoration: underline; text-decoration-color: ${tagColor}; text-decoration-thickness: 3px; text-underline-offset: 7px;`}>
         {frontmatter.title}
       </h1>
+
       <p style="text-indent: 0px;">
         {frontmatter.date
           ? new Date(frontmatter.date).toLocaleDateString('en-US', {
@@ -60,24 +64,56 @@ const secondaryColor = colors.find(color => color !== tagColor) || 'var(--colour
             })
           : 'Date not available'}
       </p>
+
       {frontmatter.description && (
-        <p style="font-size: 0.95rem; color: var(--colour-text-muted); margin-top: 1rem; text-indent: 0px;">
+        <p
+          style="font-size: 0.95rem; color: var(--colour-text-muted); margin-top: 1rem; text-indent: 0px;">
           <i>{frontmatter.description}</i>
         </p>
       )}
-       
+
       {frontmatter.tags && (
         <div class="tag-list mt-2">
           {frontmatter.tags.map((tag: string) => (
-            <a href={`/tags/${tag}`} class="tag-inline" style={`color: ${getTagColor(tag, allTags)};`}>
+            <a
+              href={`/tags/${tag}`}
+              class="tag-inline"
+              style={`color: ${getTagColor(tag, allTags)};`}>
               {tag}
             </a>
           ))}
         </div>
       )}
     </header>
+
     <div class="article-content">
       <slot />
     </div>
   </article>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre[class*="astro-code"]').forEach(pre => {
+        const button = document.createElement('button');
+        button.textContent = '▼ Code';
+        button.style.cssText =
+          'margin-bottom: 0.5rem; padding: 0.25rem 0.5rem; background: var(--colour-accent); color: var(--colour-background); border: none; border-radius: 3px; cursor: pointer; font-family: inherit;';
+        
+        button.addEventListener('click', () => {
+          const preEl = pre as HTMLElement;
+          if (preEl.style.display === 'none') {
+            preEl.style.display = 'block';
+            button.textContent = '▼ Code';
+          } else {
+            preEl.style.display = 'none';
+            button.textContent = '▶ Code';
+          }
+        });
+
+        if (pre.parentNode) {
+          pre.parentNode.insertBefore(button, pre);
+        }
+      });
+    });
+  </script>
 </BaseLayout>
