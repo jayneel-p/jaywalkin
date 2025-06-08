@@ -526,22 +526,7 @@ code, pre {
 pre[class*="astro-code"],
 pre[class*="language-"],
 code[class*="language-"] {
-  font-family: 'Go Mono', monospace;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  
-  /* Prevent wrapping and enable horizontal scroll */
-  white-space: pre;
-  overflow-x: auto;
-  overflow-y: hidden;
-  
-  /* Styling */
-  background-color: var(--colour-code-bg);
-  border-top: 1px solid var(--colour-text-muted);
-  border-bottom: 1px solid var(--colour-text-muted);
   padding: 1.25rem;
-  margin: 1.5rem 0;
+  margin: 0.2rem 0;
   
-  /* Reset any inherited indentation */
-  text-indent: 0;
 }
