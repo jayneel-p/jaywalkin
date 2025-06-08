@@ -40,6 +40,47 @@
   --colour-link: #E0A458; /* honey amber */
   --colour-link-hover: #6B2A4A; /* rich plum */
 }
+
+[data-theme="dark"] {
+  /* Base colours - inverted */
+  --colour-background: #1A0F0A; /* Very dark coffee brown */
+  --colour-surface: #2A1810; /* Dark roasted coffee */
+  --colour-text: #E8D5B7; /* Muted cream text */
+  --colour-text-muted: #A67C52; /* Coffee-stained muted text */
+  --colour-border: #4A342A; /* Darker coffee bean brown */
+
+  /* Keep the same accent colors - they work well in dark */
+  --colour-title: var(--colour-text);
+  --colour-h1: var(--colour-text-muted);
+  --colour-h2: var(--colour-text-muted);
+  --colour-h3: var(--colour-text-muted);
+  --colour-h4: var(--colour-text-muted);
+
+  /* Tags - muted for dark theme */
+  --colour-tag1: #F2E394; /* Light butter yellow */
+--colour-tag2: #E8B4A0; /* Soft coral/peach */
+--colour-tag3: #C4D4AA; /* Light sage green */
+--colour-tag4: #D4A5A5; /* Dusty rose */
+--colour-tag5: #A8C4E2; /* Soft periwinkle blue */
+--colour-tag6: #D4B5D4; /* Light lavender */
+
+  /* Links */
+  --colour-link: #B8834A; /* Muted honey amber */
+  --colour-link-hover: #6B3466; /* Muted purple hover */
+
+  /* Code blocks - darker */
+  --colour-code-border: #4A342A;
+  --colour-code-bg: #0F0A08; /* Almost black coffee */
+
+  /* Navigation */
+  --colour-nav: #C49A00; /* Muted gold */
+  --colour-nav-hover: #6B3466; /* Muted purple */
+
+  /* Special elements */
+  --colour-accent: #B8834A; /* Muted honey */
+  --colour-highlight: #6B3466; /* Muted purple */
+}
+
 /* ===========================================
    RESET & BASE STYLES
    =========================================== */

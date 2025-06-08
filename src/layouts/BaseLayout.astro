@@ -26,6 +26,66 @@ const { title = "jaywalking" } = Astro.props;
 </head>
 
 <body>
+  <div class="theme-toggle">
+  How do you like your coffee? 
+  <button id="theme-btn" type="button">
+    <span id="theme-text">Cream</span>
+  </button>
+</div>
+
+<style>
+.theme-toggle {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  color: var(--colour-text-muted);
+  z-index: 1000;
+  font-family: 'Go Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#theme-btn {
+  background: none;
+  border: 1px solid var(--colour-text-muted);
+  color: var(--colour-text-muted);
+  font-size: 10px;
+  padding: 2px 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: 'Go Mono', monospace;
+  transition: all 0.2s ease;
+}
+
+#theme-btn:hover {
+  background: var(--colour-accent);
+  color: var(--colour-background);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeBtn = document.getElementById('theme-btn');
+  const themeText = document.getElementById('theme-text');
+  
+  // Check for saved theme or default to light
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
+  
+  themeBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
+    localStorage.setItem('theme', newTheme);
+  });
+});
+</script>
+
   <header class="header">
     <div class="header-top">
       <div class="title-wrapper">
