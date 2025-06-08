@@ -73,16 +73,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // Check for saved theme or default to light
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
-  themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
+  if (themeText) {
+    themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
+  }
   
-  themeBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
-    localStorage.setItem('theme', newTheme);
-  });
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      if (themeText) {
+        themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
+      }
+      localStorage.setItem('theme', newTheme);
+    });
+  }
 });
 </script>
 

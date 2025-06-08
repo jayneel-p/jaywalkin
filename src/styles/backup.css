@@ -568,7 +568,10 @@ code, pre {
 pre[class*="astro-code"],
 pre[class*="language-"],
 code[class*="language-"] {
+  font-size: 0.8rem;
   padding: 1.25rem;
   margin: 0.2rem 0;
+  overflow-x: auto;
+  white-space: pre;
   
 }
