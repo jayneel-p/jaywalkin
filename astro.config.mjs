@@ -5,23 +5,34 @@ import remarkToc from 'remark-toc';
 import remarkCollapse from 'remark-collapse';
 import { rehypeHeadingIds } from '@astrojs/markdown-remark';
 import customTheme from "./src/utils/custom_shiki_theme.json";
+import { visit } from 'unist-util-visit';
 
-// Astro has built-in Shiki integration, fuck ya astro you absolute legend
+// needed for Jupyter Notebook outputs to fix image paths 
+// (for when im lazy and dont want to use <Figure> tags) 
+const remarkFixImagePaths = () => {
+  return (tree) => {
+    visit(tree, 'image', (node) => {
+      if (node.url && node.url.startsWith('output_') && node.url.endsWith('.png')) {
+        node.url = `/images/${node.url}`;
+      }
+    });
+  };
+};
+
+
+
 export default defineConfig({
   markdown: {
-    // Enable syntax highlighting for Python and other languages
     shikiConfig: {
-      // Choose from Shiki's built-in themes. Find full list at: https://shiki.style/themes
       theme: customTheme,
-      // Enable word wrap
       wrap: false,
-      // Languages to be loaded
       langs: ['python', 'javascript', 'typescript', 'bash', 'markdown','c', 'cpp', 'java', 'html', 'css'],
     },
     remarkPlugins: [
       remarkMath,
       remarkToc,
       [remarkCollapse, { test: "Table of contents" }],
+      remarkFixImagePaths, // added this to fix image paths when using jpyter notebook outputs
     ],
     rehypePlugins: [rehypeHeadingIds, rehypeKatex],
   },

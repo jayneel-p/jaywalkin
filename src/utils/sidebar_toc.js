@@ -182,23 +182,25 @@ class SidebarTOC {
     }
   }
 
-  openSidebar() {
-    this.sidebar.classList.add('open');
-    this.toggle.classList.add('hidden');
-    if (this.mainContent && window.innerWidth > 768) {
-      this.mainContent.classList.add('shifted');
-    }
-    this.isOpen = true;
-  }
+openSidebar() {
+  this.sidebar.classList.add('open');
+  this.toggle.classList.add('hidden');
+  // Remove these lines that shift content:
+  // if (this.mainContent && window.innerWidth > 768) {
+  //   this.mainContent.classList.add('shifted');
+  // }
+  this.isOpen = true;
+}
 
-  closeSidebar() {
-    this.sidebar.classList.remove('open');
-    this.toggle.classList.remove('hidden');
-    if (this.mainContent) {
-      this.mainContent.classList.remove('shifted');
-    }
-    this.isOpen = false;
-  }
+closeSidebar() {
+  this.sidebar.classList.remove('open');
+  this.toggle.classList.remove('hidden');
+  // Remove this line:
+  // if (this.mainContent) {
+  //   this.mainContent.classList.remove('shifted');
+  // }
+  this.isOpen = false;
+}
 }
 
 // Initialize when DOM is loaded

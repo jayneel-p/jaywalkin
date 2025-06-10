@@ -137,8 +137,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 3rem;
-  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .title-wrapper {
@@ -347,7 +347,7 @@ a:hover {
    =========================================== */
 .tags-top {
   margin-bottom: 2rem;
-  margin-top: -2rem;
+  margin-top: 2rem;
 
   display: flex;
   justify-content: center; 

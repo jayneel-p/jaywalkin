@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getTagColor, getFirstTagColor } from "../utils/colours.js";
+import "../styles/toc.css";
+
+// Your existing interfaces and logic...
+interface Frontmatter {
+  title: string;
+  date: string;
+  description?: string;
+  tags?: string[];
+}
+
+interface Post {
+  url: string;
+  frontmatter: Frontmatter;
+}
+const allPosts = Object.values(
+  import.meta.glob<Post>("/src/pages/articles/*.md", { eager: true })
+).sort((a, b) =>
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+const allTags = [...new Set(allPosts.flatMap((p) => p.frontmatter.tags || []))];
+const { frontmatter } = Astro.props;
+const tagColor = getFirstTagColor(frontmatter.tags, allTags);
+
+const colors = [
+  'var(--colour-tag4)', // red
+  'var(--colour-tag5)', // blue
+  'var(--colour-tag2)', // orange
+  'var(--colour-tag6)', // purple
+  'var(--colour-tag3)', // green
+  'var(--colour-tag1)' // yellow
+];
+
+const secondaryColor = colors.find(color => color !== tagColor) || 'var(--colour-tag4)';
+---
+
+<style>
+  /* Layout container mimicking academic PDF layout */
+  .marginalia-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+    position: relative; /* Add this for absolute positioning */
+  }
+
+  .left-justified {
+    max-width: 750px;
+    margin-left: -8rem;
+    margin-right: auto;
+    text-align: left;
+    padding: 2rem 0;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    line-height: 1.75;
+    font-size: 1.1rem;
+  }
+
+  .prose {
+    line-height: 1.7;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
+  /* Hide footnotes section */
+  .prose :global(.footnotes) {
+    display: none;
+  }
+
+ @media (max-width: 1200px) {
+  .marginalia-container {
+    flex-direction: column;
+    padding: 0 1.5rem;
+  }
+  
+  .left-justified {
+    margin-left: 0;
+  }
+
+  .prose :global(.footnotes) {
+    display: block;
+  }
+  
+  /* ADD THESE LINES: */
+  .marginalia-note {
+    display: none !important;
+  }
+
+  }
+</style>
+
+
+<BaseLayout title={frontmatter.title}>
+  <script src="../utils/sidebar_toc.js"></script>
+  
+  <!-- Just wrap your existing article in a container -->
+  <div class="marginalia-container">
+    <article class="prose left-justified" style={`--article-accent-color: ${tagColor}; --toc-secondary-color: ${secondaryColor};`}>
+      
+      <!-- Your exact existing header -->
+      <header class="mb-8">
+        <h1
+          class="text-4xl font-bold mb-2 inline-block"
+          style={`color: var(--colour-text); text-decoration: underline; text-decoration-color: ${tagColor}; text-decoration-thickness: 3px; text-underline-offset: 7px;`}>
+          {frontmatter.title}
+        </h1>
+
+        <p style="text-indent: 0px;">
+          {frontmatter.date
+            ? new Date(frontmatter.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })
+            : 'Date not available'}
+        </p>
+
+        {frontmatter.description && (
+          <p style="font-size: 0.95rem; color: var(--colour-text-muted); margin-top: 1rem; text-indent: 0px;">
+            <i>{frontmatter.description}</i>
+          </p>
+        )}
+
+        {frontmatter.tags && (
+          <div class="tag-list mt-2">
+            {frontmatter.tags.map((tag: string) => (
+              <a href={`/tags/${tag}`} class="tag-inline" style={`color: ${getTagColor(tag, allTags)};`}>
+                {tag}
+              </a>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <div class="article-content">
+        <slot />
+      </div>
+    </article>
+  </div>
+
+  <!-- Add minimal marginalia styles -->
+  <style>
+    .marginalia-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Move footnotes to margin */
+    .prose :global(.footnotes) { display: none; }
+    
+    /* Position figures in margin */
+    .prose :global(figure), 
+    .prose :global(img[src*="output_"]) {
+      position: absolute;
+      right: -380px;
+      width: 320px;
+      background: var(--colour-surface);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Mobile: reset to normal */
+    @media (max-width: 1200px) {
+      .prose :global(figure), 
+      .prose :global(img[src*="output_"]),
+      .prose :global(.footnotes) {
+        position: static;
+        right: auto;
+        width: 100%;
+        display: block;
+      }
+    }
+  </style>
+
+  <!-- Your existing code toggle script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Your existing code toggle
+      document.querySelectorAll('pre[class*="astro-code"]').forEach(pre => {
+        const button = document.createElement('button');
+        button.textContent = '▼ Code';
+        button.style.cssText = 'margin-bottom: 0rem; padding: 0.15rem 0.5rem; background: var(--colour-accent); color: var(--colour-background); border: none; border-radius: 3px; cursor: pointer; font-family: inherit;';
+        
+        button.addEventListener('click', () => {
+          const preEl = pre as HTMLElement;
+          if (preEl.style.display === 'none') {
+            preEl.style.display = 'block';
+            button.textContent = '▼ Code';
+          } else {
+            preEl.style.display = 'none';
+            button.textContent = '▶ Code';
+          }
+        });
+
+        if (pre.parentNode) {
+          pre.parentNode.insertBefore(button, pre);
+        }
+      });
+
+      // Simple footnote marginalia - flush with background
+      const footnotes = document.querySelectorAll('.footnotes li');
+      footnotes.forEach((note, i) => {
+        const id = note.id;
+        const link = document.querySelector(`a[href="#${id}"]`);
+        if (link) {
+          const marginNote = document.createElement('div');
+          marginNote.className = 'marginalia-note';
+          marginNote.style.cssText = `
+            position: absolute; 
+            right: -250px; 
+            width: 300px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: var(--colour-text-muted);
+            top: ${(link as HTMLElement).offsetTop - 10}px;
+          `;
+          // Clean footnote content - remove backlinks
+          const cleanContent = note.innerHTML.replace(/<a[^>]*class="footnote-backref"[^>]*>.*?<\/a>/g, '');
+          marginNote.innerHTML = `<sup style="color: var(--colour-accent); margin-right: 0.5rem;">${i+1}</sup>${cleanContent}`;
+          const container = document.querySelector('.marginalia-container');
+          if (container) {
+            container.appendChild(marginNote);
+          }
+        }
+      });
+    });
+  </script>
+</BaseLayout>
