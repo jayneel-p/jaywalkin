@@ -27,15 +27,15 @@ const { title = "jaywalking" } = Astro.props;
 
 <body>
   <div class="theme-toggle">
-  How do you like your coffee? 
-  <button id="theme-btn" type="button">
-    <span id="theme-text">Cream</span>
-  </button>
-</div>
+    <span class="theme-text-desktop">How do you like your coffee?</span>
+    <button id="theme-btn" type="button">
+      <span id="theme-text">Cream</span>
+    </button>
+  </div>
 
 <style>
 .theme-toggle {
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: 10px;
   font-size: 10px;
@@ -57,13 +57,26 @@ const { title = "jaywalking" } = Astro.props;
   border-radius: 3px;
   font-family: 'Go Mono', monospace;
   transition: all 0.2s ease;
-  margin-right: 6px;
-
 }
 
 #theme-btn:hover {
   background: var(--colour-accent);
   color: var(--colour-background);
+}
+
+@media (max-width: 768px) {
+  .theme-text-desktop {
+    display: none;
+  }
+  
+  .theme-toggle {
+    font-size: 8px;
+  }
+  
+  #theme-btn {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
 }
 </style>
 
@@ -72,35 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('theme-btn');
   const themeText = document.getElementById('theme-text');
   
-  /**
-   * @param {string} theme
-   */
-  /**
-   * @param {string} theme
-   */
-  function updateThemeNote(theme: string) {
-    const existing = document.querySelector('.theme-note');
-    if (existing) existing.remove();
-    
-    const note = document.createElement('span');
-    note.className = 'theme-note';
-    note.style.cssText = 'font-style: italic; opacity: 0.7; margin-left: 8px;';
-    note.textContent = theme === 'dark' 
-      ? 'Note: Figures may be hard to read in Dark mode'
-      : 'Note: Light mode is ideal for figures';
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (themeToggle) {
-      themeToggle.appendChild(note);
-    }
-  }
-  
   // Set initial theme
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   if (themeText) {
     themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
   }
-  updateThemeNote(savedTheme);
   
   // Handle clicks
   if (themeBtn) {
@@ -111,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
       }
       localStorage.setItem('theme', newTheme);
-      updateThemeNote(newTheme);
     });
   }
 });
