@@ -198,7 +198,9 @@ h2#table-of-contents,
     margin-left: 0;
   }
   .toc-toggle {
-    left: 0.5rem;
-    padding: 0.5rem 0.25rem;
+    left: 0.3rem;
+    padding: 0.3rem 0.2rem;
+    font-size: 0.6rem;
+    top: 45%;
   }
 }
