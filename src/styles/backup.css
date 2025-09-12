@@ -114,9 +114,8 @@ p {
   text-indent: 30px;
 }
 
-/* Remove bold text coloring - keep it simple */
 b {
-  color: inherit;
+  color: var(--colour-nav);
   font-weight: bold;
 }
 
