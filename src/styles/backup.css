@@ -412,6 +412,15 @@ figcaption {
   font-style: italic;
 }
 
+.figures-caption {
+  margin-top: -1rem;
+  font-size: 0.9rem;
+  color: var(--colour-text-muted);
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
 /* Figure variations */
 .figure-wide {
   grid-column: 1 / -1;
