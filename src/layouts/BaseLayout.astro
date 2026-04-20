@@ -27,9 +27,9 @@ const { title = "jaywalking" } = Astro.props;
 
 <body>
   <div class="theme-toggle">
-    <span class="theme-text-desktop">How do you like your coffee?</span>
+    <span class="theme-text-desktop"> Theme: </span>
     <button id="theme-btn" type="button">
-      <span id="theme-text">Cream</span>
+      <span id="theme-text">Light</span>
     </button>
   </div>
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   if (themeText) {
-    themeText.textContent = savedTheme === 'dark' ? 'Black' : 'Cream';
+    themeText.textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
   }
   
   // Handle clicks
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
       if (themeText) {
-        themeText.textContent = newTheme === 'dark' ? 'Black' : 'Cream';
+        themeText.textContent = newTheme === 'dark' ? 'Dark' : 'Light';
       }
       localStorage.setItem('theme', newTheme);
     });
